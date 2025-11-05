@@ -86,7 +86,7 @@ app.get('/wake', (_req: Request, res: Response) => {
 
 server.listen(port, () => {
   console.log(`🚀 QUIZ LIVE → http://localhost:${port}`);
-  console.log(`🚀 .NET Quiz LIVE | Built by Aditya @thelifesyntax | https://mock-interview-0mfe.onrender.com`);
+  console.log(`🚀 .NET Quiz LIVE | Built by @thelifesyntax | https://mock-interview-0mfe.onrender.com`);
   console.log(`Press Ctrl+C to stop`);
 });
 })();
