@@ -44,6 +44,7 @@ export function AdSensePlaceholder({ variant }: { variant: "banner" | "square" }
         data-ad-slot="1111111111"
         data-ad-format="auto"
         data-full-width-responsive="true"
+        data-ad-test="on"
       ></ins>
 
       {/* Fallback placeholder */}
