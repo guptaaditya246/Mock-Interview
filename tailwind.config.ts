@@ -51,6 +51,14 @@ export default {
           foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
           border: "var(--destructive-border)",
         },
+        success: {
+          DEFAULT: "hsl(142 76% 36% / <alpha-value>)",
+          foreground: "hsl(0 0% 100% / <alpha-value>)",
+        },
+        warning: {
+          DEFAULT: "hsl(43 96% 56% / <alpha-value>)",
+          foreground: "hsl(0 0% 9% / <alpha-value>)",
+        },
         ring: "hsl(var(--ring) / <alpha-value>)",
         chart: {
           "1": "hsl(var(--chart-1) / <alpha-value>)",
@@ -96,10 +104,25 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "count-up": {
+          from: { transform: "scale(0.8)", opacity: "0" },
+          to: { transform: "scale(1)", opacity: "1" },
+        },
+        "slide-in": {
+          from: { transform: "translateX(10px)", opacity: "0" },
+          to: { transform: "translateX(0)", opacity: "1" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "count-up": "count-up 0.5s ease-out forwards",
+        "slide-in": "slide-in 0.3s ease-out",
+        "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

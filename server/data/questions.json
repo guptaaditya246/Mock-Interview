@@ -1,0 +1,1207 @@
+{
+  "csharp_basics": [
+    {
+      "q": "What is the default access modifier for class members in C#?",
+      "options": ["public", "private", "protected", "internal"],
+      "answer": 1,
+      "explanation": "Class members (fields, properties, methods) are private by default if no access modifier is specified."
+    },
+    {
+      "q": "Which keyword is used to prevent a class from being inherited?",
+      "options": ["static", "sealed", "abstract", "readonly"],
+      "answer": 1,
+      "explanation": "The 'sealed' keyword prevents a class from being inherited. Static classes are implicitly sealed as well."
+    },
+    {
+      "q": "What is the difference between 'ref' and 'out' parameters?",
+      "options": [
+        "'ref' requires initialization before passing, 'out' does not",
+        "'out' requires initialization before passing, 'ref' does not",
+        "They are exactly the same",
+        "'ref' is for value types, 'out' is for reference types"
+      ],
+      "answer": 0,
+      "explanation": "'ref' parameters must be initialized before being passed to a method, while 'out' parameters must be assigned a value inside the method before it returns."
+    },
+    {
+      "q": "What is boxing in C#?",
+      "options": [
+        "Converting a reference type to a value type",
+        "Converting a value type to a reference type",
+        "Encrypting data",
+        "Creating a container class"
+      ],
+      "answer": 1,
+      "explanation": "Boxing is the process of converting a value type to a reference type (object). This wraps the value in a heap-allocated object."
+    },
+    {
+      "q": "Which of these is a reference type in C#?",
+      "options": ["int", "struct", "string", "enum"],
+      "answer": 2,
+      "explanation": "String is a reference type in C#, even though it behaves like a value type in many scenarios due to its immutability."
+    },
+    {
+      "q": "What does the 'readonly' keyword do?",
+      "options": [
+        "Prevents modification after initialization in constructor",
+        "Makes a method non-overridable",
+        "Prevents a class from being inherited",
+        "Makes a variable compile-time constant"
+      ],
+      "answer": 0,
+      "explanation": "The 'readonly' keyword allows a field to be assigned only during declaration or in the constructor. After that, it cannot be modified."
+    },
+    {
+      "q": "What is the purpose of the 'using' statement?",
+      "options": [
+        "Import namespaces only",
+        "Dispose resources automatically",
+        "Create aliases only",
+        "Handle exceptions"
+      ],
+      "answer": 1,
+      "explanation": "The 'using' statement ensures that Dispose() is called on IDisposable objects automatically, even if an exception occurs."
+    },
+    {
+      "q": "What is the difference between '==' and 'Equals()' for strings?",
+      "options": [
+        "No difference for strings",
+        "'==' checks reference, 'Equals()' checks value",
+        "'==' checks value, 'Equals()' checks reference",
+        "'Equals()' is case-sensitive, '==' is not"
+      ],
+      "answer": 0,
+      "explanation": "For strings, both '==' and 'Equals()' check value equality by default due to operator overloading in the String class."
+    },
+    {
+      "q": "What is a nullable value type?",
+      "options": [
+        "A reference type that can be null",
+        "A value type that can be null",
+        "A type that is always null",
+        "A compile-time constant"
+      ],
+      "answer": 1,
+      "explanation": "Nullable value types (e.g., 'int?') allow value types to have a null value, which is normally not possible for value types."
+    },
+    {
+      "q": "What is the purpose of the 'yield' keyword?",
+      "options": [
+        "Pause execution of a thread",
+        "Return elements one at a time in an iterator",
+        "Throw an exception",
+        "Create a delegate"
+      ],
+      "answer": 1,
+      "explanation": "'yield return' creates an iterator that returns elements one at a time, enabling lazy evaluation and efficient memory usage."
+    },
+    {
+      "q": "What is the difference between 'const' and 'readonly'?",
+      "options": [
+        "'const' is compile-time, 'readonly' is runtime",
+        "'readonly' is compile-time, 'const' is runtime",
+        "They are the same",
+        "'const' can only be used with strings"
+      ],
+      "answer": 0,
+      "explanation": "'const' values are evaluated at compile-time and must be initialized at declaration, while 'readonly' values can be set at runtime in constructors."
+    },
+    {
+      "q": "What is a delegate in C#?",
+      "options": [
+        "A type-safe function pointer",
+        "A design pattern",
+        "A data structure",
+        "An exception handler"
+      ],
+      "answer": 0,
+      "explanation": "A delegate is a type that represents references to methods with a specific parameter list and return type, providing type-safe function pointers."
+    },
+    {
+      "q": "What is the purpose of the 'virtual' keyword?",
+      "options": [
+        "Make a method abstract",
+        "Allow a method to be overridden in derived classes",
+        "Prevent inheritance",
+        "Create a static method"
+      ],
+      "answer": 1,
+      "explanation": "The 'virtual' keyword allows a method to be overridden in derived classes, enabling polymorphism."
+    },
+    {
+      "q": "What is an abstract class?",
+      "options": [
+        "A class that cannot be instantiated directly",
+        "A class with no methods",
+        "A sealed class",
+        "A static class"
+      ],
+      "answer": 0,
+      "explanation": "Abstract classes cannot be instantiated directly and serve as base classes. They can contain abstract members that must be implemented by derived classes."
+    },
+    {
+      "q": "What is the difference between 'throw' and 'throw ex'?",
+      "options": [
+        "'throw' preserves stack trace, 'throw ex' resets it",
+        "'throw ex' preserves stack trace, 'throw' resets it",
+        "No difference",
+        "'throw' is for custom exceptions only"
+      ],
+      "answer": 0,
+      "explanation": "'throw' rethrows the original exception preserving the stack trace, while 'throw ex' creates a new stack trace from the current point."
+    },
+    {
+      "q": "What is string interpolation in C#?",
+      "options": [
+        "Using $ before a string literal",
+        "Using + to concatenate strings",
+        "Using String.Format()",
+        "Using StringBuilder"
+      ],
+      "answer": 0,
+      "explanation": "String interpolation uses the $ symbol before a string literal, allowing embedded expressions like $\"Hello {name}\" for cleaner code."
+    },
+    {
+      "q": "What is the 'is' operator used for?",
+      "options": [
+        "Equality comparison",
+        "Type checking and pattern matching",
+        "Bitwise operations",
+        "String comparison"
+      ],
+      "answer": 1,
+      "explanation": "The 'is' operator checks if an object is compatible with a given type and can also be used for pattern matching in modern C#."
+    },
+    {
+      "q": "What is a tuple in C#?",
+      "options": [
+        "A lightweight data structure with multiple values",
+        "An array of objects",
+        "A type of collection",
+        "A delegate type"
+      ],
+      "answer": 0,
+      "explanation": "Tuples provide a lightweight way to group multiple values together without creating a dedicated class or struct."
+    },
+    {
+      "q": "What is the 'nameof' operator?",
+      "options": [
+        "Gets the simple string name of a variable, type, or member",
+        "Creates a namespace",
+        "Renames a variable",
+        "Gets the full type name with namespace"
+      ],
+      "answer": 0,
+      "explanation": "The 'nameof' operator returns the simple string name of a variable, type, or member, helping avoid hard-coded strings and improving refactoring."
+    },
+    {
+      "q": "What is a record type in C#?",
+      "options": [
+        "A reference type with value-based equality",
+        "A value type only",
+        "A type for database records",
+        "A sealed class"
+      ],
+      "answer": 0,
+      "explanation": "Records are reference types that provide value-based equality and are designed for immutable data models with built-in features like with-expressions."
+    },
+    {
+      "q": "What is pattern matching in switch expressions?",
+      "options": [
+        "Enhanced switch statements with pattern support",
+        "String pattern matching only",
+        "Regular expression matching",
+        "A design pattern"
+      ],
+      "answer": 0,
+      "explanation": "Pattern matching in switch expressions allows matching on types, properties, and conditions, providing more powerful and expressive branching logic."
+    },
+    {
+      "q": "What are init-only setters?",
+      "options": [
+        "Properties that can only be set during object initialization",
+        "Read-only properties",
+        "Write-only properties",
+        "Static properties"
+      ],
+      "answer": 0,
+      "explanation": "Init-only setters (using 'init' keyword) allow properties to be set during object initialization but become immutable after construction."
+    }
+  ],
+  "aspnet_core": [
+    {
+      "q": "What is the purpose of middleware in ASP.NET Core?",
+      "options": [
+        "Handle HTTP requests and responses in a pipeline",
+        "Manage database connections",
+        "Compile code",
+        "Handle routing only"
+      ],
+      "answer": 0,
+      "explanation": "Middleware components handle HTTP requests and responses in a pipeline, allowing you to add cross-cutting concerns like logging, authentication, and error handling."
+    },
+    {
+      "q": "What is dependency injection (DI) in ASP.NET Core?",
+      "options": [
+        "A design pattern for providing dependencies to classes",
+        "A security feature",
+        "A routing mechanism",
+        "A caching strategy"
+      ],
+      "answer": 0,
+      "explanation": "Dependency Injection is a design pattern where dependencies are provided to a class rather than the class creating them, promoting loose coupling and testability."
+    },
+    {
+      "q": "What are the three service lifetimes in ASP.NET Core DI?",
+      "options": [
+        "Transient, Scoped, Singleton",
+        "Short, Medium, Long",
+        "Request, Session, Application",
+        "Fast, Normal, Slow"
+      ],
+      "answer": 0,
+      "explanation": "Transient creates a new instance each time, Scoped creates one per request, and Singleton creates one instance for the application lifetime."
+    },
+    {
+      "q": "What is the purpose of the Startup class in ASP.NET Core?",
+      "options": [
+        "Configure services and HTTP request pipeline",
+        "Start the web server",
+        "Handle routing",
+        "Manage sessions"
+      ],
+      "answer": 0,
+      "explanation": "The Startup class (or Program.cs in .NET 6+) configures services in ConfigureServices and sets up the HTTP request pipeline in Configure."
+    },
+    {
+      "q": "What is the difference between AddScoped and AddTransient?",
+      "options": [
+        "Scoped is per request, Transient is per injection",
+        "Transient is per request, Scoped is per injection",
+        "No difference",
+        "Scoped is for singletons only"
+      ],
+      "answer": 0,
+      "explanation": "AddScoped creates one instance per HTTP request, while AddTransient creates a new instance every time it's requested/injected."
+    },
+    {
+      "q": "What is routing in ASP.NET Core?",
+      "options": [
+        "Mapping URLs to controller actions",
+        "Network configuration",
+        "Database connections",
+        "File paths"
+      ],
+      "answer": 0,
+      "explanation": "Routing is the process of mapping incoming HTTP requests (URLs) to specific controller actions or endpoints in your application."
+    },
+    {
+      "q": "What is the purpose of the [ApiController] attribute?",
+      "options": [
+        "Enables automatic model validation and binding behaviors",
+        "Marks a class as abstract",
+        "Enables authentication",
+        "Creates a database controller"
+      ],
+      "answer": 0,
+      "explanation": "The [ApiController] attribute enables automatic model validation, binding source parameter inference, and problem details responses for APIs."
+    },
+    {
+      "q": "What is model binding in ASP.NET Core?",
+      "options": [
+        "Converting HTTP request data to action parameters",
+        "Binding database models",
+        "Connecting to databases",
+        "Creating view models"
+      ],
+      "answer": 0,
+      "explanation": "Model binding automatically maps data from HTTP requests (query strings, form data, route data) to action method parameters."
+    },
+    {
+      "q": "What is the purpose of app.UseRouting()?",
+      "options": [
+        "Add route matching to the middleware pipeline",
+        "Create routes automatically",
+        "Enable authentication",
+        "Start the application"
+      ],
+      "answer": 0,
+      "explanation": "app.UseRouting() adds route matching to the middleware pipeline, determining which endpoint should handle the request."
+    },
+    {
+      "q": "What is the difference between IActionResult and ActionResult<T>?",
+      "options": [
+        "ActionResult<T> is strongly typed, IActionResult is not",
+        "IActionResult is strongly typed, ActionResult<T> is not",
+        "No difference",
+        "ActionResult<T> is for async only"
+      ],
+      "answer": 0,
+      "explanation": "ActionResult<T> provides strong typing for the return value while still allowing flexibility to return different action results, improving API documentation and type safety."
+    },
+    {
+      "q": "What is content negotiation in ASP.NET Core?",
+      "options": [
+        "Automatically formatting responses based on Accept header",
+        "Negotiating database connections",
+        "Configuring middleware",
+        "Setting up routes"
+      ],
+      "answer": 0,
+      "explanation": "Content negotiation automatically formats the response (JSON, XML, etc.) based on the client's Accept header in the HTTP request."
+    },
+    {
+      "q": "What is the purpose of IConfiguration?",
+      "options": [
+        "Access application configuration settings",
+        "Configure middleware",
+        "Set up dependency injection",
+        "Manage routing"
+      ],
+      "answer": 0,
+      "explanation": "IConfiguration provides access to application settings from appsettings.json, environment variables, command-line arguments, and other configuration sources."
+    },
+    {
+      "q": "What is the purpose of filters in ASP.NET Core?",
+      "options": [
+        "Run code before or after specific stages in request processing",
+        "Filter database queries",
+        "Search functionality",
+        "Validate user input only"
+      ],
+      "answer": 0,
+      "explanation": "Filters allow you to run code before or after specific stages in the request processing pipeline, useful for cross-cutting concerns like authorization, logging, and exception handling."
+    },
+    {
+      "q": "What is the difference between authorization and authentication?",
+      "options": [
+        "Authentication verifies identity, authorization verifies permissions",
+        "Authorization verifies identity, authentication verifies permissions",
+        "They are the same",
+        "Authentication is for APIs only"
+      ],
+      "answer": 0,
+      "explanation": "Authentication verifies who you are (identity), while authorization determines what you're allowed to do (permissions)."
+    },
+    {
+      "q": "What is Kestrel in ASP.NET Core?",
+      "options": [
+        "A cross-platform web server",
+        "A database driver",
+        "An ORM framework",
+        "A testing framework"
+      ],
+      "answer": 0,
+      "explanation": "Kestrel is a cross-platform web server for ASP.NET Core that can be used standalone or behind a reverse proxy like IIS or Nginx."
+    },
+    {
+      "q": "What is the purpose of app.UseEndpoints()?",
+      "options": [
+        "Map routes to endpoints in the pipeline",
+        "Create endpoints automatically",
+        "Enable CORS",
+        "Configure middleware"
+      ],
+      "answer": 0,
+      "explanation": "app.UseEndpoints() is where you map routes to endpoints, defining which code should handle matched routes."
+    },
+    {
+      "q": "What is minimal API in ASP.NET Core?",
+      "options": [
+        "A simplified approach to building APIs without controllers",
+        "A small API",
+        "An API with limited features",
+        "A microservice architecture"
+      ],
+      "answer": 0,
+      "explanation": "Minimal APIs provide a simplified approach to building HTTP APIs with minimal dependencies and ceremony, without requiring controllers."
+    },
+    {
+      "q": "What is the purpose of ILogger?",
+      "options": [
+        "Structured logging throughout the application",
+        "Database logging only",
+        "Error handling only",
+        "Performance monitoring"
+      ],
+      "answer": 0,
+      "explanation": "ILogger provides a structured logging interface that can write to various outputs (console, files, cloud services) and is injected via DI."
+    },
+    {
+      "q": "What is CORS in ASP.NET Core?",
+      "options": [
+        "Cross-Origin Resource Sharing for browser security",
+        "Database connection pooling",
+        "Route configuration",
+        "Caching strategy"
+      ],
+      "answer": 0,
+      "explanation": "CORS is a security feature that allows or restricts resources on a web server to be requested from another domain outside the domain from which the resource originated."
+    },
+    {
+      "q": "What is health checks in ASP.NET Core?",
+      "options": [
+        "Endpoints to monitor application health status",
+        "Code quality checks",
+        "Security scans",
+        "Performance tests"
+      ],
+      "answer": 0,
+      "explanation": "Health checks provide endpoints that report the health status of the application and its dependencies, useful for load balancers and monitoring systems."
+    },
+    {
+      "q": "What is the purpose of IHostedService?",
+      "options": [
+        "Run background tasks in the application",
+        "Host the web server",
+        "Manage HTTP requests",
+        "Configure services"
+      ],
+      "answer": 0,
+      "explanation": "IHostedService allows you to run background tasks that start when the application starts and stop when it stops, useful for scheduled tasks and long-running operations."
+    },
+    {
+      "q": "What is endpoint routing in ASP.NET Core?",
+      "options": [
+        "Decouples route matching from endpoint execution",
+        "Creates endpoints automatically",
+        "Database routing",
+        "File system routing"
+      ],
+      "answer": 0,
+      "explanation": "Endpoint routing decouples the selection of an endpoint from the execution of that endpoint, enabling middleware to see which endpoint will be executed."
+    }
+  ],
+  "entity_framework": [
+    {
+      "q": "What is Entity Framework Core?",
+      "options": [
+        "An Object-Relational Mapper (ORM)",
+        "A database server",
+        "A web framework",
+        "A testing tool"
+      ],
+      "answer": 0,
+      "explanation": "Entity Framework Core is an ORM that enables .NET developers to work with databases using .NET objects, eliminating the need for most data-access code."
+    },
+    {
+      "q": "What is DbContext in Entity Framework?",
+      "options": [
+        "A session with the database for querying and saving data",
+        "A database table",
+        "A connection string",
+        "A migration file"
+      ],
+      "answer": 0,
+      "explanation": "DbContext represents a session with the database and is used to query and save instances of your entities. It's the primary class for database operations."
+    },
+    {
+      "q": "What is the purpose of DbSet<T>?",
+      "options": [
+        "Represents a collection of entities for a specific type",
+        "A database table definition",
+        "A query result",
+        "A connection pool"
+      ],
+      "answer": 0,
+      "explanation": "DbSet<T> represents a collection that can be used for CRUD operations on entities of type T, corresponding to a database table."
+    },
+    {
+      "q": "What are EF Core migrations?",
+      "options": [
+        "A way to evolve database schema over time",
+        "Moving data between databases",
+        "Database backup process",
+        "Performance optimization"
+      ],
+      "answer": 0,
+      "explanation": "Migrations provide a way to incrementally update the database schema to keep it in sync with your application's data model while preserving existing data."
+    },
+    {
+      "q": "What is lazy loading in Entity Framework?",
+      "options": [
+        "Loading related data automatically when accessed",
+        "Slow data loading",
+        "Loading data in batches",
+        "Caching strategy"
+      ],
+      "answer": 0,
+      "explanation": "Lazy loading automatically loads related entities from the database when a navigation property is accessed, which can lead to the N+1 query problem if not careful."
+    },
+    {
+      "q": "What is eager loading in Entity Framework?",
+      "options": [
+        "Loading related data with Include() in the initial query",
+        "Fast data loading",
+        "Preloading all database data",
+        "Caching all entities"
+      ],
+      "answer": 0,
+      "explanation": "Eager loading loads related entities as part of the initial query using Include() or ThenInclude(), reducing the number of database queries."
+    },
+    {
+      "q": "What is the difference between Add() and Attach()?",
+      "options": [
+        "Add() marks as Added, Attach() marks as Unchanged",
+        "Attach() marks as Added, Add() marks as Unchanged",
+        "No difference",
+        "Add() is for new entities, Attach() is for modified only"
+      ],
+      "answer": 0,
+      "explanation": "Add() marks an entity as Added (will be inserted), while Attach() marks it as Unchanged (won't be modified unless you explicitly change it)."
+    },
+    {
+      "q": "What is tracking in Entity Framework?",
+      "options": [
+        "DbContext monitors changes to entities",
+        "SQL query logging",
+        "Performance monitoring",
+        "Error tracking"
+      ],
+      "answer": 0,
+      "explanation": "Change tracking is the mechanism by which DbContext detects changes made to entities so it knows what updates to send to the database."
+    },
+    {
+      "q": "What is AsNoTracking() used for?",
+      "options": [
+        "Improve read-only query performance by disabling tracking",
+        "Prevent database access",
+        "Disable migrations",
+        "Stop logging"
+      ],
+      "answer": 0,
+      "explanation": "AsNoTracking() disables change tracking for a query, improving performance for read-only scenarios where you don't need to update the entities."
+    },
+    {
+      "q": "What is the purpose of OnModelCreating()?",
+      "options": [
+        "Configure entity mappings and relationships using Fluent API",
+        "Create the database",
+        "Create migrations",
+        "Initialize data"
+      ],
+      "answer": 0,
+      "explanation": "OnModelCreating() is where you use Fluent API to configure entity mappings, relationships, indexes, and other database schema details."
+    },
+    {
+      "q": "What is the difference between Code First and Database First?",
+      "options": [
+        "Code First: create model classes first; Database First: generate from existing database",
+        "Database First: create model classes first; Code First: generate from database",
+        "No difference",
+        "Code First is deprecated"
+      ],
+      "answer": 0,
+      "explanation": "Code First starts with model classes and generates the database schema, while Database First starts with an existing database and generates model classes."
+    },
+    {
+      "q": "What is SaveChanges() in Entity Framework?",
+      "options": [
+        "Persists all tracked changes to the database",
+        "Saves configuration changes",
+        "Creates a backup",
+        "Closes the connection"
+      ],
+      "answer": 0,
+      "explanation": "SaveChanges() executes all pending inserts, updates, and deletes for tracked entities in a single transaction."
+    },
+    {
+      "q": "What is a navigation property?",
+      "options": [
+        "A property that references related entities",
+        "A database index",
+        "A primary key",
+        "A stored procedure"
+      ],
+      "answer": 0,
+      "explanation": "Navigation properties are properties on an entity class that reference related entities, enabling you to navigate relationships between entities."
+    },
+    {
+      "q": "What is the purpose of [Key] attribute?",
+      "options": [
+        "Mark a property as the primary key",
+        "Enable encryption",
+        "Create an index",
+        "Mark as required"
+      ],
+      "answer": 0,
+      "explanation": "The [Key] attribute explicitly marks a property as the primary key of an entity when it doesn't follow EF's naming conventions (Id or <ClassName>Id)."
+    },
+    {
+      "q": "What is explicit loading in Entity Framework?",
+      "options": [
+        "Manually loading related data using Load() method",
+        "Loading all data at once",
+        "Automatic loading",
+        "Caching related data"
+      ],
+      "answer": 0,
+      "explanation": "Explicit loading allows you to explicitly load related entities after the initial query using the Load() method on navigation properties."
+    },
+    {
+      "q": "What is a shadow property in EF Core?",
+      "options": [
+        "A property that exists in the model but not in the entity class",
+        "A hidden column",
+        "A soft-deleted property",
+        "A cached property"
+      ],
+      "answer": 0,
+      "explanation": "Shadow properties are properties that exist in the EF Core model but don't have a corresponding CLR property in the entity class."
+    },
+    {
+      "q": "What is query splitting in EF Core?",
+      "options": [
+        "Split a single query with includes into multiple SQL queries",
+        "Partition query results",
+        "Divide database tables",
+        "Split the DbContext"
+      ],
+      "answer": 0,
+      "explanation": "Query splitting breaks down a single LINQ query with multiple includes into separate SQL queries to avoid cartesian explosion and improve performance."
+    },
+    {
+      "q": "What is the purpose of HasIndex() in Fluent API?",
+      "options": [
+        "Create a database index on specified properties",
+        "Check if an entity exists",
+        "Access entities by index",
+        "Configure primary keys"
+      ],
+      "answer": 0,
+      "explanation": "HasIndex() creates a database index on one or more properties to improve query performance for commonly searched columns."
+    },
+    {
+      "q": "What is global query filters in EF Core?",
+      "options": [
+        "Automatically apply filters to all queries for an entity type",
+        "Filter all databases",
+        "Global search functionality",
+        "Cross-database queries"
+      ],
+      "answer": 0,
+      "explanation": "Global query filters are LINQ predicates automatically applied to all queries for an entity type, useful for multi-tenancy or soft delete scenarios."
+    },
+    {
+      "q": "What is the difference between FirstOrDefault() and SingleOrDefault()?",
+      "options": [
+        "First returns first match, Single throws if multiple matches",
+        "Single returns first match, First throws if multiple matches",
+        "No difference",
+        "First is faster"
+      ],
+      "answer": 0,
+      "explanation": "FirstOrDefault() returns the first matching element, while SingleOrDefault() expects exactly one match and throws an exception if there are multiple."
+    },
+    {
+      "q": "What is owned entity types in EF Core?",
+      "options": [
+        "Entity types that can only exist as part of another entity",
+        "Entities with owners",
+        "Shared entities",
+        "Cached entities"
+      ],
+      "answer": 0,
+      "explanation": "Owned entity types are types that don't have their own identity and can only exist as part of another entity, useful for value objects."
+    },
+    {
+      "q": "What is the purpose of ChangeTracker in EF Core?",
+      "options": [
+        "Access and manage entity state and tracking information",
+        "Track database changes",
+        "Log SQL queries",
+        "Monitor performance"
+      ],
+      "answer": 0,
+      "explanation": "ChangeTracker provides access to tracking information and state for all entities being tracked by the DbContext."
+    }
+  ],
+  "linq": [
+    {
+      "q": "What does LINQ stand for?",
+      "options": [
+        "Language Integrated Query",
+        "Linear Query",
+        "Link Query",
+        "List Query"
+      ],
+      "answer": 0,
+      "explanation": "LINQ stands for Language Integrated Query, providing a consistent model for working with data across various data sources in C#."
+    },
+    {
+      "q": "What is deferred execution in LINQ?",
+      "options": [
+        "Query is executed when enumerated, not when defined",
+        "Query is executed immediately",
+        "Query execution is delayed by 1 second",
+        "Query is cached"
+      ],
+      "answer": 0,
+      "explanation": "Deferred execution means the query is not executed when it's defined, but rather when it's enumerated (e.g., in a foreach loop or by calling ToList())."
+    },
+    {
+      "q": "Which LINQ method forces immediate execution?",
+      "options": [
+        "Where()",
+        "Select()",
+        "ToList()",
+        "OrderBy()"
+      ],
+      "answer": 2,
+      "explanation": "ToList(), ToArray(), Count(), and First() are examples of methods that force immediate query execution, while Where(), Select(), and OrderBy() use deferred execution."
+    },
+    {
+      "q": "What is the difference between Where() and Select()?",
+      "options": [
+        "Where() filters, Select() projects/transforms",
+        "Select() filters, Where() projects",
+        "No difference",
+        "Where() is for objects, Select() is for primitives"
+      ],
+      "answer": 0,
+      "explanation": "Where() filters elements based on a condition, while Select() projects/transforms each element into a new form."
+    },
+    {
+      "q": "What is the purpose of SelectMany()?",
+      "options": [
+        "Flattens nested collections into a single sequence",
+        "Selects multiple properties",
+        "Selects all elements",
+        "Duplicates elements"
+      ],
+      "answer": 0,
+      "explanation": "SelectMany() projects each element to an IEnumerable<T> and flattens the resulting sequences into one sequence, useful for nested collections."
+    },
+    {
+      "q": "What does the 'let' keyword do in LINQ query syntax?",
+      "options": [
+        "Creates a range variable for intermediate results",
+        "Declares a constant",
+        "Starts a new query",
+        "Filters results"
+      ],
+      "answer": 0,
+      "explanation": "The 'let' keyword creates a range variable to store intermediate results within a query, improving readability and avoiding recalculation."
+    },
+    {
+      "q": "What is the difference between First() and FirstOrDefault()?",
+      "options": [
+        "First() throws if empty, FirstOrDefault() returns default value",
+        "FirstOrDefault() throws if empty, First() returns null",
+        "No difference",
+        "First() is faster"
+      ],
+      "answer": 0,
+      "explanation": "First() throws an InvalidOperationException if the sequence is empty, while FirstOrDefault() returns the default value (null for reference types, 0 for int, etc.)."
+    },
+    {
+      "q": "What is the purpose of GroupBy()?",
+      "options": [
+        "Groups elements by a specified key",
+        "Groups all elements together",
+        "Counts elements",
+        "Sorts elements"
+      ],
+      "answer": 0,
+      "explanation": "GroupBy() groups elements that share a common key value into IGrouping<TKey, TElement> collections."
+    },
+    {
+      "q": "What does the Join() method do?",
+      "options": [
+        "Correlates elements from two sequences based on matching keys",
+        "Concatenates two sequences",
+        "Merges sequences",
+        "Combines strings"
+      ],
+      "answer": 0,
+      "explanation": "Join() performs an inner join of two sequences based on matching key selectors, similar to SQL INNER JOIN."
+    },
+    {
+      "q": "What is the difference between Any() and All()?",
+      "options": [
+        "Any() checks if at least one matches, All() checks if all match",
+        "All() checks if at least one matches, Any() checks if all match",
+        "No difference",
+        "Any() is for collections, All() is for single values"
+      ],
+      "answer": 0,
+      "explanation": "Any() returns true if at least one element satisfies the condition, while All() returns true only if all elements satisfy the condition."
+    },
+    {
+      "q": "What is the purpose of Distinct()?",
+      "options": [
+        "Remove duplicate elements from a sequence",
+        "Count unique elements",
+        "Sort elements",
+        "Filter elements"
+      ],
+      "answer": 0,
+      "explanation": "Distinct() returns distinct elements from a sequence by removing duplicates, using the default equality comparer or a custom one."
+    },
+    {
+      "q": "What does the Skip() method do?",
+      "options": [
+        "Bypasses a specified number of elements",
+        "Removes elements from the collection",
+        "Skips null values",
+        "Jumps to a specific index"
+      ],
+      "answer": 0,
+      "explanation": "Skip() bypasses a specified number of elements in a sequence and returns the remaining elements, useful for pagination."
+    },
+    {
+      "q": "What is the purpose of Take()?",
+      "options": [
+        "Returns a specified number of elements from the start",
+        "Takes ownership of elements",
+        "Removes elements",
+        "Counts elements"
+      ],
+      "answer": 0,
+      "explanation": "Take() returns a specified number of contiguous elements from the start of a sequence, often used with Skip() for pagination."
+    },
+    {
+      "q": "What does Aggregate() do in LINQ?",
+      "options": [
+        "Applies an accumulator function over a sequence",
+        "Groups elements",
+        "Counts elements",
+        "Sums numbers only"
+      ],
+      "answer": 0,
+      "explanation": "Aggregate() applies an accumulator function over a sequence, useful for custom aggregations beyond Sum(), Average(), etc."
+    },
+    {
+      "q": "What is the difference between Union() and Concat()?",
+      "options": [
+        "Union() removes duplicates, Concat() keeps all elements",
+        "Concat() removes duplicates, Union() keeps all",
+        "No difference",
+        "Union() is for numbers only"
+      ],
+      "answer": 0,
+      "explanation": "Union() combines two sequences and removes duplicates, while Concat() simply concatenates sequences without removing duplicates."
+    },
+    {
+      "q": "What is the purpose of OrderBy() vs OrderByDescending()?",
+      "options": [
+        "OrderBy() sorts ascending, OrderByDescending() sorts descending",
+        "OrderByDescending() sorts ascending, OrderBy() sorts descending",
+        "No difference",
+        "OrderBy() is faster"
+      ],
+      "answer": 0,
+      "explanation": "OrderBy() sorts elements in ascending order, while OrderByDescending() sorts them in descending order based on a key."
+    },
+    {
+      "q": "What does ThenBy() do?",
+      "options": [
+        "Performs a secondary sort on already ordered data",
+        "Sorts in reverse",
+        "Filters after sorting",
+        "Groups elements"
+      ],
+      "answer": 0,
+      "explanation": "ThenBy() performs a subsequent ordering of elements after an OrderBy() or OrderByDescending(), enabling multi-level sorting."
+    },
+    {
+      "q": "What is the difference between Single() and First()?",
+      "options": [
+        "Single() expects exactly one element, First() gets the first",
+        "First() expects exactly one, Single() gets the first",
+        "No difference",
+        "Single() is for value types only"
+      ],
+      "answer": 0,
+      "explanation": "Single() expects exactly one element and throws if there are zero or multiple, while First() just returns the first element."
+    },
+    {
+      "q": "What is the purpose of DefaultIfEmpty()?",
+      "options": [
+        "Returns a default value if the sequence is empty",
+        "Removes empty values",
+        "Sets all values to default",
+        "Filters null values"
+      ],
+      "answer": 0,
+      "explanation": "DefaultIfEmpty() returns a sequence containing a single default value if the source sequence is empty, useful for left outer joins."
+    },
+    {
+      "q": "What does the Zip() method do?",
+      "options": [
+        "Merges two sequences element-by-element",
+        "Compresses data",
+        "Combines all elements",
+        "Archives sequences"
+      ],
+      "answer": 0,
+      "explanation": "Zip() applies a specified function to corresponding elements from two sequences, producing a sequence of the results."
+    },
+    {
+      "q": "What is expression tree in LINQ?",
+      "options": [
+        "A data structure representing code as a tree",
+        "A binary tree",
+        "A syntax tree",
+        "An XML tree"
+      ],
+      "answer": 0,
+      "explanation": "Expression trees represent code as a tree data structure where each node is an expression, enabling LINQ providers to translate queries to other formats like SQL."
+    },
+    {
+      "q": "What is the purpose of OfType<T>()?",
+      "options": [
+        "Filters elements to only those of a specified type",
+        "Converts all elements to type T",
+        "Checks element types",
+        "Casts all elements"
+      ],
+      "answer": 0,
+      "explanation": "OfType<T>() filters a sequence to include only elements that are of type T or can be cast to type T, ignoring others."
+    }
+  ],
+  "dotnet9_features": [
+    {
+      "q": "What is a major performance improvement in .NET 9?",
+      "options": [
+        "Enhanced JIT compilation and runtime optimizations",
+        "Removal of garbage collection",
+        "No performance changes",
+        "Only UI improvements"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 includes significant JIT compiler improvements, better inlining, and runtime optimizations that improve overall application performance."
+    },
+    {
+      "q": "What are the improvements to LINQ in .NET 9?",
+      "options": [
+        "New Index() and CountBy() methods",
+        "LINQ was removed",
+        "No changes to LINQ",
+        "Only syntax changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 introduces new LINQ methods like Index() and CountBy() that provide more efficient ways to work with collections."
+    },
+    {
+      "q": "What is the new TimeSpan.From methods pattern in .NET 9?",
+      "options": [
+        "More intuitive TimeSpan creation methods",
+        "Time zone support",
+        "DateTime replacement",
+        "Clock synchronization"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 adds more FromX methods to TimeSpan for creating time spans from various units, making the API more consistent and discoverable."
+    },
+    {
+      "q": "What improvements were made to minimal APIs in .NET 9?",
+      "options": [
+        "Better parameter binding and filters support",
+        "Minimal APIs were removed",
+        "No changes",
+        "Only documentation updates"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 enhances minimal APIs with improved parameter binding, better support for filters, and more flexible endpoint configuration."
+    },
+    {
+      "q": "What is the SearchValues<T> type in .NET 9?",
+      "options": [
+        "Optimized searching in collections and strings",
+        "A search engine",
+        "A database index",
+        "A UI component"
+      ],
+      "answer": 0,
+      "explanation": "SearchValues<T> provides highly optimized searching capabilities for collections and strings, using SIMD instructions when possible."
+    },
+    {
+      "q": "What improvements were made to System.Text.Json in .NET 9?",
+      "options": [
+        "Better performance and new serialization features",
+        "JSON was replaced with XML",
+        "No changes",
+        "Only bug fixes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 includes significant System.Text.Json improvements including better performance, streaming support, and enhanced customization options."
+    },
+    {
+      "q": "What is the new Tensor<T> type in .NET 9?",
+      "options": [
+        "Multidimensional array for AI/ML workloads",
+        "A string type",
+        "A database type",
+        "A UI component"
+      ],
+      "answer": 0,
+      "explanation": "Tensor<T> provides efficient multidimensional array support optimized for AI and machine learning workloads with SIMD acceleration."
+    },
+    {
+      "q": "What improvements were made to dependency injection in .NET 9?",
+      "options": [
+        "Keyed services and improved performance",
+        "DI was removed",
+        "No changes",
+        "Only syntax changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 adds keyed services support allowing multiple implementations of the same interface to be registered and resolved by key."
+    },
+    {
+      "q": "What is the new params collections feature in .NET 9?",
+      "options": [
+        "params keyword works with any collection type",
+        "params was removed",
+        "params only works with arrays",
+        "No changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 extends the params keyword to work with any collection type implementing IEnumerable<T>, not just arrays."
+    },
+    {
+      "q": "What improvements were made to cryptography in .NET 9?",
+      "options": [
+        "Better performance and new algorithms support",
+        "Cryptography was removed",
+        "No changes",
+        "Only security patches"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 includes cryptography improvements with better performance, support for new algorithms, and enhanced security features."
+    },
+    {
+      "q": "What is the new PriorityQueue improvements in .NET 9?",
+      "options": [
+        "Enhanced performance and new methods",
+        "PriorityQueue was removed",
+        "No changes",
+        "Only bug fixes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 enhances PriorityQueue with better performance, new convenience methods, and improved memory efficiency."
+    },
+    {
+      "q": "What improvements were made to Span<T> and Memory<T> in .NET 9?",
+      "options": [
+        "New methods and better performance",
+        "These types were removed",
+        "No changes",
+        "Only documentation updates"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 adds new methods to Span<T> and Memory<T> for common operations and includes performance improvements."
+    },
+    {
+      "q": "What is the improved exception handling in .NET 9?",
+      "options": [
+        "Better exception messages and AggregateException handling",
+        "Exceptions were removed",
+        "No changes",
+        "Only syntax changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 improves exception handling with better exception messages, improved AggregateException handling, and enhanced debugging support."
+    },
+    {
+      "q": "What improvements were made to HttpClient in .NET 9?",
+      "options": [
+        "Better connection pooling and HTTP/3 support",
+        "HttpClient was removed",
+        "No changes",
+        "Only timeout changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 enhances HttpClient with improved connection pooling, better HTTP/3 support, and performance optimizations."
+    },
+    {
+      "q": "What is the new TimeProvider abstraction in .NET 9?",
+      "options": [
+        "Testable time abstraction for better unit testing",
+        "Time zone converter",
+        "Clock synchronization",
+        "DateTime replacement"
+      ],
+      "answer": 0,
+      "explanation": "TimeProvider provides an abstraction over time operations, making it easier to write testable code that depends on the current time."
+    },
+    {
+      "q": "What improvements were made to collections in .NET 9?",
+      "options": [
+        "New collection types and better performance",
+        "Collections were removed",
+        "No changes",
+        "Only List<T> changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 introduces new collection types and improvements to existing ones, including better performance and new convenience methods."
+    },
+    {
+      "q": "What is the new UnsafeAccessor attribute in .NET 9?",
+      "options": [
+        "Access private members without reflection",
+        "Memory management",
+        "Security feature",
+        "Database access"
+      ],
+      "answer": 0,
+      "explanation": "UnsafeAccessor allows accessing private members of types without using reflection, providing better performance for specific scenarios."
+    },
+    {
+      "q": "What improvements were made to async/await in .NET 9?",
+      "options": [
+        "Better performance and new async patterns",
+        "async/await was removed",
+        "No changes",
+        "Only syntax changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 includes improvements to async/await with better performance, reduced allocations, and support for new async patterns."
+    },
+    {
+      "q": "What is the new Regex improvements in .NET 9?",
+      "options": [
+        "Source generators and better performance",
+        "Regex was removed",
+        "No changes",
+        "Only syntax changes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 enhances Regex with source generators for compile-time regex compilation, better performance, and new features."
+    },
+    {
+      "q": "What improvements were made to Native AOT in .NET 9?",
+      "options": [
+        "Better compatibility and smaller binary sizes",
+        "Native AOT was removed",
+        "No changes",
+        "Only Windows support"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 improves Native AOT with better library compatibility, smaller binary sizes, and improved startup performance."
+    },
+    {
+      "q": "What is the new MetricsOptions in .NET 9?",
+      "options": [
+        "Configure metrics collection and export",
+        "Performance counters",
+        "Logging configuration",
+        "Database metrics"
+      ],
+      "answer": 0,
+      "explanation": "MetricsOptions provides configuration for metrics collection, allowing you to control which metrics are collected and how they're exported."
+    },
+    {
+      "q": "What improvements were made to Blazor in .NET 9?",
+      "options": [
+        "Enhanced rendering performance and new components",
+        "Blazor was removed",
+        "No changes",
+        "Only bug fixes"
+      ],
+      "answer": 0,
+      "explanation": ".NET 9 brings significant Blazor improvements including enhanced rendering performance, new built-in components, and better tooling support."
+    }
+  ]
+}

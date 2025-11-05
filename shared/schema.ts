@@ -1,18 +1,47 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const quizTopics = [
+  "C# Basics",
+  "ASP.NET Core",
+  "Entity Framework",
+  "LINQ",
+  ".NET 9 Features"
+] as const;
+
+export type QuizTopic = typeof quizTopics[number];
+
+export const questionSchema = z.object({
+  q: z.string(),
+  options: z.array(z.string()).length(4),
+  answer: z.number().min(0).max(3),
+  explanation: z.string(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const quizDataSchema = z.object({
+  topic: z.enum(quizTopics),
+  questions: z.array(questionSchema),
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type Question = z.infer<typeof questionSchema>;
+export type QuizData = z.infer<typeof quizDataSchema>;
+
+export const quizConfigSchema = z.object({
+  topic: z.enum(quizTopics),
+  questionCount: z.number().min(5).max(50),
+});
+
+export type QuizConfig = z.infer<typeof quizConfigSchema>;
+
+export interface QuizAnswer {
+  questionIndex: number;
+  selectedAnswer: number;
+  timeSpent: number;
+}
+
+export interface QuizResult {
+  config: QuizConfig;
+  answers: QuizAnswer[];
+  questions: Question[];
+  score: number;
+  totalQuestions: number;
+}
