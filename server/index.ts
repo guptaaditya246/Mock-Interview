@@ -46,6 +46,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/wake', (_req: Request, res: Response) => {
+  res.send('Running..!!');
+});
+
 (async () => {
   const server = await registerRoutes(app);
 
@@ -82,6 +86,7 @@ app.use((req, res, next) => {
 
 server.listen(port, () => {
   console.log(`🚀 QUIZ LIVE → http://localhost:${port}`);
+  console.log(`🚀 .NET Quiz LIVE | Built by Aditya @thelifesyntax | https://mock-interview-0mfe.onrender.com`);
   console.log(`Press Ctrl+C to stop`);
 });
 })();
