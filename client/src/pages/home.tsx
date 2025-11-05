@@ -61,6 +61,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="max-w-2xl mx-auto space-y-8">
+          
           {/* Hero Section */}
           <div className="text-center space-y-4 py-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
