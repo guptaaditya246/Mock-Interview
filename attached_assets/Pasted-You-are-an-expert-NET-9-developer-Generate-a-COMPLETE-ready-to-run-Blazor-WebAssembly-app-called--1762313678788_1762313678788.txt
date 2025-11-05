@@ -1,0 +1,67 @@
+You are an expert .NET 9 developer. Generate a COMPLETE, ready-to-run Blazor WebAssembly app called “DotNetQuiz” that does exactly this:
+
+1. Home page
+   - Big title “Free .NET Mock Interview”
+   - Dropdown to pick topic: C# Basics, ASP.NET Core, Entity Framework, LINQ, .NET 9 New Features
+   - Number input “Questions (5-50)” default 20
+   - START QUIZ button
+
+2. Quiz page
+   - Shows one question at a time
+   - 4 radio buttons (A B C D)
+   - Next / Previous buttons
+   - 30-second countdown timer per question (optional skip)
+   - Progress bar “Question 7 of 20”
+
+3. Results page
+   - Score % + “18/20 correct”
+   - Green/red marks per question
+   - Explanation toggle for every question
+   - Restart button
+
+4. Data
+   - File wwwroot/data/questions.json with 100+ real .NET questions (20 per topic)
+   - JSON format:
+     {
+       "topic": "C# Basics",
+       "questions": [
+         {
+           "q": "What is the default access modifier for class members?",
+           "options": ["A) public", "B) private", "C) protected", "D) internal"],
+           "answer": 1,
+           "explanation": "Members are private by default."
+         }
+       ]
+     }
+
+5. Ads
+   - Google AdSense ready:
+     - Top banner 728×90
+     - Rectangle 300×250 after results
+   - Use placeholder divs that say “YOUR_ADSENSE_CODE_HERE”
+   - Load script safely with JS interop
+
+6. Polish
+   - Fully mobile responsive (use MudBlazor or plain Bootstrap)
+   - Dark mode toggle
+   - Confetti explosion on 100% score
+   - SEO meta tags for “free .NET mock test 2025”
+
+7. Files to generate
+   - Program.cs
+   - App.razor
+   - MainLayout.razor
+   - Index.razor (home)
+   - Quiz.razor
+   - Results.razor
+   - NavMenu.razor
+   - wwwroot/data/questions.json (100 questions minimum)
+   - wwwroot/css/site.css
+   - AdService.cs (JS interop)
+
+8. Instructions
+   - At top of README.md write:
+     “1. Fork → Run → Replace YOUR_ADSENSE_CODE_HERE with real code → Apply AdSense → Earn!”
+   - Add one-click deploy button to Azure Static Web Apps
+
+Make it 100% working out of the box on Replit. Use .NET 9, no external database, pure client-side. Add 5 sample questions per topic right now and leave TODO comments to add more.
