@@ -41,7 +41,7 @@ export function AdSensePlaceholder({ variant }: { variant: "banner" | "square" }
           left: 0,
         }}
         data-ad-client="ca-pub-4301116399441370"
-        data-ad-slot="1111111111"
+        
         data-ad-format="auto"
         data-full-width-responsive="true"
         data-ad-test="on"
