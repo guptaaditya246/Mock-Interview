@@ -4,7 +4,7 @@
   "site": "https://mock-interview-0mfe.onrender.com",
   "built": "Free .NET Mock Interview",
   "credit": "⭐ If you copy this, keep this block. Respect open-source!",
-
+ "keywords": ["dotnet interview", "csharp quiz", "asp.net core practice", "entity framework mcq", "linq questions", "dotnet 9 certification"],
   "csharp_basics": [
     {
       "q": "What is the default access modifier for class members in C#?",
