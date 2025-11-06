@@ -8,6 +8,7 @@ import { useTheme } from "@/components/theme-provider";
 import { type QuizConfig, type Question, type QuizAnswer } from "@shared/schema";
 import { useQuery } from "@tanstack/react-query";
 import { Moon, Sun, ChevronLeft, ChevronRight, SkipForward, Timer, Code2 } from "lucide-react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export default function Quiz() {
   const [, setLocation] = useLocation();
@@ -17,6 +18,7 @@ export default function Quiz() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(30);
   const [isAnswerLocked, setIsAnswerLocked] = useState(false);
+  const [showQuitDialog, setShowQuitDialog] = useState(false);
 
   const quizConfig = JSON.parse(
     sessionStorage.getItem("quizConfig") || "{}"
@@ -152,7 +154,8 @@ export default function Quiz() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"> */}
+      <header className="sticky top-0 z-50 border-b bg-card backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-3 max-w-7xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -164,6 +167,13 @@ export default function Quiz() {
               <Badge variant="outline" className="text-sm">
                 {quizConfig.topic}
               </Badge>
+              <Button
+                variant="outline"
+                onClick={() => setShowQuitDialog(true)}
+                className="hover-elevate"
+              >
+                Home
+              </Button>
               <Button
                 size="icon"
                 variant="ghost"
@@ -303,6 +313,30 @@ export default function Quiz() {
           </div>
         </div>
       </main>
+      <Dialog open={showQuitDialog} onOpenChange={setShowQuitDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Quit Quiz?</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to quit? Your current progress will be lost.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowQuitDialog(false)}>
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                setShowQuitDialog(false);
+                setLocation("/");
+              }}
+            >
+              Quit Quiz
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
