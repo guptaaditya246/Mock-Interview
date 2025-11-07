@@ -10,6 +10,7 @@ import { useTheme } from "@/components/theme-provider";
 import { AdSensePlaceholder } from "@/components/adsense-placeholder";
 import { quizTopics, type QuizTopic, type QuizConfig } from "@shared/schema";
 import { Moon, Sun, Code2, Clock, Target, Sparkles } from "lucide-react";
+import { useEffect } from 'react';
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -27,9 +28,83 @@ export default function Home() {
   };
 
   const quickPickCounts = [10, 20, 30];
+  
+  
+
+function WorkInProgressPopup() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    // Force show on every load
+    const hasSeen = localStorage.getItem('wip-seen-nov2025');
+    if (!hasSeen) {
+      setShow(true);
+    }
+  }, []); // empty dependency = runs once per mount
+
+  if (!show) return null;
+
+  const handleOk = () => {
+    localStorage.setItem('wip-seen-nov2025', 'true');
+    setShow(false);
+  };
+
+  return (
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.8)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 99999,
+      backdropFilter: 'blur(4px)'
+    }}>
+      <div style={{
+        background: '#1e1b4b',
+        color: 'white',
+        padding: '24px 32px',
+        borderRadius: '16px',
+        maxWidth: '340px',
+        textAlign: 'center',
+        border: '2px solid #a78bfa',
+        boxShadow: '0 0 30px rgba(167,139,250,0.5)'
+      }}>
+        <h3 style={{ margin: '0 0 12px', fontSize: '18px' }}>Work in Progress</h3>
+        <p style={{ margin: '0 0 20px', fontSize: '15px', lineHeight: '1.5' }}>
+          Prepare for Enterprise-grade .NET scenarios. <br />
+          The .NET questions companies actually ask.<br />
+          Free forever. Of course!
+          <br /><br />
+          <b>Please bookmark this site!</b>
+        </p>
+        <button
+          onClick={handleOk}
+          style={{
+            background: '#a78bfa',
+            color: 'white',
+            border: 'none',
+            padding: '12px 28px',
+            borderRadius: '50px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          OK, Got it!
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
+
+
 
   return (
     <div className="min-h-screen bg-background">
+      <WorkInProgressPopup />
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between max-w-7xl">
