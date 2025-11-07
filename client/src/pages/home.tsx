@@ -212,9 +212,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>&copy; 2025 .NET Quiz. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-foreground transition-colors">About</a>
-              <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Contact</a>
+              <a href="/about.html" className="hover:text-foreground transition-colors">About</a>
+              <a href="/privacy.html" className="hover:text-foreground transition-colors">Privacy</a>
+              <a href="/contact.html" className="hover:text-foreground transition-colors">Contact</a>
             </div>
           </div>
         </div>
