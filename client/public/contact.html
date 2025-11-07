@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <title>Contact – mockdotnet.dev</title>
-  <style>body{font-family:Arial;margin:40px;line-height:1.6;background:#0f172a;color:#e2e8f0}</style>
+  <style>
+    body{font-family:Arial;margin:40px;line-height:1.6;background:#0f172a;color:#e2e8f0;text-align:center}
+    .mail{background:#1e293b;padding:20px;border-radius:12px;display:inline-block;font-size:20px}
+  </style>
 </head>
 <body>
   <h1>Contact</h1>
   <p>Questions? Feedback? Bug reports?</p>
-  <form action="https://formsubmit.co/thelifesyntax@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Name" required style="width:100%;padding:10px;margin:10px 0"><br>
-    <input type="email" name="email" placeholder="Email" required style="width:100%;padding:10px;margin:10px 0"><br>
-    <textarea name="message" placeholder="Message" rows="5" required style="width:100%;padding:10px;margin:10px 0"></textarea><br>
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://mockdotnet.dev/thanks.html">
-    <button type="submit" style="padding:10px 20px;background:#10b981;color:white;border:none">Send</button>
-  </form>
-  <p><a href="/">← Back to quiz</a></p>
+  <div class="mail">
+    Send email to:<br>
+    <b>contact@mockdotnet.dev</b>
+  </div>
+  <p><br><a href="/" style="color:#94a3b8">← Back to home</a></p>
 </body>
 </html>
