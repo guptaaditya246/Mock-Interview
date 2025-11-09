@@ -5,7 +5,8 @@
   "built": "Free .NET Mock Interview",
   "credit": "⭐ If you copy this, keep this block. Respect open-source!",
  "keywords": ["dotnet interview", "csharp quiz", "asp.net core practice", "entity framework mcq", "linq questions", "dotnet 9 certification"],
-  "csharp_basics": [
+  
+ "csharp_basics": [
     {
       "q": "What is the default access modifier for class members in C#?",
       "options": ["public", "private", "protected", "internal"],
@@ -1209,5 +1210,669 @@
       "answer": 0,
       "explanation": ".NET 9 brings significant Blazor improvements including enhanced rendering performance, new built-in components, and better tooling support."
     }
+  ],
+
+  "aspdotnet_core_middleware_and_pipeline": [
+    {
+      "q": "In an enterprise e-commerce platform, you need to log every incoming request with correlation ID for distributed tracing. Where should you place this middleware in the pipeline?",
+      "options": [
+        "At the very end after UseEndpoints",
+        "Immediately after UseRouting but before UseAuthentication",
+        "As the first middleware in Configure method",
+        "Inside a terminal middleware with next.Invoke()"
+      ],
+      "answer": 2,
+      "explanation": "Request logging with correlation ID must run early to capture all requests and generate IDs before routing/auth. Placed after UseRouting ensures route data is available if needed. Code: app.UseCorrelationIdMiddleware();"
+    },
+    {
+      "q": "Your financial services app requires HTTPS redirection in production but not in local development. How do you conditionally apply UseHttpsRedirection()?",
+      "options": [
+        "if (env.IsProduction()) app.UseHttpsRedirection();",
+        "app.UseWhen(ctx => env.IsProduction(), appBuilder => appBuilder.UseHttpsRedirection());",
+        "app.UseHttpsRedirection() only in Startup.ConfigureProduction",
+        "Use app.UseHttpsRedirection() and disable via appsettings"
+      ],
+      "answer": 1,
+      "explanation": "UseWhen allows conditional pipeline branching. Correct: app.UseWhen(ctx => !ctx.Request.IsHttps && env.IsProduction(), appBuilder => appBuilder.UseHttpsRedirection());"
+    },
+    {
+      "q": "In a multi-tenant SaaS application, tenant resolution must happen before routing and authorization. What is the correct middleware order?",
+      "options": [
+        "UseRouting -> UseTenantResolution -> UseAuthentication -> UseAuthorization",
+        "UseTenantResolution -> UseRouting -> UseAuthentication -> UseAuthorization",
+        "UseAuthentication -> UseTenantResolution -> UseRouting",
+        "UseTenantResolution -> UseAuthentication -> UseRouting"
+      ],
+      "answer": 1,
+      "explanation": "Tenant context is needed for routing (tenant-specific routes) and auth (tenant-specific policies). Must come before both."
+    },
+    {
+      "q": "You notice 500 errors are exposing stack traces in production API responses. Which middleware fixes this enterprise-grade?",
+      "options": [
+        "app.UseExceptionHandler('/error')",
+        "app.UseDeveloperExceptionPage() in production",
+        "app.UseStatusCodePages()",
+        "Custom middleware with try-catch"
+      ],
+      "answer": 0,
+      "explanation": "UseExceptionHandler provides centralized error handling in production, returns generic error response. Code: app.UseExceptionHandler('/api/error');"
+    },
+    {
+      "q": "Enterprise security policy requires response compression only for API endpoints, not for static files from CDN. How to implement?",
+      "options": [
+        "app.UseResponseCompression() at top",
+        "app.UseWhen(ctx => ctx.Request.Path.StartsWithSegments('/api'), appBuilder => appBuilder.UseResponseCompression());",
+        "Configure in Program.cs with AddResponseCompression()",
+        "Use BrotliCompressionMiddleware only"
+      ],
+      "answer": 1,
+      "explanation": "UseWhen applies middleware conditionally based on request path. Ideal for API-only compression."
+    },
+    {
+      "q": "In a microservices gateway, you need to add outbound request IDs to downstream calls. Where should this middleware be placed?",
+      "options": [
+        "Before UseRouting",
+        "After UseEndpoints",
+        "As terminal middleware",
+        "Using IHttpClientFactory configuration"
+      ],
+      "answer": 3,
+      "explanation": "Outbound headers are added via HttpClient message handlers, not request pipeline middleware. Use DelegatingHandler with IHttpClientFactory."
+    },
+    {
+      "q": "Your banking app must block requests larger than 10MB at the infrastructure level. Which middleware enforces this?",
+      "options": [
+        "Custom middleware checking Content-Length",
+        "RequestSizeLimit attribute on controllers",
+        "app.Use( async (ctx, next) => { if (ctx.Request.ContentLength > 10*1024*1024) ctx.Response.StatusCode = 413; else await next(); });",
+        "IIS request filtering"
+      ],
+      "answer": 2,
+      "explanation": "Early middleware rejection prevents large payload processing. More efficient than attribute-based checks."
+    },
+    {
+      "q": "Enterprise audit requires capturing authenticated user in all logs. When should logging enrichment middleware run?",
+      "options": [
+        "Before UseAuthentication",
+        "After UseAuthentication but before UseAuthorization",
+        "After UseAuthorization",
+        "At the end of pipeline"
+      ],
+      "answer": 1,
+      "explanation": "User identity is available after authentication. Enrich logs with ClaimsPrincipal before business logic executes."
+    },
+    {
+      "q": "You need to implement rate limiting per API key in a B2B integration platform. What is the enterprise approach?",
+      "options": [
+        "Custom middleware with MemoryCache",
+        "AspNetCoreRateLimit package with distributed cache",
+        "Azure API Management policy",
+        "UseAuthorization with custom policy"
+      ],
+      "answer": 1,
+      "explanation": "AspNetCoreRateLimit supports IP, ClientId, and distributed cache (Redis) for scalable rate limiting across instances."
+    },
+    {
+      "q": "In a healthcare app, PII must be masked in all logs. Where should the log sanitization middleware be placed?",
+      "options": [
+        "As the very first middleware",
+        "After authentication",
+        "Before logging middleware only",
+        "Integrated with Serilog filter"
+      ],
+      "answer": 0,
+      "explanation": "Sanitization must occur before any logging. First middleware ensures all subsequent logs are clean."
+    },
+    {
+      "q": "Your e-commerce site uses React SPA. API calls fail with 404 after UseSpaStaticFiles(). What is the fix?",
+      "options": [
+        "Move UseSpaStaticFiles before UseEndpoints",
+        "Use UseSpa with fallback to index.html",
+        "Add app.UseStaticFiles() again",
+        "Disable SPA middleware in production"
+      ],
+      "answer": 1,
+      "explanation": "SPA middleware must route all non-API calls to index.html. Code: app.UseSpa(spa => { spa.Options.DefaultPage = \"/index.html\"; });"
+    },
+    {
+      "q": "Enterprise SOC requires all responses to include security headers. What is the best implementation?",
+      "options": [
+        "Custom middleware after UseRouting",
+        "UseHsts and UseHttpsRedirection only",
+        "NWebSec middleware package",
+        "web.config transformations"
+      ],
+      "answer": 2,
+      "explanation": "NWebSec provides CSP, X-Frame-Options, HSTS preload, etc., with configuration-based security headers."
+    },
+    {
+      "q": "You need to cache health check responses for 30 seconds to reduce DB load. How to implement?",
+      "options": [
+        "ResponseCaching middleware with varying headers",
+        "Custom middleware with IMemoryCache",
+        "Output caching on HealthCheck controller",
+        "Redis cache in health check service"
+      ],
+      "answer": 1,
+      "explanation": "Middleware-level caching for /health endpoint. Code: app.UseResponseCaching(); then set Cache-Control in health endpoint."
+    },
+    {
+      "q": "In a global app, culture must be set from Accept-Language header before any controller executes. Where to place culture middleware?",
+      "options": [
+        "After UseRouting",
+        "As first middleware",
+        "In controller constructor",
+        "Using localization in views only"
+      ],
+      "answer": 1,
+      "explanation": "Culture affects routing, validation, and formatting. Must be set at pipeline start."
+    },
+    {
+      "q": "Your API gateway needs to validate JWT tokens from multiple issuers. What is the correct middleware configuration?",
+      "options": [
+        "Multiple app.UseAuthentication() calls",
+        "Single UseAuthentication with multiple schemes in AddAuthentication()",
+        "Custom middleware before UseAuthentication",
+        "UseAuthorization with token validation"
+      ],
+      "answer": 1,
+      "explanation": "AddAuthentication().AddJwtBearer(\"Issuer1\",...).AddJwtBearer(\"Issuer2\",...); then app.UseAuthentication();"
+    },
+    {
+      "q": "Enterprise policy requires request timeout of 15 seconds for all API calls. How to enforce?",
+      "options": [
+        "CancellationToken in controllers",
+        "app.UseMiddleware<RequestTimeoutMiddleware>(TimeSpan.FromSeconds(15))",
+        "Kestrel server limits",
+        "IIS request timeout"
+      ],
+      "answer": 1,
+      "explanation": "Custom timeout middleware cancels long-running requests with 504 Gateway Timeout."
+    },
+    {
+      "q": "You observe duplicate logging in structured logs. What is the likely pipeline issue?",
+      "options": [
+        "Multiple UseSerilog() calls",
+        "Logging middleware before and after UseRouting",
+        "ILogger injected in multiple middlewares",
+        "Serilog configured in both Host and Web"
+      ],
+      "answer": 3,
+      "explanation": "Duplicate configuration in CreateHostBuilder and Startup causes double enrichment."
+    },
+    {
+      "q": "In a payment processing system, you need to prevent replay attacks using nonce. Where to validate?",
+      "options": [
+        "Controller action filter",
+        "Custom middleware after authentication",
+        "Endpoint routing constraint",
+        "Database trigger"
+      ],
+      "answer": 1,
+      "explanation": "Early validation prevents unnecessary processing. Middleware checks nonce against distributed cache."
+    },
+    {
+      "q": "Your app serves both MVC views and API. How to apply CORS only to API controllers?",
+      "options": [
+        "app.UseCors() at top",
+        "Named policy with [EnableCors(\"ApiPolicy\")] on API controllers",
+        "UseCors in API area registration",
+        "Separate pipeline for APIs"
+      ],
+      "answer": 1,
+      "explanation": "CORS is policy-based. Apply named policy selectively via attributes."
+    },
+    {
+      "q": "Enterprise monitoring requires request duration metrics with operation tags. What should you use?",
+      "options": [
+        "Custom middleware with Stopwatch",
+        "UseMetrics middleware from AppMetrics",
+        "OpenTelemetry with UseOpenTelemetry()",
+        "Performance counters"
+      ],
+      "answer": 2,
+      "explanation": "OpenTelemetry provides standardized metrics with automatic HTTP tags (route, status, method)."
+    },
+    {
+      "q": "You need to redirect www to non-www with HTTPS in production load-balanced environment. Correct order?",
+      "options": [
+        "UseHttpsRedirection -> UseRedirectWww",
+        "UseRedirectWww -> UseHttpsRedirection",
+        "UseHsts -> UseHttpsRedirection -> UseRedirectWww",
+        "Custom middleware handling both"
+      ],
+      "answer": 1,
+      "explanation": "Redirect www first, then enforce HTTPS on canonical domain."
+    },
+    {
+      "q": "In a legacy integration, SOAP services must be exposed alongside REST APIs. How to route correctly?",
+      "options": [
+        "UseRouting at top, map SOAP to /services",
+        "Separate middleware pipeline for SOAP",
+        "UseMapWhen for /services path with SOAP handler",
+        "Host SOAP in separate app"
+      ],
+      "answer": 2,
+      "explanation": "app.UseWhen(ctx => ctx.Request.Path.StartsWithSegments(\"/services\"), appBuilder => appBuilder.UseSoap());"
+    },
+    {
+      "q": "Your app uses gRPC and HTTP/2. Some endpoints return 404. What is missing?",
+      "options": [
+        "app.UseRouting() before UseEndpoints",
+        "MapGrpcService before MapControllers",
+        "Enable HTTP/2 in Kestrel",
+        "All of the above"
+      ],
+      "answer": 3,
+      "explanation": "gRPC requires HTTP/2, correct endpoint mapping order, and UseRouting."
+    },
+    {
+      "q": "Enterprise backup process uploads large files. Default 30-second timeout fails. How to allow longer requests?",
+      "options": [
+        "Increase Kestrel timeout",
+        "Use [RequestTimeout] attribute",
+        "Custom middleware with extended timeout for /backup",
+        "Use background service"
+      ],
+      "answer": 2,
+      "explanation": "Conditional timeout middleware: app.UseWhen(ctx => ctx.Request.Path.StartsWith(\"/backup\"), appBuilder => appBuilder.UseTimeout(TimeSpan.FromMinutes(30)));"
+    },
+    {
+      "q": "You need to version APIs using URL path (/api/v1/, /api/v2/). How to configure routing?",
+      "options": [
+        "Use attribute routing with [Route(\"api/v{version}/{controller}\")]",
+        "Conventional routing with version constraint",
+        "Middleware to rewrite URL",
+        "Separate API projects"
+      ],
+      "answer": 0,
+      "explanation": "Attribute routing with route templates provides clean versioning. Use IApiVersioning for advanced scenarios."
+    },
+    {
+      "q": "In a regulated industry, all requests must be archived for 7 years. Where to implement?",
+      "options": [
+        "Custom middleware writing to blob storage",
+        "Azure Application Insights export",
+        "IIS logging with retention",
+        "Database audit table"
+      ],
+      "answer": 0,
+      "explanation": "Early middleware captures full request/response stream before processing. Async write to cold storage."
+    },
+    {
+      "q": "Your app has high traffic. Static files are served slowly. What is the enterprise solution?",
+      "options": [
+        "app.UseStaticFiles() with cache headers",
+        "CDN with UseStaticFiles fallback",
+        "Azure Blob Storage with SAS tokens",
+        "Both 1 and 2"
+      ],
+      "answer": 3,
+      "explanation": "UseStaticFiles for local fallback, CDN for production delivery with proper Cache-Control headers."
+    },
+    {
+      "q": "You need to implement feature flags that can be toggled without deployment. Correct approach?",
+      "options": [
+        "Middleware checking Configuration[\"Feature:X\"]",
+        "IHttpContextAccessor in controllers",
+        "Unleash/LaunchDarkly SDK with middleware",
+        "Database table with caching"
+      ],
+      "answer": 2,
+      "explanation": "Feature flag services provide SDK with short-circuit middleware and user targeting."
+    },
+    {
+      "q": "Enterprise contract requires request ID in all external API responses. Where to inject?",
+      "options": [
+        "Controller base class",
+        "Response middleware after endpoints",
+        "Action filter",
+        "Custom header middleware"
+      ],
+      "answer": 1,
+      "explanation": "Terminal middleware runs after endpoint execution, can safely modify response headers."
+    },
+    {
+      "q": "Your pipeline has UseAuthentication and UseAuthorization. Claims are missing in controllers. What is wrong?",
+      "options": [
+        "Order is correct",
+        "UseAuthentication must come before UseAuthorization",
+        "UseAuthorization must come before UseAuthentication",
+        "Both needed but order doesn't matter"
+      ],
+      "answer": 1,
+      "explanation": "Authentication populates User. Authorization validates it. Order: UseAuthentication -> UseAuthorization."
+    },
+    {
+      "q": "In ASP.NET Core, what is the primary role of middleware in the request pipeline?",
+      "options": [
+        "To render views",
+        "To process HTTP requests and responses in sequence",
+        "To compile C# code",
+        "To manage database connections"
+      ],
+      "answer": 1,
+      "explanation": "Middleware components form a pipeline that processes incoming HTTP requests and outgoing responses in the order they are added."
+    },
+    {
+      "q": "Which method in Program.cs is used to configure the HTTP request pipeline?",
+      "options": [
+        "ConfigureServices()",
+        "Configure()",
+        "Build()",
+        "Run()"
+      ],
+      "answer": 1,
+      "explanation": "app.Configure() (or app.Use... chain) defines the middleware pipeline. In .NET 6+, it's directly in Program.cs."
+    },
+    {
+      "q": "What happens if you call await next() in a middleware component?",
+      "options": [
+        "The request is short-circuited",
+        "The next middleware in the pipeline is invoked",
+        "The response is sent immediately",
+        "An exception is thrown"
+      ],
+      "answer": 1,
+      "explanation": "await next() passes control to the next middleware. Omitting it creates a terminal middleware."
+    },
+    {
+      "q": "Which of the following is a built-in terminal middleware in ASP.NET Core?",
+      "options": [
+        "UseRouting()",
+        "UseEndpoints()",
+        "UseAuthentication()",
+        "UseStaticFiles()"
+      ],
+      "answer": 1,
+      "explanation": "UseEndpoints() maps routes to endpoints and typically ends the pipeline for matched requests."
+    },
+    {
+      "q": "How do you register a custom middleware class in the pipeline?",
+      "options": [
+        "services.AddMiddleware<MyMiddleware>()",
+        "app.UseMiddleware<MyMiddleware>()",
+        "app.Add<MyMiddleware>()",
+        "app.Use(typeof(MyMiddleware))"
+      ],
+      "answer": 1,
+      "explanation": "UseMiddleware<T>() extension method adds the middleware to the pipeline."
+    },
+    {
+      "q": "What is the correct order of authentication and authorization middleware?",
+      "options": [
+        "UseAuthorization -> UseAuthentication",
+        "UseAuthentication -> UseAuthorization",
+        "Both can be in any order",
+        "Only one is needed"
+      ],
+      "answer": 1,
+      "explanation": "Authentication must run first to populate the User; Authorization then validates claims."
+    },
+    {
+      "q": "Which middleware enables serving files from wwwroot folder?",
+      "options": [
+        "UseFileServer()",
+        "UseDirectoryBrowser()",
+        "UseDefaultFiles()",
+        "UseStaticFiles()"
+      ],
+      "answer": 3,
+      "explanation": "UseStaticFiles() serves static files like .html, .css, .js from wwwroot."
+    },
+    {
+      "q": "What does app.Run() do in the pipeline?",
+      "options": [
+        "Adds a middleware and calls next",
+        "Adds a terminal delegate that handles the request",
+        "Starts the web server",
+        "Reloads configuration"
+      ],
+      "answer": 1,
+      "explanation": "app.Run() registers a terminal middleware delegate. No next() is called."
+    },
+    {
+      "q": "How can you create a branch in the middleware pipeline?",
+      "options": [
+        "app.Branch()",
+        "app.UseWhen() or app.MapWhen()",
+        "app.UseIf()",
+        "app.Switch()"
+      ],
+      "answer": 1,
+      "explanation": "UseWhen() and MapWhen() create conditional branches based on HttpContext."
+    },
+    {
+      "q": "What is the purpose of UseRouting() middleware?",
+      "options": [
+        "To execute endpoint",
+        "To match request to an endpoint",
+        "To generate URLs",
+        "To handle CORS"
+      ],
+      "answer": 1,
+      "explanation": "UseRouting() matches the incoming request to an endpoint and sets Endpoint in HttpContext."
+    },
+    {
+      "q": "In which environment should you use UseDeveloperExceptionPage()?",
+      "options": [
+        "Production",
+        "Staging",
+        "Development",
+        "All environments"
+      ],
+      "answer": 2,
+      "explanation": "UseDeveloperExceptionPage() shows detailed errors and is only safe in Development."
+    },
+    {
+      "q": "What does app.UseHttpsRedirection() do?",
+      "options": [
+        "Enforces HSTS",
+        "Redirects HTTP to HTTPS",
+        "Validates SSL certificate",
+        "Enables HTTP/2"
+      ],
+      "answer": 1,
+      "explanation": "Automatically redirects HTTP requests to HTTPS on the same host and path."
+    },
+    {
+      "q": "Which middleware should come before UseStaticFiles() to serve index.html by default?",
+      "options": [
+        "UseDefaultFiles()",
+        "UseDirectoryBrowser()",
+        "UseFileServer()",
+        "UseRouting()"
+      ],
+      "answer": 0,
+      "explanation": "UseDefaultFiles() rewrites requests for directories to index.html. Must be before UseStaticFiles()."
+    },
+    {
+      "q": "What is a conventional way to create middleware using a class?",
+      "options": [
+        "Implement IMiddleware interface",
+        "Inherit from MiddlewareBase",
+        "Use app.Use() with lambda",
+        "Register in DI container"
+      ],
+      "answer": 0,
+      "explanation": "public class MyMiddleware : IMiddleware { public async Task InvokeAsync(HttpContext context, RequestDelegate next) } "
+    },
+    {
+      "q": "What happens if UseExceptionHandler() is not configured in production?",
+      "options": [
+        "Stack trace is shown",
+        "500 error with no body",
+        "Request hangs",
+        "Default error page"
+      ],
+      "answer": 0,
+      "explanation": "Without UseExceptionHandler(), exceptions may leak stack traces in responses."
+    },
+    {
+      "q": "Which middleware enables Cross-Origin Resource Sharing (CORS)?",
+      "options": [
+        "UseCors()",
+        "UseCrossOrigin()",
+        "UseAuthorization()",
+        "UseSecurity()"
+      ],
+      "answer": 0,
+      "explanation": "UseCors() must be placed before UseResponseCaching and UseEndpoints."
+    },
+    {
+      "q": "What is the role of UseEndpoints() in MVC applications?",
+      "options": [
+        "To configure services",
+        "To execute the matched endpoint",
+        "To route requests",
+        "To handle exceptions"
+      ],
+      "answer": 1,
+      "explanation": "UseEndpoints() executes the selected endpoint (controller action, page, etc.)."
+    },
+    {
+      "q": "How do you pass parameters to a middleware class via UseMiddleware<>?",
+      "options": [
+        "Constructor injection only",
+        "app.UseMiddleware<MyMiddleware>(param1, param2)",
+        "Via HttpContext.Items",
+        "Not possible"
+      ],
+      "answer": 1,
+      "explanation": "UseMiddleware supports constructor parameters: app.UseMiddleware<MyMiddleware>('value');"
+    },
+    {
+      "q": "Which of the following short-circuits the pipeline?",
+      "options": [
+        "app.Use(async (ctx, next) => { await next(); })",
+        "app.Run(async ctx => { await ctx.Response.WriteAsync('Hi'); })",
+        "app.UseRouting()",
+        "app.UseAuthentication()"
+      ],
+      "answer": 1,
+      "explanation": "app.Run() is terminal - it does not call next(), so pipeline stops."
+    },
+    {
+      "q": "In enterprise apps, where should UseResponseCompression() typically be placed?",
+      "options": [
+        "At the very end",
+        "Early, after exception handling",
+        "Just before UseEndpoints",
+        "After UseStaticFiles"
+      ],
+      "answer": 1,
+      "explanation": "Compress early to reduce bandwidth. Must be after exception/log middleware."
+    },
+    {
+      "q": "Your enterprise API returns JSON with sensitive data in dev. How to prevent this in production?",
+      "options": [
+        "Use UseExceptionHandler()",
+        "Use UseDeveloperExceptionPage() only in dev",
+        "Custom middleware to strip fields",
+        "Disable logging"
+      ],
+      "answer": 1,
+      "explanation": "UseDeveloperExceptionPage() leaks data. Use UseExceptionHandler() in production."
+    },
+    {
+      "q": "In a multi-tenant SaaS, tenant ID is resolved from subdomain. Where should this logic go?",
+      "options": [
+        "Controller constructor",
+        "Custom middleware before UseRouting",
+        "Action filter",
+        "Endpoint metadata"
+      ],
+      "answer": 1,
+      "explanation": "Tenant resolution affects routing and auth. Must run early in pipeline."
+    },
+    {
+      "q": "You need to log request body for debugging in non-prod. Safe approach?",
+      "options": [
+        "Enable body logging globally",
+        "Custom middleware with UseWhen(env.IsDevelopment())",
+        "Log in controller",
+        "Use Fiddler"
+      ],
+      "answer": 1,
+      "explanation": "Conditional middleware: app.UseWhen(ctx => env.IsDevelopment(), appBuilder => appBuilder.UseBodyLogging());"
+    },
+    {
+      "q": "Enterprise security requires all APIs to enforce JWT auth. What is missing if 401 occurs?",
+      "options": [
+        "UseAuthentication()",
+        "UseAuthorization()",
+        "[Authorize] attribute",
+        "All of the above"
+      ],
+      "answer": 3,
+      "explanation": "All three are required: middleware pipeline + policy + attribute on controllers."
+    },
+    {
+      "q": "Your pipeline serves SPA. API calls return index.html. What is wrong?",
+      "options": [
+        "UseSpa() before UseRouting",
+        "UseEndpoints() before UseSpa()",
+        "Missing fallback in SPA config",
+        "UseStaticFiles() missing"
+      ],
+      "answer": 2,
+      "explanation": "SPA middleware must fallback non-file requests to index.html after API routing."
+    },
+    {
+      "q": "You need to add X-Request-ID header to all responses. Where to inject?",
+      "options": [
+        "Early middleware (before next)",
+        "Terminal middleware (after endpoints)",
+        "Controller filter",
+        "Base controller"
+      ],
+      "answer": 1,
+      "explanation": "Response headers can only be safely modified after endpoint execution."
+    },
+    {
+      "q": "In load-balanced environment, session affinity fails. Likely cause?",
+      "options": [
+        "UseSession() missing",
+        "Distributed cache not configured",
+        "Cookies not set",
+        "Kestrel misconfigured"
+      ],
+      "answer": 1,
+      "explanation": "In-memory session doesn't work across servers. Use IDistributedCache (Redis/SQL)."
+    },
+    {
+      "q": "Rate limiting must apply per client IP in a Web API farm. Correct approach?",
+      "options": [
+        "MemoryCache in middleware",
+        "AspNetCoreRateLimit with Redis",
+        "Custom middleware with static counter",
+        "Attribute on controller"
+      ],
+      "answer": 1,
+      "explanation": "Distributed cache ensures rate limits are shared across all instances."
+    },
+    {
+      "q": "You need to block internal health checks from external access. How?",
+      "options": [
+        "Firewall rule",
+        "app.MapWhen(ctx => ctx.Request.Path.StartsWith('/health'), ...)",
+        "[Authorize] on health endpoint",
+        "Separate app"
+      ],
+      "answer": 1,
+      "explanation": "MapWhen creates isolated pipeline branch. Can add IP restrictions or internal routing."
+    },
+    {
+      "q": "Enterprise standard requires all responses to be JSON with standard envelope. Best implementation?",
+      "options": [
+        "Action filter",
+        "Custom middleware after UseEndpoints",
+        "Result filter",
+        "IAsyncResultFilter"
+      ],
+      "answer": 1,
+      "explanation": "Middleware wraps all responses uniformly. Filter applies only to MVC actions."
+    }
   ]
+
 }

@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { quizTopics } from "@shared/schema";
+import { quizTopics } from "../shared/schema.ts";
 
 interface QuestionsData {
   [key: string]: Array<{
@@ -22,15 +22,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/questions", (req, res) => {
     const topic = req.query.topic as string;
     const count = parseInt(req.query.count as string) || 20;
-
+    
+    
     if (!topic || !quizTopics.includes(topic as any)) {
+      
       return res.status(400).json({ error: "Invalid topic" });
     }
+
 
     const topicKey = topic
       .toLowerCase()
       .replace(/c#/g, "csharp")
       .replace(/\.net/g, "dotnet")
+      .replace(/&/g, "and")       
       .replace(/\s+/g, "_")
       .replace(/\./g, "");
     const allQuestions = questionsData[topicKey] || [];
