@@ -13,6 +13,15 @@ interface QuestionsData {
   }>;
 }
 
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   const questionsPath = join(process.cwd(), "server", "data", "questions.json");
   const questionsData: QuestionsData = JSON.parse(
@@ -43,7 +52,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(404).json({ error: "No questions found for this topic" });
     }
 
-    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+    const shuffled = shuffleArray(allQuestions);
     const selected = shuffled.slice(0, Math.min(count, shuffled.length));
 
     res.json(selected);
