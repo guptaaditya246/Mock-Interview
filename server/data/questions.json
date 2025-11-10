@@ -3,238 +3,860 @@
   "author": "@thelifesyntax",
   "site": "https://mock-interview-0mfe.onrender.com",
   "built": "Free .NET Mock Interview",
-  "credit": "⭐ If you copy this, keep this block. Respect open-source!",
+  "credit": "If you copy this, keep this block. Respect open-source!",
  "keywords": ["dotnet interview", "csharp quiz", "asp.net core practice", "entity framework mcq", "linq questions", "dotnet 9 certification"],
   
- "csharp_basics": [
+ 
+  "csharp_basics": [
     {
-      "q": "What is the default access modifier for class members in C#?",
-      "options": ["public", "private", "protected", "internal"],
-      "answer": 1,
-      "explanation": "Class members (fields, properties, methods) are private by default if no access modifier is specified."
-    },
-    {
-      "q": "Which keyword is used to prevent a class from being inherited?",
-      "options": ["static", "sealed", "abstract", "readonly"],
-      "answer": 1,
-      "explanation": "The 'sealed' keyword prevents a class from being inherited. Static classes are implicitly sealed as well."
-    },
-    {
-      "q": "What is the difference between 'ref' and 'out' parameters?",
-      "options": [
-        "'ref' requires initialization before passing, 'out' does not",
-        "'out' requires initialization before passing, 'ref' does not",
-        "They are exactly the same",
-        "'ref' is for value types, 'out' is for reference types"
-      ],
+      "q": "What is the default value of an `int` variable in C# if not explicitly initialized?",
+      "options": ["0", "null", "1", "-1"],
       "answer": 0,
-      "explanation": "'ref' parameters must be initialized before being passed to a method, while 'out' parameters must be assigned a value inside the method before it returns."
+      "explanation": "Value types like `int` are initialized to `0` by default in fields and local variables when in safe context."
     },
     {
-      "q": "What is boxing in C#?",
-      "options": [
-        "Converting a reference type to a value type",
-        "Converting a value type to a reference type",
-        "Encrypting data",
-        "Creating a container class"
-      ],
-      "answer": 1,
-      "explanation": "Boxing is the process of converting a value type to a reference type (object). This wraps the value in a heap-allocated object."
-    },
-    {
-      "q": "Which of these is a reference type in C#?",
-      "options": ["int", "struct", "string", "enum"],
+      "q": "Which keyword is used to declare a variable that cannot be reassigned after initialization?",
+      "options": ["static", "readonly", "const", "fixed"],
       "answer": 2,
-      "explanation": "String is a reference type in C#, even though it behaves like a value type in many scenarios due to its immutability."
+      "explanation": "`const` creates compile-time constants; `readonly` allows runtime initialization in constructor."
     },
     {
-      "q": "What does the 'readonly' keyword do?",
-      "options": [
-        "Prevents modification after initialization in constructor",
-        "Makes a method non-overridable",
-        "Prevents a class from being inherited",
-        "Makes a variable compile-time constant"
-      ],
-      "answer": 0,
-      "explanation": "The 'readonly' keyword allows a field to be assigned only during declaration or in the constructor. After that, it cannot be modified."
-    },
-    {
-      "q": "What is the purpose of the 'using' statement?",
-      "options": [
-        "Import namespaces only",
-        "Dispose resources automatically",
-        "Create aliases only",
-        "Handle exceptions"
-      ],
+      "q": "What is the output of `Console.WriteLine(5 / 2);` in C#?",
+      "options": ["2.5", "2", "3", "Compile error"],
       "answer": 1,
-      "explanation": "The 'using' statement ensures that Dispose() is called on IDisposable objects automatically, even if an exception occurs."
+      "explanation": "Integer division truncates decimal part. `5 / 2` results in `2`."
     },
     {
-      "q": "What is the difference between '==' and 'Equals()' for strings?",
-      "options": [
-        "No difference for strings",
-        "'==' checks reference, 'Equals()' checks value",
-        "'==' checks value, 'Equals()' checks reference",
-        "'Equals()' is case-sensitive, '==' is not"
-      ],
-      "answer": 0,
-      "explanation": "For strings, both '==' and 'Equals()' check value equality by default due to operator overloading in the String class."
+      "q": "Which data type should be used to store a currency value like $99.99 with exact precision?",
+      "options": ["float", "double", "decimal", "int"],
+      "answer": 2,
+      "explanation": "`decimal` is designed for financial calculations to avoid floating-point rounding errors."
     },
     {
-      "q": "What is a nullable value type?",
-      "options": [
-        "A reference type that can be null",
-        "A value type that can be null",
-        "A type that is always null",
-        "A compile-time constant"
-      ],
+      "q": "What happens when you use `==` to compare two `string` instances with same content?",
+      "options": ["Reference comparison", "Value comparison", "Compile error", "Always false"],
       "answer": 1,
-      "explanation": "Nullable value types (e.g., 'int?') allow value types to have a null value, which is normally not possible for value types."
+      "explanation": "`==` is overloaded for `string` to perform value comparison due to interning."
     },
     {
-      "q": "What is the purpose of the 'yield' keyword?",
-      "options": [
-        "Pause execution of a thread",
-        "Return elements one at a time in an iterator",
-        "Throw an exception",
-        "Create a delegate"
-      ],
+      "q": "Which keyword prevents a class from being inherited?",
+      "options": ["abstract", "sealed", "static", "virtual"],
       "answer": 1,
-      "explanation": "'yield return' creates an iterator that returns elements one at a time, enabling lazy evaluation and efficient memory usage."
+      "explanation": "`sealed` class cannot be used as a base class."
     },
     {
-      "q": "What is the difference between 'const' and 'readonly'?",
-      "options": [
-        "'const' is compile-time, 'readonly' is runtime",
-        "'readonly' is compile-time, 'const' is runtime",
-        "They are the same",
-        "'const' can only be used with strings"
-      ],
-      "answer": 0,
-      "explanation": "'const' values are evaluated at compile-time and must be initialized at declaration, while 'readonly' values can be set at runtime in constructors."
-    },
-    {
-      "q": "What is a delegate in C#?",
-      "options": [
-        "A type-safe function pointer",
-        "A design pattern",
-        "A data structure",
-        "An exception handler"
-      ],
-      "answer": 0,
-      "explanation": "A delegate is a type that represents references to methods with a specific parameter list and return type, providing type-safe function pointers."
-    },
-    {
-      "q": "What is the purpose of the 'virtual' keyword?",
-      "options": [
-        "Make a method abstract",
-        "Allow a method to be overridden in derived classes",
-        "Prevent inheritance",
-        "Create a static method"
-      ],
+      "q": "What is the size of a `bool` in memory in C#?",
+      "options": ["1 bit", "1 byte", "4 bytes", "8 bytes"],
       "answer": 1,
-      "explanation": "The 'virtual' keyword allows a method to be overridden in derived classes, enabling polymorphism."
+      "explanation": "`bool` occupies 1 byte in memory (per CLR spec)."
     },
     {
-      "q": "What is an abstract class?",
-      "options": [
-        "A class that cannot be instantiated directly",
-        "A class with no methods",
-        "A sealed class",
-        "A static class"
-      ],
+      "q": "Which of the following is NOT a valid access modifier in C#?",
+      "options": ["public", "private", "global", "internal"],
+      "answer": 2,
+      "explanation": "`global` is not an access modifier in C#."
+    },
+    {
+      "q": "What is the default access modifier for a top-level class in C#?",
+      "options": ["public", "private", "internal", "protected"],
+      "answer": 2,
+      "explanation": "Top-level types are `internal` by default."
+    },
+    {
+      "q": "Which keyword is used to explicitly release unmanaged resources?",
+      "options": ["using", "dispose", "finalize", "delete"],
       "answer": 0,
-      "explanation": "Abstract classes cannot be instantiated directly and serve as base classes. They can contain abstract members that must be implemented by derived classes."
+      "explanation": "`using` statement ensures `Dispose()` is called on `IDisposable` objects.\n```csharp\nusing var fs = new FileStream(...); // Disposed automatically\n```"
     },
     {
-      "q": "What is the difference between 'throw' and 'throw ex'?",
-      "options": [
-        "'throw' preserves stack trace, 'throw ex' resets it",
-        "'throw ex' preserves stack trace, 'throw' resets it",
-        "No difference",
-        "'throw' is for custom exceptions only"
-      ],
-      "answer": 0,
-      "explanation": "'throw' rethrows the original exception preserving the stack trace, while 'throw ex' creates a new stack trace from the current point."
+      "q": "In a real-time order processing system, you receive `order.Total = 100.50m`. Which type should `Total` be?",
+      "options": ["double", "float", "decimal", "int"],
+      "answer": 2,
+      "explanation": "Use `decimal` for monetary values to prevent rounding errors in financial systems."
     },
     {
-      "q": "What is string interpolation in C#?",
-      "options": [
-        "Using $ before a string literal",
-        "Using + to concatenate strings",
-        "Using String.Format()",
-        "Using StringBuilder"
-      ],
-      "answer": 0,
-      "explanation": "String interpolation uses the $ symbol before a string literal, allowing embedded expressions like $\"Hello {name}\" for cleaner code."
+      "q": "A junior developer wrote: `if (status = 1) { ... }`. What will happen?",
+      "options": ["Compile error", "Runtime error", "Assigns 1 and evaluates to true", "Compares status with 1"],
+      "answer": 2,
+      "explanation": "Single `=` is assignment. Condition assigns `1` to `status` and always evaluates to `true`."
     },
     {
-      "q": "What is the 'is' operator used for?",
-      "options": [
-        "Equality comparison",
-        "Type checking and pattern matching",
-        "Bitwise operations",
-        "String comparison"
-      ],
+      "q": "You need to cache a configuration value that never changes during app lifetime. Which keyword?",
+      "options": ["static", "const", "readonly", "volatile"],
       "answer": 1,
-      "explanation": "The 'is' operator checks if an object is compatible with a given type and can also be used for pattern matching in modern C#."
+      "explanation": "Use `const` for compile-time constants like API URLs.\n```csharp\npublic const string ApiUrl = \"https://api.prod.com\";\n```"
     },
     {
-      "q": "What is a tuple in C#?",
-      "options": [
-        "A lightweight data structure with multiple values",
-        "An array of objects",
-        "A type of collection",
-        "A delegate type"
-      ],
-      "answer": 0,
-      "explanation": "Tuples provide a lightweight way to group multiple values together without creating a dedicated class or struct."
+      "q": "What is the result of `string.IsNullOrEmpty(null)`?",
+      "options": ["false", "true", "Throws exception", "Compile error"],
+      "answer": 1,
+      "explanation": "`IsNullOrEmpty` safely returns `true` for `null` or empty strings."
     },
     {
-      "q": "What is the 'nameof' operator?",
-      "options": [
-        "Gets the simple string name of a variable, type, or member",
-        "Creates a namespace",
-        "Renames a variable",
-        "Gets the full type name with namespace"
-      ],
-      "answer": 0,
-      "explanation": "The 'nameof' operator returns the simple string name of a variable, type, or member, helping avoid hard-coded strings and improving refactoring."
+      "q": "Which loop is guaranteed to execute at least once?",
+      "options": ["for", "foreach", "while", "do-while"],
+      "answer": 3,
+      "explanation": "`do-while` checks condition after first execution."
     },
     {
-      "q": "What is a record type in C#?",
-      "options": [
-        "A reference type with value-based equality",
-        "A value type only",
-        "A type for database records",
-        "A sealed class"
-      ],
-      "answer": 0,
-      "explanation": "Records are reference types that provide value-based equality and are designed for immutable data models with built-in features like with-expressions."
+      "q": "In a banking app, you must prevent negative balance. Which validation is correct?",
+      "options": ["if (balance >= 0) withdraw();", "if (balance > 0) withdraw();", "if (amount <= balance) withdraw();", "if (amount < balance) withdraw();"],
+      "answer": 2,
+      "explanation": "Must check `amount <= balance` to avoid overdraft even when balance equals amount."
     },
     {
-      "q": "What is pattern matching in switch expressions?",
-      "options": [
-        "Enhanced switch statements with pattern support",
-        "String pattern matching only",
-        "Regular expression matching",
-        "A design pattern"
-      ],
+      "q": "What does `default` keyword return for a reference type?",
+      "options": ["null", "empty string", "new instance", "Compile error"],
       "answer": 0,
-      "explanation": "Pattern matching in switch expressions allows matching on types, properties, and conditions, providing more powerful and expressive branching logic."
+      "explanation": "`default` for reference types is `null`.\n```csharp\nstring s = default; // null\n```"
     },
     {
-      "q": "What are init-only setters?",
-      "options": [
-        "Properties that can only be set during object initialization",
-        "Read-only properties",
-        "Write-only properties",
-        "Static properties"
-      ],
+      "q": "Which of these is a value type?",
+      "options": ["string", "object", "struct", "class"],
+      "answer": 2,
+      "explanation": "`struct`, `enum`, and primitives (`int`, `bool`) are value types."
+    },
+    {
+      "q": "What is the output of `Console.WriteLine(10 % 3);`?",
+      "options": ["3", "1", "3.33", "0"],
+      "answer": 1,
+      "explanation": "Modulus operator returns remainder: `10 ÷ 3 = 3 remainder 1`."
+    },
+    {
+      "q": "Which keyword allows multiple inheritance of interfaces?",
+      "options": ["extends", "inherits", "implements", "C# doesn't support multiple inheritance"],
+      "answer": 3,
+      "explanation": "C# supports multiple interface implementation, not class inheritance."
+    },
+    {
+      "q": "You're reading user input: `string input = Console.ReadLine();`. How to safely convert to int?",
+      "options": ["int num = (int)input;", "int num = int.Parse(input);", "int.TryParse(input, out int num);", "int num = Convert.ToInt32(input);"],
+      "answer": 2,
+      "explanation": "`TryParse` is safe — returns `false` on invalid input instead of throwing.\n```csharp\nif (!int.TryParse(input, out int num)) { /* handle error */ }\n```"
+    },
+    {
+      "q": "What will `var x = 5; var y = x is int;` output for `y`?",
+      "options": ["5", "true", "false", "Compile error"],
+      "answer": 1,
+      "explanation": "`is` operator checks type. `x is int` returns `true`."
+    },
+    {
+      "q": "Which is the correct way to declare a nullable integer?",
+      "options": ["int? x = null;", "Nullable<int> x = null;", "Both A and B", "int x = null;"],
+      "answer": 2,
+      "explanation": "Both `int?` (syntactic sugar) and `Nullable<int>` are valid."
+    },
+    {
+      "q": "What is the purpose of `volatile` keyword?",
+      "options": ["Prevents optimization of variable reads/writes", "Makes variable thread-local", "Prevents inheritance", "Marks variable as constant"],
       "answer": 0,
-      "explanation": "Init-only setters (using 'init' keyword) allow properties to be set during object initialization but become immutable after construction."
+      "explanation": "`volatile` ensures reads/writes are not reordered by compiler/CPU in multithreaded scenarios."
+    },
+    {
+      "q": "In a login system, you check password length. Which condition is correct?",
+      "options": ["if (pwd.Length > 8)", "if (pwd.Length >= 8)", "if (pwd.Length == 8)", "if (pwd != null && pwd.Length > 0)"],
+      "answer": 1,
+      "explanation": "Minimum 8 characters usually allows exactly 8. Use `>= 8`."
+    },
+    {
+      "q": "What is the output of `bool? flag = null; Console.WriteLine(flag ?? false);`?",
+      "options": ["null", "False", "True", "Compile error"],
+      "answer": 1,
+      "explanation": "Null-coalescing operator `??` returns right operand if left is `null`."
+    },
+    {
+      "q": "Which operator has highest precedence?",
+      "options": ["&&", "||", "==", "+"],
+      "answer": 2,
+      "explanation": "Equality `==` > additive `+` > logical AND `&&` > logical OR `||`."
+    },
+    {
+      "q": "You're processing CSV with optional fields. How to handle missing column safely?",
+      "options": ["string col = values[5];", "string col = values.Length > 5 ? values[5] : null;", "string col = values[5] ?? \"\";", "Both B and C"],
+      "answer": 3,
+      "explanation": "Both index check and null-coalescing are safe patterns."
+    },
+    {
+      "q": "What is the default value of a `char` variable?",
+      "options": ["'\\0'", "' '", "null", "0"],
+      "answer": 0,
+      "explanation": "Default `char` is `\\0` (Unicode 0)."
+    },
+    {
+      "q": "Which of these creates an immutable string?",
+      "options": ["string s = \"hello\"; s += \"world\";", "string s = \"hello\";", "StringBuilder sb = new();", "All strings are immutable"],
+      "answer": 3,
+      "explanation": "All `string` instances are immutable in .NET. `s +=` creates new string."
+    },
+    {
+      "q": "In a production API, you receive `DateTime? expiry`. How to check if expired?",
+      "options": ["if (expiry < DateTime.Now)", "if (expiry.HasValue && expiry.Value < DateTime.Now)", "if (expiry == null || expiry < DateTime.Now)", "if (!expiry.HasValue)"],
+      "answer": 1,
+      "explanation": "Must check `HasValue` first to avoid `NullReferenceException`."
+    },
+    {
+      "q": "What does `checked` keyword do?",
+      "options": ["Enables overflow checking", "Marks code as reviewed", "Prevents null references", "Enforces thread safety"],
+      "answer": 0,
+      "explanation": "`checked` throws `OverflowException` on integer overflow.\n```csharp\nint x = checked(int.MaxValue + 1); // throws\n```"
+    },
+    {
+      "q": "Which is correct for bitwise AND?",
+      "options": ["5 & 3 → 1", "5 & 3 → 2", "5 & 3 → 3", "5 & 3 → 7"],
+      "answer": 0,
+      "explanation": "Binary: `101 & 011 = 001` → `1`"
+    },
+    {
+      "q": "You're masking user roles. Role `Admin = 1`, `User = 2`, `Guest = 4`. How to check if user has Admin?",
+      "options": ["(roles & 1) == 1", "(roles & 1) > 0", "(roles | 1) == 1", "(roles == 1)"],
+      "answer": 0,
+      "explanation": "Bitwise AND with flag: non-zero result means flag is set."
+    },
+    {
+      "q": "What is the result of `10 >> 1`?",
+      "options": ["5", "20", "2", "10"],
+      "answer": 0,
+      "explanation": "Right shift divides by 2: `10 >> 1 = 5`"
+    },
+    {
+      "q": "Which keyword breaks out of the current loop?",
+      "options": ["continue", "break", "return", "goto"],
+      "answer": 1,
+      "explanation": "`break` exits the innermost loop."
+    },
+    {
+      "q": "In a loop processing 1 million records, you want to skip null entries. Which is efficient?",
+      "options": ["if (item == null) { continue; }", "if (item != null) { process; }", "Both same", "Use LINQ .Where(x => x != null)"],
+      "answer": 0,
+      "explanation": "`continue` skips rest of iteration early — slightly more efficient."
+    },
+    {
+      "q": "What is the scope of a variable declared inside `if` block?",
+      "options": ["Entire method", "Only inside if", "Entire class", "Compile error"],
+      "answer": 1,
+      "explanation": "Block-scoped variable is accessible only within its block."
+    },
+    {
+      "q": "Which of these is a compile-time constant?",
+      "options": ["static readonly int x = 5;", "const int x = 5;", "static int x = 5;", "int x = 5;"],
+      "answer": 1,
+      "explanation": "`const` values are inlined at compile time."
+    },
+    {
+      "q": "You're parsing JSON with optional `age` field. How to assign default 18 if missing?",
+      "options": ["int age = json.age;", "int age = json.age ?? 18;", "int age = json.age.HasValue ? json.age : 18;", "int age = json.age.GetValueOrDefault(18);"],
+      "answer": 1,
+      "explanation": "`??` operator provides default for nullable types."
+    },
+    {
+      "q": "What is the output of `Console.WriteLine(1 + 2 + \"3\");`?",
+      "options": ["6", "\"123\"", "123", "33"],
+      "answer": 2,
+      "explanation": "Left-to-right: `(1+2)=3` then string concat → `\"33\"` → `123`"
+    },
+    {
+      "q": "Which is NOT a reference type?",
+      "options": ["class", "interface", "delegate", "struct"],
+      "answer": 3,
+      "explanation": "`struct` is a value type."
+    },
+    {
+      "q": "In a high-throughput service, you need a thread-safe counter. Which type?",
+      "options": ["int", "long", "Interlocked", "volatile int"],
+      "answer": 2,
+      "explanation": "Use `Interlocked.Increment(ref counter)` for atomic operations."
+    },
+    {
+      "q": "What does `params` keyword allow?",
+      "options": ["Variable number of arguments", "Named arguments", "Optional parameters", "Default values"],
+      "answer": 0,
+      "explanation": "`params` enables method to accept any number of same-type arguments."
+    },
+    {
+      "q": "You're writing a utility: `Log(string msg, params object[] args)`. How to call it?",
+      "options": ["Log(\"Error\", ex);", "Log(\"Error\", new object[] { ex });", "Both", "Only B"],
+      "answer": 2,
+      "explanation": "`params` allows both single values and array."
+    },
+    {
+      "q": "Which keyword is used in pattern matching to check type and cast?",
+      "options": ["as", "is", "cast", "typeof"],
+      "answer": 1,
+      "explanation": "`is` checks type and assigns if match.\n```csharp\nif (obj is string s) { /* use s */ }\n```"
+    },
+    {
+      "q": "What is the default value of `DateTime` struct?",
+      "options": ["DateTime.MinValue", "DateTime.Now", "null", "01/01/0001"],
+      "answer": 0,
+      "explanation": "Default is `0001-01-01 00:00:00` (`DateTime.MinValue`)."
+    },
+    {
+      "q": "You're validating email in registration form. Which check is mandatory first?",
+      "options": ["Length > 5", "Contains @", "if (string.IsNullOrWhiteSpace(email)) return false;", "Regex match"],
+      "answer": 2,
+      "explanation": "Null/empty check first — avoids `NullReferenceException`."
+    },
+    {
+      "q": "What will `int x = 5; int y = x+++x;` result in?",
+      "options": ["10", "11", "Compile error", "5"],
+      "answer": 2,
+      "explanation": "`x+++x` is parsed as `(x++) + x` → valid but confusing. Avoid!"
+    },
+    {
+      "q": "Which of these allocates on heap?",
+      "options": ["int x = 5;", "string s = \"hi\";", "struct Point { int X; } var p = new Point();", "local value types in method"],
+      "answer": 1,
+      "explanation": "Reference types (`string`, class instances) go on heap."
+    },
+    {
+      "q": "What is the range of `byte` data type?",
+      "options": ["0 to 255", "-128 to 127", "0 to 65535", "-32768 to 32767"],
+      "answer": 0,
+      "explanation": "`byte` is unsigned 8-bit: 0–255."
+    },
+    {
+      "q": "You're reading config: `int timeout = config.Timeout ?? 30;`. What happens if `Timeout` is 0?",
+      "options": ["Uses 0", "Uses 30", "Throws exception", "Compile error"],
+      "answer": 0,
+      "explanation": "`??` only triggers if left is `null`, not `0`."
+    },
+    {
+      "q": "Which operator is used for null-conditional access?",
+      "options": ["?.", "??", "::", "?:"],
+      "answer": 0,
+      "explanation": "`?.` safely accesses members if not null.\n```csharp\nstring name = user?.Profile?.Name;\n```"
+    },
+    {
+      "q": "In a switch statement, can `case` labels be duplicate?",
+      "options": ["Yes", "No", "Only for strings", "Only for constants"],
+      "answer": 1,
+      "explanation": "Duplicate `case` labels cause compile-time error."
+    },
+    {
+      "q": "You're processing file upload. How to check if file was selected?",
+      "options": ["if (file != null)", "if (file.Length > 0)", "if (file.ContentLength > 0)", "All of above"],
+      "answer": 3,
+      "explanation": "All checks are valid depending on context (IFormFile, HttpPostedFile, etc.)."
+    },
+    {
+      "q": "What is the output of `Console.WriteLine((1, 2) == (1, 2));` in C# 7+?",
+      "options": ["True", "False", "Compile error", "Runtime error"],
+      "answer": 0,
+      "explanation": "Value tuples compare by value in C#."
+    },
+    {
+      "q": "Which keyword forces garbage collection?",
+      "options": ["GC.Collect()", "finalize", "dispose", "None — cannot force"],
+      "answer": 0,
+      "explanation": "`GC.Collect()` requests collection, but not guaranteed."
+    },
+    {
+      "q": "What is the default value of `enum` if not specified?",
+      "options": ["0", "1", "null", "First member"],
+      "answer": 0,
+      "explanation": "Enums default to `0` (usually first member or `None`)."
+    },
+    {
+      "q": "You're writing: `if (user.Role == Role.Admin || user.Role == Role.SuperAdmin)`. Better way?",
+      "options": ["if (user.Role == Role.Admin | user.Role == Role.SuperAdmin)", "if ((user.Role & (Role.Admin | Role.SuperAdmin)) != 0)", "if (new[] { Role.Admin, Role.SuperAdmin }.Contains(user.Role))", "No better way"],
+      "answer": 2,
+      "explanation": "Flags with bitwise OR is cleaner for permission checks."
+    },
+    {
+      "q": "Which of these is mutable?",
+      "options": ["string", "StringBuilder", "int", "tuple"],
+      "answer": 1,
+      "explanation": "`StringBuilder` allows in-place modification."
+    },
+    {
+      "q": "What does `out` parameter require?",
+      "options": ["Must be initialized before call", "Must be assigned inside method", "Can be unassigned", "Optional assignment"],
+      "answer": 1,
+      "explanation": "Method must assign `out` parameter before returning."
+    },
+    {
+      "q": "You're parsing input: `int.TryParse(input, out int result)`. What is `result` if parse fails?",
+      "options": ["0", "null", "unchanged", "throws exception"],
+      "answer": 0,
+      "explanation": "`TryParse` returns `false` and sets `out` to `0` on failure."
+    },
+    {
+      "q": "Which is the correct ternary operator syntax?",
+      "options": ["cond ? val1 : val2", "cond : val1 ? val2", "cond ? val1 ? val2", "if cond then val1 else val2"],
+      "answer": 0,
+      "explanation": "Standard ternary: `condition ? trueValue : falseValue`"
+    },
+    {
+      "q": "What is the size of `IntPtr` on 64-bit system?",
+      "options": ["4 bytes", "8 bytes", "Depends on data", "16 bytes"],
+      "answer": 1,
+      "explanation": "`IntPtr` is 4 bytes on 32-bit, 8 bytes on 64-bit."
+    },
+    {
+      "q": "Which keyword is used to define extension methods?",
+      "options": ["this", "static", "extend", "extension"],
+      "answer": 0,
+      "explanation": "`this` modifier on first parameter marks extension method."
+    },
+    {
+      "q": "You're comparing performance: `x == y` vs `object.Equals(x, y)`. When to use latter?",
+      "options": ["Always", "When x or y might be null", "Never", "Only for value types"],
+      "answer": 1,
+      "explanation": "`Equals` handles nulls safely; `==` throws if left is null (for ref types)."
+    },
+    {
+      "q": "What is the output of `Console.WriteLine(0.1 + 0.2 == 0.3);`?",
+      "options": ["True", "False", "Compile error", "Runtime error"],
+      "answer": 1,
+      "explanation": "Floating-point precision: `0.1 + 0.2 = 0.30000000000000004`"
+    },
+    {
+      "q": "Which of these is thread-safe for read-only access?",
+      "options": ["string", "List<T>", "Dictionary<TKey,TValue>", "ConcurrentDictionary"],
+      "answer": 0,
+      "explanation": "Immutable `string` is inherently thread-safe."
+    },
+    {
+      "q": "What does `ref` keyword do in method parameter?",
+      "options": ["Passes by reference", "Passes by value", "Creates copy", "Prevents modification"],
+      "answer": 0,
+      "explanation": "`ref` passes reference to variable — modifications affect caller."
+    },
+    {
+      "q": "You're optimizing: `for(int i=0; i<list.Count; i++)`. Better for `List<T>`?",
+      "options": ["Cache count: int count = list.Count;", "Use foreach", "Use for with indexer", "No difference"],
+      "answer": 0,
+      "explanation": "Cache `Count` to avoid property access in loop condition."
+    },
+    {
+      "q": "Which keyword prevents method override?",
+      "options": ["virtual", "override", "sealed", "abstract"],
+      "answer": 2,
+      "explanation": "`sealed override` prevents further overriding."
     }
   ],
+  "control_flows_csharp": [
+  {
+    "q": "What is the output of the following code?\nint i = 5;\nif (i > 0) goto Label;\nConsole.WriteLine(\"Not printed\");\nLabel: Console.WriteLine(i);",
+    "options": ["Not printed", "5", "Compilation error", "Runtime exception"],
+    "answer": 1,
+    "explanation": "`goto Label;` jumps directly to `Label:`, skipping the first `Console.WriteLine`. Output: `5`."
+  },
+  {
+    "q": "In a real-world API controller, you need to validate input before processing. Which control flow is most appropriate to exit early on invalid data?",
+    "options": ["Nested if-else", "Multiple return statements", "goto statement", "throw inside finally"],
+    "answer": 1,
+    "explanation": "Early `return` improves readability and avoids deep nesting in production code.\n```csharp\nif (!ModelState.IsValid) return BadRequest();\n```"
+  },
+  {
+    "q": "What happens when you use `break` inside a nested `switch` without a loop?",
+    "options": ["Exits the switch only", "Exits the method", "Compilation error", "Exits outer loop if exists"],
+    "answer": 0,
+    "explanation": "`break` in `switch` exits only the `switch` block, not the method or any loop."
+  },
+  {
+    "q": "You are processing 10 million records in a batch job. Which loop should you prefer for performance?",
+    "options": ["foreach", "for", "while", "do-while"],
+    "answer": 1,
+    "explanation": "`for` loop allows index caching and avoids enumerator allocation overhead in high-performance scenarios."
+  },
+  {
+    "q": "What is the value of `x` after this loop?\nint x = 0;\nfor (int i = 0; i < 5; i++) { if (i == 3) continue; x += i; }",
+    "options": ["10", "6", "15", "9"],
+    "answer": 1,
+    "explanation": "i=0,1,2,4 → 0+1+2+4 = 6. `continue` skips i=3."
+  },
+  {
+    "q": "Which keyword is used to exit a loop completely in C#?",
+    "options": ["return", "continue", "break", "goto"],
+    "answer": 2,
+    "explanation": "`break` terminates the innermost loop or switch."
+  },
+  {
+    "q": "In production logging, you want to skip expensive log calls if logger is disabled. Which pattern is commonly used?",
+    "options": ["if (logger.IsEnabled) logger.Log(...)", "logger.Log(...) always", "try-catch around log", "goto skip"],
+    "answer": 0,
+    "explanation": "Guard check prevents string interpolation cost when logging is disabled."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nwhile (i < 3) { if (i++ == 1) continue; Console.Write(i); }",
+    "options": ["012", "02", "13", "023"],
+    "answer": 1,
+    "explanation": "i=0 → print 0; i=1 → continue (post-increment); i=2 → print 2. Output: `02`"
+  },
+  {
+    "q": "Which loop guarantees at least one execution?",
+    "options": ["for", "foreach", "while", "do-while"],
+    "answer": 3,
+    "explanation": "`do-while` evaluates condition after first execution."
+  },
+  {
+    "q": "You see this code in legacy system:\nLabel1: Console.WriteLine(\"X\");\nif (condition) goto Label1;\nWhat kind of loop is this simulating?",
+    "options": ["for", "while", "do-while", "foreach"],
+    "answer": 1,
+    "explanation": "`goto` with label creates an infinite or conditional `while`-like loop (spaghetti code)."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 3; i++)\n    for (int j = 0; j < 2; j++)\n        if (i == 1 && j == 1) break;\n        else Console.Write(i + \"\" + j);",
+    "options": ["001011", "00011011", "00101121", "Compilation error"],
+    "answer": 0,
+    "explanation": "`break` exits only inner loop. Outer continues. Prints: 00,01,10 (skips 11), then 20,21 → `001011`"
+  },
+  {
+    "q": "In async method, you need to break out of a loop early based on external cancellation. Which is correct?",
+    "options": ["break;", "return;", "throw OperationCanceledException;", "CancellationToken.ThrowIfCancellationRequested();"],
+    "answer": 3,
+    "explanation": "Standard pattern in production async code to respect cancellation."
+  },
+  {
+    "q": "What is the scope of loop variable declared in `for` loop header in C# 5+?",
+    "options": ["Entire method", "Inside loop only", "Inside and after loop", "Compilation error"],
+    "answer": 1,
+    "explanation": "In C# 5+, `int i` in `for (int i = 0; ...)` is scoped to the loop body."
+  },
+  {
+    "q": "Which of these is NOT a jump statement in C#?",
+    "options": ["break", "continue", "return", "yield"],
+    "answer": 3,
+    "explanation": "`yield` is iterator statement, not jump. Others transfer control."
+  },
+  {
+    "q": "You need to retry an API call 3 times on failure. Which control flow is most clean?",
+    "options": ["Nested if-else", "for loop with try-catch inside", "goto retry", "Recursive call"],
+    "answer": 1,
+    "explanation": "```csharp\nfor (int i = 0; i < 3; i++) { try { ... } catch { if (i == 2) throw; } }\n```"
+  },
+  {
+    "q": "What is the output?\nint x = 0;\nswitch (x) { case 0: x++; goto case 1; case 1: x++; break; }\nConsole.Write(x);",
+    "options": ["1", "2", "0", "Compilation error"],
+    "answer": 1,
+    "explanation": "`goto case 1` executes case 1 → x becomes 2. `break` exits switch."
+  },
+  {
+    "q": "In production, you see `if (obj != null && obj.Prop > 5)`. What pattern is this?",
+    "options": ["Short-circuit", "Null propagation", "Null coalescing", "Ternary"],
+    "answer": 0,
+    "explanation": "Short-circuit `&&` prevents null reference if `obj` is null."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\ndo { Console.Write(i++); } while (i < 0);",
+    "options": ["0", "Infinite loop", "Nothing", "Compilation error"],
+    "answer": 0,
+    "explanation": "do-while executes once → prints `0`, then condition false."
+  },
+  {
+    "q": "Which construct allows fall-through in C#?",
+    "options": ["if-else", "switch with goto", "try-catch", "foreach"],
+    "answer": 1,
+    "explanation": "Only `switch` supports `goto case` or empty case for fall-through."
+  },
+  {
+    "q": "You're parsing CSV with 1M rows. A row has invalid format. What should you do in loop?",
+    "options": ["throw exception", "break", "continue", "return null"],
+    "answer": 2,
+    "explanation": "`continue` skips current row, continues processing next. Real-world ETL pattern."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 1; i++) { }\nConsole.Write(i);",
+    "options": ["0", "1", "Compilation error", "Runtime error"],
+    "answer": 2,
+    "explanation": "In C# <5, `i` is scoped to method. In C# 5+, scoped to loop → compile error."
+  },
+  {
+    "q": "Which is true about `continue` in nested loops?",
+    "options": ["Continues outer loop", "Continues innermost loop", "Continues all loops", "Compilation error"],
+    "answer": 1,
+    "explanation": "`continue` affects only the innermost loop containing it."
+  },
+  {
+    "q": "In production middleware, you want to short-circuit request pipeline. Which do you use?",
+    "options": ["return", "break", "continue", "goto"],
+    "answer": 0,
+    "explanation": "`return` in middleware stops pipeline execution (e.g., auth failure)."
+  },
+  {
+    "q": "What is the output?\nint x = 5;\nif (x = 10) Console.Write(\"A\"); else Console.Write(\"B\");",
+    "options": ["A", "B", "Compilation error", "Runtime error"],
+    "answer": 2,
+    "explanation": "`=` is assignment, not comparison. `if (x = 10)` requires boolean → compile error."
+  },
+  {
+    "q": "You need to execute cleanup code whether exception occurs or not in a loop iteration. Where do you put it?",
+    "options": ["finally block inside loop", "outside loop", "catch block", "using statement"],
+    "answer": 0,
+    "explanation": "`finally` runs per iteration. `using` is better for disposables."
+  },
+  {
+    "q": "What is the output?\nstring s = null;\nif (s?.Length > 0) Console.Write(\"Hi\");",
+    "options": ["Hi", "Nothing", "NullReferenceException", "Compilation error"],
+    "answer": 1,
+    "explanation": "Null-conditional `?.` short-circuits → condition false → no output."
+  },
+  {
+    "q": "Which loop is best for iterating over Dictionary in .NET?",
+    "options": ["for", "while", "foreach", "do-while"],
+    "answer": 2,
+    "explanation": "`foreach` is type-safe and idiomatic for collections."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nwhile (i < 5) { if (i == 3) break; Console.Write(i++); }",
+    "options": ["012", "0123", "01234", "012345"],
+    "answer": 0,
+    "explanation": "Prints 0,1,2 → breaks at i==3."
+  },
+  {
+    "q": "In a switch expression (C# 8+), what is required for exhaustive checking?",
+    "options": ["default case", "_ discard", "break in each case", "No requirement"],
+    "answer": 1,
+    "explanation": "`_` discard handles any unmatched case for exhaustiveness."
+  },
+  {
+    "q": "You're debugging infinite loop in production. Which is likely cause?",
+    "options": ["i++ missing", "break missing", "continue used", "All possible"],
+    "answer": 3,
+    "explanation": "Any can cause infinite loop. Most common: missing increment or exit condition."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 3; i++) {\n    if (i == 1) continue;\n    Console.Write(i);\n}\nConsole.Write(4);",
+    "options": ["024", "014", "0234", "0134"],
+    "answer": 0,
+    "explanation": "Skips i=1 → prints 0,2, then 4 → `024`"
+  },
+  {
+    "q": "Which statement transfers control to the end of current loop iteration?",
+    "options": ["break", "continue", "return", "goto"],
+    "answer": 1,
+    "explanation": "`continue` skips to next iteration."
+  },
+  {
+    "q": "In real-world validation, you have multiple checks. You want first failure message. Which pattern?",
+    "options": ["Nested if", "if-else chain", "Multiple if with return", "switch"],
+    "answer": 2,
+    "explanation": "Early return with message prevents pyramid of doom."
+  },
+  {
+    "q": "What is the output?\nint x = 0;\nLabel: x++;\nif (x < 3) goto Label;\nConsole.Write(x);",
+    "options": ["3", "2", "Infinite", "Compilation error"],
+    "answer": 0,
+    "explanation": "x increments to 1,2,3 → condition fails → prints 3."
+  },
+  {
+    "q": "Which is true about `goto` in C#?",
+    "options": ["Allowed in any method", "Cannot jump into loop", "Cannot jump out of finally", "Deprecated"],
+    "answer": 2,
+    "explanation": "Jumping out of `finally` is disallowed by compiler."
+  },
+  {
+    "q": "You're processing paginated API. When do you exit loop?",
+    "options": ["Page count reached", "No more items", "Timeout", "All possible"],
+    "answer": 3,
+    "explanation": "Production code checks multiple exit conditions."
+  },
+  {
+    "q": "What is the output?\nswitch (2) { case 1: Console.Write(1); break; case 2: Console.Write(2); goto case 3; case 3: Console.Write(3); break; }",
+    "options": ["2", "23", "13", "123"],
+    "answer": 1,
+    "explanation": "case 2 → print 2 → goto case 3 → print 3 → break."
+  },
+  {
+    "q": "In a `foreach` over List<T>, can you use `break`?",
+    "options": ["Yes", "No", "Only in lambda", "Compilation error"],
+    "answer": 0,
+    "explanation": "`break` works in `foreach` to exit early."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nwhile (true) { if (i++ == 2) break; }\nConsole.Write(i);",
+    "options": ["2", "3", "1", "Infinite"],
+    "answer": 1,
+    "explanation": "i=0 → cont; i=1 → cont; i=2 → break; i becomes 3."
+  },
+  {
+    "q": "Which is better for null checking in production code?",
+    "options": ["if (obj != null)", "if (obj == null ? false : obj.Prop)", "obj?.Prop > 0", "try-catch"],
+    "answer": 2,
+    "explanation": "Null-conditional operator is concise and safe."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 5; i += 2) Console.Write(i);",
+    "options": ["024", "01234", "013", "Infinite"],
+    "answer": 0,
+    "explanation": "i=0,2,4 → prints `024`"
+  },
+  {
+    "q": "In switch, what happens if no case matches and no default?",
+    "options": ["Compilation error", "Runtime exception", "Nothing", "default assumed"],
+    "answer": 2,
+    "explanation": "Switch continues after block. No exception."
+  },
+  {
+    "q": "You're in a nested loop. You want to exit both. Which is cleanest?",
+    "options": ["Two breaks", "goto outside", "bool flag", "return"],
+    "answer": 2,
+    "explanation": "Flag variable is readable and maintainable in production."
+  },
+  {
+    "q": "What is the output?\nint x = 10;\nif (x > 5) x = 5;\nelse if (x > 3) x = 3;\nConsole.Write(x);",
+    "options": ["10", "5", "3", "Compilation error"],
+    "answer": 1,
+    "explanation": "First condition true → x=5, skips else-if."
+  },
+  {
+    "q": "Which loop allows modifying collection while iterating?",
+    "options": ["foreach", "for", "while", "None"],
+    "answer": 1,
+    "explanation": "`for` with index allows safe remove/add in some cases."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nwhile (i < 3) Console.Write(i);\ni++;",
+    "options": ["012", "000...", "Nothing", "Compilation error"],
+    "answer": 2,
+    "explanation": "Increment outside loop → infinite loop if executed, but prints `000...` until stack overflow."
+  },
+  {
+    "q": "In production, you see `if (condition) return;`. This is:",
+    "options": ["Guard clause", "Early exit", "Defensive programming", "All of above"],
+    "answer": 3,
+    "explanation": "Common pattern to reduce nesting and improve clarity."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 3; i++) {\n    if (i == 1) { i = 3; continue; }\n    Console.Write(i);\n}",
+    "options": ["02", "013", "03", "023"],
+    "answer": 0,
+    "explanation": "i=0 → print 0; i=1 → set i=3, continue → i=4 (post-increment skipped), loop ends."
+  },
+  {
+    "q": "Which is valid in switch expression (C# 8)?",
+    "options": ["goto case", "break", "return value", "fall-through"],
+    "answer": 2,
+    "explanation": "Switch expression returns value: `x switch { 1 => \"A\", _ => \"B\" }`"
+  },
+  {
+    "q": "You're in `finally` block. Can you use `return`?",
+    "options": ["Yes", "No", "Only void", "Compilation error"],
+    "answer": 0,
+    "explanation": "`return` in `finally` overrides exception and is allowed (but discouraged)."
+  },
+  {
+    "q": "What is the output?\nint x = 1;\n do Console.Write(x++); while (x <= 3);",
+    "options": ["123", "1234", "12", "1"],
+    "answer": 0,
+    "explanation": "x=1 → print 1; x=2 → print 2; x=3 → print 3; x=4 → condition false."
+  },
+  {
+    "q": "In production, you need to skip null items in list. Which is best?",
+    "options": ["if (item != null) process", "foreach with try-catch", "Where().ToList()", "goto next"],
+    "answer": 2,
+    "explanation": "LINQ `Where(x => x != null)` is clean and declarative."
+  },
+  {
+    "q": "What is the output?\nswitch (\"hello\") { case string s when s.Length > 0: Console.Write(1); break; }",
+    "options": ["1", "Nothing", "Compilation error", "Runtime error"],
+    "answer": 0,
+    "explanation": "Pattern matching with `when` clause executes if condition true."
+  },
+  {
+    "q": "Which is NOT allowed in switch case label?",
+    "options": ["const int", "enum value", "var x = 5", "null"],
+    "answer": 2,
+    "explanation": "Case labels must be compile-time constants."
+  },
+  {
+    "q": "You're processing file line by line. EOF reached. How to exit?",
+    "options": ["break", "return", "continue", "goto end"],
+    "answer": 0,
+    "explanation": "`break` exits `while (reader.ReadLine() != null)` loop cleanly."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nwhile (i++ < 3) Console.Write(i);",
+    "options": ["123", "012", "234", "1234"],
+    "answer": 0,
+    "explanation": "i=0 → 0<3 → print 1; i=1 → 1<3 → print 2; i=2 → 2<3 → print 3; i=3 → 3<3 false."
+  },
+  {
+    "q": "In switch, can you have duplicate case labels?",
+    "options": ["Yes", "No", "Only with goto", "Only in expression"],
+    "answer": 1,
+    "explanation": "Compiler error: duplicate case label."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 2; i++) {\n    try { if (i == 1) throw new Exception(); }\n    finally { Console.Write(i); }\n}",
+    "options": ["01", "0", "1", "Compilation error"],
+    "answer": 0,
+    "explanation": "`finally` runs even when exception thrown → prints 0 and 1."
+  },
+  {
+    "q": "Which pattern avoids deep nesting in validation?",
+    "options": ["Guard clauses", "Single return", "goto", "Recursive validation"],
+    "answer": 0,
+    "explanation": "```csharp\nif (!valid) return Error();``` at top of method."
+  },
+  {
+    "q": "What is the output?\nint x = 0;\nif (false) x = 1; else if (true) x = 2; else x = 3;\nConsole.Write(x);",
+    "options": ["0", "1", "2", "3"],
+    "answer": 2,
+    "explanation": "else-if chain: second condition true → x=2."
+  },
+  {
+    "q": "Can you use `goto` to jump into a `try` block?",
+    "options": ["Yes", "No", "Only from catch", "Only in same method"],
+    "answer": 1,
+    "explanation": "Jumping into `try`/`catch`/`finally` is not allowed."
+  },
+  {
+    "q": "In production, you see `while (true) { ... if (done) break; }`. This is:",
+    "options": ["Anti-pattern", "Common in event loops", "Always bad", "Deprecated"],
+    "answer": 1,
+    "explanation": "Used in message pumps, service loops, etc."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 3; ++i) Console.Write(i);",
+    "options": ["012", "123", "0123", "Infinite"],
+    "answer": 0,
+    "explanation": "`++i` vs `i++` same in `for` increment when used alone."
+  },
+  {
+    "q": "Which is true about short-circuit evaluation?",
+    "options": ["&& stops if left false", "|| stops if left true", "Both", "None"],
+    "answer": 2,
+    "explanation": "Prevents unnecessary execution and null checks."
+  },
+  {
+    "q": "You're in `catch`. Can you use `continue` to go to next loop iteration?",
+    "options": ["Yes", "No", "Only in foreach", "Compilation error"],
+    "answer": 1,
+    "explanation": "`continue` only valid inside loop body."
+  },
+  {
+    "q": "What is the output?\nint x = 5;\nswitch (x) { default: x++; break; case 5: x++; break; }\nConsole.Write(x);",
+    "options": ["6", "7", "5", "Compilation error"],
+    "answer": 0,
+    "explanation": "case 5 matches → x=6 → break. default not executed."
+  },
+  {
+    "q": "In real-world code, you see `if (a && b())`. What can be optimized?",
+    "options": ["Call b() first", "Use | instead", "Check a first to avoid b()", "Nothing"],
+    "answer": 2,
+    "explanation": "Short-circuit avoids expensive `b()` if `a` is false."
+  },
+  {
+    "q": "What is the output?\nint i = 0;\nLoop: if (i < 2) { Console.Write(i++); goto Loop; }\nConsole.Write(\"X\");",
+    "options": ["01X", "012X", "Infinite", "Compilation error"],
+    "answer": 0,
+    "explanation": "i=0 → print 0 → goto; i=1 → print 1 → goto; i=2 → exit → print X."
+  },
+  {
+    "q": "Which control flow is best for state machine in .NET service?",
+    "options": ["if-else chain", "switch", "Dictionary<Action>", "goto"],
+    "answer": 1,
+    "explanation": "`switch` on enum state is clean and performant."
+  },
+  {
+    "q": "What is the output?\nfor (int i = 0; i < 1; i++) continue;\nConsole.Write(\"A\");",
+    "options": ["A", "Nothing", "Compilation error", "Infinite"],
+    "answer": 0,
+    "explanation": "Loop runs once, `continue` skips to increment → prints A."
+  }
+],
   "aspnet_core": [
     {
       "q": "What is the purpose of middleware in ASP.NET Core?",
@@ -721,7 +1343,465 @@
       ],
       "answer": 0,
       "explanation": "ChangeTracker provides access to tracking information and state for all entities being tracked by the DbContext."
+    },
+
+    {
+      "q": "What is the default convention for primary key in Entity Framework Code First?",
+      "options": ["Id", "<Type>Id", "ID", "Both Id and <Type>Id"],
+      "answer": 3,
+      "explanation": "EF recognizes both 'Id' and '<EntityName>Id' as primary key by convention. 'Both Id and ID' is correct."
+    },
+    {
+      "q": "Which method is used to execute raw SQL queries in EF Core?",
+      "options": [".FromSql()", ".ExecuteSqlCommand()", ".RawSql()", ".QuerySql()"],
+      "answer": 0,
+      "explanation": "Use context.Database.ExecuteSqlRaw() for commands; FromSqlRaw() for queries returning entities."
+    },
+    {
+      "q": "In EF Core, what happens when you call SaveChanges() on a context with both added and modified entities?",
+      "options": ["Only modified entities are saved", "Only added entities are saved", "Both are saved in a single transaction", "Throws exception"],
+      "answer": 2,
+      "explanation": "SaveChanges() detects all changes (Added, Modified, Deleted) and persists them in one transaction."
+    },
+    {
+      "q": "Which attribute is used to ignore a property in EF mapping?",
+      "options": ["[NotMapped]", "[Ignore]", "[Exclude]", "[NoMap]"],
+      "answer": 0,
+      "explanation": "[NotMapped] tells EF to exclude the property from database mapping."
+    },
+    {
+      "q": "What is the purpose of DbContext in Entity Framework?",
+      "options": ["To define database schema", "To manage entity objects and database connection", "To execute stored procedures only", "To cache queries"],
+      "answer": 1,
+      "explanation": "DbContext is the primary class that coordinates Entity Framework functionality for a data model."
+    },
+    {
+      "q": "Which of the following is true about lazy loading in EF Core?",
+      "options": ["Enabled by default", "Requires navigation properties to be virtual", "Not supported at all", "Only works with async methods"],
+      "answer": 1,
+      "explanation": "Lazy loading requires Microsoft.EntityFrameworkCore.Proxies package and virtual navigation properties."
+    },
+    {
+      "q": "What does AsNoTracking() do in EF Core?",
+      "options": ["Disables change tracking for the query", "Prevents database roundtrip", "Enables caching", "Forces eager loading"],
+      "answer": 0,
+      "explanation": "AsNoTracking() improves performance for read-only scenarios by skipping change tracking."
+    },
+    {
+      "q": "Which method should be used to include related data in EF Core?",
+      "options": [".Include()", ".Load()", ".Reference()", ".Join()"],
+      "answer": 0,
+      "explanation": ".Include().ThenInclude() for multi-level."
+    },
+    {
+      "q": "In EF Core migrations, what does Add-Migration command do?",
+      "options": ["Applies migration to database", "Creates a new migration snapshot", "Removes last migration", "Updates model snapshot only"],
+      "answer": 1,
+      "explanation": "Add-Migration generates code-based snapshot of model changes since last migration."
+    },
+    {
+      "q": "What is the default transaction behavior in EF Core SaveChanges()?",
+      "options": ["No transaction", "One transaction per SaveChanges", "Transaction per entity", "Manual transaction required"],
+      "answer": 1,
+      "explanation": "EF Core wraps all changes in SaveChanges() within a single transaction."
+    },
+    {
+      "q": "Which configuration is used to set a property as required in Code First?",
+      "options": ["[Required]", ".IsRequired()", "Both", "None"],
+      "answer": 2,
+      "explanation": "Use [Required] attribute or .IsRequired() in OnModelCreating."
+    },
+    {
+      "q": "What is the difference between First() and FirstOrDefault()?",
+      "options": ["First() returns null if not found", "FirstOrDefault() throws exception if not found", "First() throws if not found, FirstOrDefault() returns default", "No difference"],
+      "answer": 2,
+      "explanation": "First() throws InvalidOperationException if no match; FirstOrDefault() returns null/default."
+    },
+    {
+      "q": "Which interface must be implemented for an entity to support change tracking?",
+      "options": ["IEntity", "IChangeTrackable", "No interface needed", "ITrackable"],
+      "answer": 2,
+      "explanation": "EF Core tracks entities by reference; no interface required."
+    },
+    {
+      "q": "What is the purpose of owned entities in EF Core?",
+      "options": ["To map complex types", "To create inheritance", "To enable soft delete", "To cache data"],
+      "answer": 0,
+      "explanation": "Owned entities represent value objects that are part of another entity (e.g., Address in Customer)."
+    },
+    {
+      "q": "Which method is used to execute stored procedures returning scalar values?",
+      "options": [".FromSqlRaw()", ".ExecuteSqlRaw()", ".ExecuteFunction()", ".Query()"],
+      "answer": 1,
+      "explanation": "Use ExecuteSqlRaw() with OUTPUT parameters or query for scalar results."
+    },
+    {
+      "q": "What happens if you forget to call Dispose() on DbContext?",
+      "options": ["Memory leak", "Connection leak possible", "No effect", "Compilation error"],
+      "answer": 1,
+      "explanation": "DbContext holds database connections; not disposing may cause connection pool exhaustion."
+    },
+    {
+      "q": "Which is the correct way to configure connection string in EF Core?",
+      "options": ["In OnConfiguring method", "Via DI in Startup", "Both are valid", "Only in appsettings.json"],
+      "answer": 2,
+      "explanation": "Connection string can be set in OnConfiguring or through dependency injection."
+    },
+    {
+      "q": "What is a shadow property in EF Core?",
+      "options": ["Property not defined in CLR class but in model", "Hidden navigation property", "Encrypted property", "Cached property"],
+      "answer": 0,
+      "explanation": "Shadow properties exist in EF model but not in .NET class (e.g., CreatedDate set in DB trigger)."
+    },
+    {
+      "q": "Which query execution strategy is best for retrying transient failures?",
+      "options": ["EnableRetryOnFailure()", "Use ExecuteSqlRaw()", "Manual retry loop", "No built-in support"],
+      "answer": 0,
+      "explanation": "context.Database.ExecuteSqlRaw() with EnableRetryOnFailure() in UseSqlServer() handles transient faults."
+    },
+    {
+      "q": "What is the default lifetime of DbContext in ASP.NET Core DI?",
+      "options": ["Singleton", "Transient", "Scoped", "None"],
+      "answer": 2,
+      "explanation": "DbContext is registered as Scoped by default — one instance per HTTP request."
+    },
+    {
+      "q": "How do you prevent N+1 query problem in EF Core?",
+      "options": ["Use eager loading with Include()", "Use AsNoTracking()", "Use compiled queries", "All of the above"],
+      "answer": 3,
+      "explanation": "Eager loading, split queries, and query optimization prevent N+1 issues."
+    },
+    {
+      "q": "Which attribute defines the table name in Code First?",
+      "options": ["[Table]", "[Entity]", "[DataTable]", "[Map]"],
+      "answer": 0,
+      "explanation": "[Table(\"Employees\")] maps the class to a specific database table."
+    },
+    {
+      "q": "Scenario: You notice slow performance when loading a list of orders with customers. What should you do first?",
+      "options": ["Add AsNoTracking()", "Use .Include(o => o.Customer)", "Enable lazy loading", "Rewrite query in SQL"],
+      "answer": 1,
+      "explanation": "Eager load related data using Include to avoid multiple roundtrips (N+1 problem)."
+    },
+    {
+      "q": "Scenario: SaveChanges() throws DbUpdateConcurrencyException. What does this mean?",
+      "options": ["Duplicate key", "Concurrency conflict detected", "Foreign key violation", "Timeout"],
+      "answer": 1,
+      "explanation": "Another user modified the same row since it was loaded — optimistic concurrency failure."
+    },
+    {
+      "q": "Scenario: A query returns outdated data even after update. What's likely wrong?",
+      "options": ["Using AsNoTracking()", "Multiple DbContext instances", "Caching enabled", "Transaction isolation level"],
+      "answer": 1,
+      "explanation": "Updates in one DbContext are not visible to another unless refreshed or same context used."
+    },
+    {
+      "q": "Scenario: Migration fails with 'Cannot drop column used in index'. How to fix?",
+      "options": ["Manually edit migration", "Remove index first", "Use DropColumn anyway", "Recreate table"],
+      "answer": 1,
+      "explanation": "Drop dependent indexes/constraints before dropping column in migration."
+    },
+    {
+      "q": "Scenario: EF generates incorrect SQL JOIN due to navigation property. How to debug?",
+      "options": ["Enable sensitive data logging", "Use ToQueryString()", "Check migration history", "Both 1 and 2"],
+      "answer": 3,
+      "explanation": "Use context.Database.Log or ToQueryString() to inspect generated SQL."
+    },
+    {
+      "q": "Scenario: Application throws 'Connection forcibly closed' intermittently. Possible EF cause?",
+      "options": ["Long-running queries", "Not disposing DbContext", "Using Singleton DbContext", "Both 2 and 3"],
+      "answer": 3,
+      "explanation": "Singleton DbContext or undisposed instances exhaust connection pool."
+    },
+    {
+      "q": "Scenario: You need to insert 10,000 records efficiently. Best approach?",
+      "options": ["Loop with Add() and SaveChanges()", "Use AddRange() + SaveChanges()", "Bulk extensions or EF Core 7+ batching", "Write stored procedure"],
+      "answer": 2,
+      "explanation": "EF Core 7+ supports ExecuteUpdate/Delete; otherwise use EF Core bulk extensions."
+    },
+    {
+      "q": "Scenario: A property is always null after SaveChanges(). Why?",
+      "options": ["[NotMapped] attribute", "Missing setter", "Database default value", "Shadow property"],
+      "answer": 0,
+      "explanation": "[NotMapped] prevents EF from loading/saving the property."
+    },
+    {
+      "q": "Scenario: Query with Include() throws 'sequence contains more than one element'. Cause?",
+      "options": ["Duplicate data", "Split query needed", "Navigation property is collection", "Incorrect Include path"],
+      "answer": 2,
+      "explanation": "Include on one-to-one when multiple matches exist causes error. Use filtering or projection."
+    },
+    {
+      "q": "Scenario: Migration applies but model snapshot not updated. Result?",
+      "options": ["Next migration fails", "No effect", "Database out of sync", "Compilation error"],
+      "answer": 0,
+      "explanation": "EF compares current model with snapshot; outdated snapshot causes incorrect diff."
+    },
+    {
+      "q": "Scenario: EF Core logs show same query executed multiple times. Optimization?",
+      "options": ["Use AsNoTracking()", "Compiled queries", "Projection with Select()", "All of the above"],
+      "answer": 3,
+      "explanation": "Parameterize, project, and compile queries to improve performance."
+    },
+    {
+      "q": "Scenario: Soft delete not working with EF query. Fix?",
+      "options": ["Use global query filters", "Manual WHERE clause", "Delete flag in WHERE", "Both 1 and 2"],
+      "answer": 3,
+      "explanation": "Global query filters in OnModelCreating automatically apply IsDeleted == false."
+    },
+    {
+      "q": "Scenario: Large result set causes memory spike. Best fix?",
+      "options": ["Use pagination", "AsNoTracking()", "Streaming with AsAsyncEnumerable()", "All of the above"],
+      "answer": 3,
+      "explanation": "Avoid materializing full result; use streaming and pagination."
+    },
+    {
+      "q": "Scenario: EF Core generates unnecessary UPDATE statements. Cause?",
+      "options": ["Change tracking proxy not used", "Properties modified outside context", "No primary key", "Attached entity modified"],
+      "answer": 3,
+      "explanation": "For EF Core 7+; otherwise mark specific properties as modified."
+    },
+    {
+      "q": "Scenario: Value converter not applied in migration. Why?",
+      "options": ["Converter in wrong method", "Missing HasConversion()", "Applied after model snapshot", "Migration needs --force"],
+      "answer": 1,
+      "explanation": "Value converters must be configured in OnModelCreating using .HasConversion()."
+    },
+    {
+      "q": "Scenario: Query works in dev but fails in prod with 'Invalid column'. Cause?",
+      "options": ["Case-sensitive collation", "Migration not applied", "Different provider", "All possible"],
+      "answer": 3,
+      "explanation": "Common in SQL Server vs PostgreSQL or case-sensitive environments."
+    },
+    {
+      "q": "Scenario: EF Core ignores [MaxLength] attribute. Why?",
+      "options": ["Requires [StringLength]", "[MaxLength] only for validation", "Needs migration", "Works only in EF6"],
+      "answer": 1,
+      "explanation": "[MaxLength] is for validation; use [Column(TypeName = \"varchar(100)\")] or fluent API."
+    },
+    {
+      "q": "Scenario: Async query hangs indefinitely. Likely cause?",
+      "options": ["Deadlock in SQL", "Missing await", "Sync over async", "Both 1 and 3"],
+      "answer": 3,
+      "explanation": "Calling .Result or .Wait() on async EF query causes deadlock in ASP.NET."
+    },
+    {
+      "q": "Scenario: Two developers get migration conflicts. Best resolution?",
+      "options": ["Delete __EFMigrationsHistory", "Use consistent migration names", "Merge migrations manually", "Recreate database"],
+      "answer": 2,
+      "explanation": "Team must coordinate migration names and merge changes in Up/Down methods."
+    },
+    {
+      "q": "Scenario: EF Core query returns incorrect count. Why?",
+      "options": ["Using Count() on navigation", "Filtered query not applied", "AsNoTracking() with Include", "All possible"],
+      "answer": 3,
+      "explanation": "Common issues: client evaluation, tracking, or unapplied filters."
+    },
+    {
+      "q": "Confusing: What is the output of context.Set<Entity>().Where(e => e.Id == 1).AsNoTracking().FirstOrDefault()?.Name?",
+      "options": ["Throws exception", "Returns Name if found", "Returns null", "Compilation error"],
+      "answer": 1,
+      "explanation": "AsNoTracking() does not prevent property access; returns entity if found."
+    },
+    {
+      "q": "Confusing: Can you call SaveChanges() after Dispose()?",
+      "options": ["Yes", "No, ObjectDisposedException", "Only if recreated", "Only in using block"],
+      "answer": 1,
+      "explanation": "Disposed DbContext cannot execute operations; throws ObjectDisposedException."
+    },
+    {
+      "q": "Confusing: What happens if you set both [Key] and [DatabaseGenerated(Identity)] on a property?",
+      "options": ["Error", "Identity wins", "Key wins", "Both applied"],
+      "answer": 3,
+      "explanation": "EF allows both; property is PK and auto-incremented."
+    },
+    {
+      "q": "Confusing: Is DbContext thread-safe?",
+      "options": ["Yes", "No", "Only if frozen", "Only for read"],
+      "answer": 1,
+      "explanation": "DbContext is not thread-safe; use one instance per operation/thread."
+    },
+    {
+      "q": "Confusing: Can two DbContext instances see each other's uncommitted changes?",
+      "options": ["Yes", "No, unless same connection", "Only with ReadUncommitted", "Always"],
+      "answer": 1,
+      "explanation": "By default, each DbContext has isolated change tracker and transaction."
+    },
+    {
+      "q": "Confusing: What does modelBuilder.Entity<Entity>().ToView(\"ViewName\") do?",
+      "options": ["Maps to view as updatable", "Maps to view as read-only", "Creates view", "Ignores entity"],
+      "answer": 1,
+      "explanation": "ToView() maps entity to database view; no migrations or updates allowed."
+    },
+    {
+      "q": "Confusing: Can you use [NotMapped] on a navigation property?",
+      "options": ["No", "Yes", "Only in EF6", "Only if virtual"],
+      "answer": 1,
+      "explanation": "[NotMapped] excludes navigation property from model; no foreign key created."
+    },
+    {
+      "q": "What is client evaluation in EF Core?",
+      "options": ["Running part of query in memory", "SQL translation", "Change tracking", "Batching"],
+      "answer": 0,
+      "explanation": "EF Core 3+ logs warning or throws if part of query cannot be translated to SQL."
+    },
+    {
+      "q": "Which provider supports spatial data in EF Core?",
+      "options": ["NetTopologySuite", "GeoJSON", "SQLSpatial", "All of the above"],
+      "answer": 0,
+      "explanation": "Use NetTopologySuite with UseNetTopologySuite() for spatial types."
+    },
+    {
+      "q": "What is the purpose of HasQueryFilter()?",
+      "options": ["Global WHERE clause", "Index hint", "Table hint", "Lock hint"],
+      "answer": 0,
+      "explanation": "Applies filter to all queries for an entity (e.g., soft delete)."
+    },
+    {
+      "q": "Which method enables batching of INSERT/UPDATE/DELETE in EF Core 7+?",
+      "options": ["ExecuteUpdate()", "SaveChanges()", "BulkSave()", "BatchSave()"],
+      "answer": 0,
+      "explanation": "ExecuteUpdate/SetField async methods send single SQL command without loading entities."
+    },
+    {
+      "q": "What is a keyless entity in EF Core?",
+      "options": ["Entity without primary key", "View mapping", "Stored procedure result", "All of the above"],
+      "answer": 3,
+      "explanation": "[Keyless] attribute for views, raw SQL, or types without PK."
+    },
+    {
+      "q": "How to configure composite key in fluent API?",
+      "options": [".HasKey(e => new { e.Id1, e.Id2 })", ".HasCompositeKey()", ".PrimaryKey()", "Not supported"],
+      "answer": 0,
+      "explanation": "Use HasKey with anonymous type for composite primary keys."
+    },
+    {
+      "q": "What does UseLazyLoadingProxies() do?",
+      "options": ["Enables lazy loading", "Enables change tracking proxies", "Both", "Neither"],
+      "answer": 2,
+      "explanation": "Install Microsoft.EntityFrameworkCore.Proxies and call UseLazyLoadingProxies()."
+    },
+    {
+      "q": "Which is true about split queries in EF Core?",
+      "options": ["Single SQL with JOINs", "Multiple SQL queries", "Better for large includes", "Both 2 and 3"],
+      "answer": 3,
+      "explanation": "AsSplitQuery() improves performance with large includes by issuing separate queries."
+    },
+    {
+      "q": "What is the default behavior of cascade delete in EF Core?",
+      "options": ["Client-side only", "Database cascade", "Depends on convention", "Disabled"],
+      "answer": 2,
+      "explanation": "Required relationships → ClientCascade; Optional → ClientSetNull."
+    },
+    {
+      "q": "How to seed data in EF Core migrations?",
+      "options": ["In Up() method", "modelBuilder.Seed()", "Both", "Only in OnModelCreating"],
+      "answer": 2,
+      "explanation": "Use HasData() in OnModelCreating or insert in migration Up()."
+    },
+    {
+      "q": "What is the purpose of IEntityTypeConfiguration<T>?",
+      "options": ["Separate configuration", "Performance", "Inheritance", "Validation"],
+      "answer": 0,
+      "explanation": "Allows entity configuration in separate classes for better organization."
+    },
+    {
+      "q": "Which method returns IQueryable for custom SQL?",
+      "options": [".FromSqlRaw()", ".FromSqlInterpolated()", "Both", ".SqlQuery()"],
+      "answer": 2,
+      "explanation": "Both FromSqlRaw and FromSqlInterpolated return composable IQueryable."
+    },
+    {
+      "q": "What is a backing field in EF Core?",
+      "options": ["Private field for property", "Shadow property", "Database column", "Index field"],
+      "answer": 0,
+      "explanation": "Use .HasField(\"_name\") to map property to private backing field."
+    },
+    {
+      "q": "How to configure index in fluent API?",
+      "options": [".HasIndex(e => e.Name)", ".IndexOn()", ".CreateIndex()", "Not supported"],
+      "answer": 0,
+      "explanation": "HasIndex().IsUnique() for unique, .IsClustered() for clustering."
+    },
+    {
+      "q": "What does Ignore() do in OnModelCreating?",
+      "options": ["Excludes property", "Excludes entity", "Both", "Disables tracking"],
+      "answer": 0,
+      "explanation": "modelBuilder.Entity<User>().Ignore(e => e.TempData);"
+    },
+    {
+      "q": "Which is correct for many-to-many in EF Core 7+?",
+      "options": ["Skip navigation only", "Join entity required", "Both supported", "Not supported"],
+      "answer": 2,
+      "explanation": "EF Core 7 supports skip navigation properties for many-to-many without explicit join."
+    },
+    {
+      "q": "What is the purpose of ToQueryString()?",
+      "options": ["Returns generated SQL", "Executes query", "Returns result", "Compiles query"],
+      "answer": 0,
+      "explanation": "Use query.ToQueryString() to debug translated SQL without execution."
+    },
+    {
+      "q": "How to enable detailed errors in EF Core?",
+      "options": ["EnableSensitiveDataLogging()", "ThrowOnError()", "LogLevel.Debug", "All"],
+      "answer": 0,
+      "explanation": "EnableSensitiveDataLogging() includes parameter values in exceptions/logs."
+    },
+    {
+      "q": "What is TPH, TPT, TPT in EF Core inheritance?",
+      "options": ["Table Per Hierarchy, Type, Concrete", "Table Per Hierarchy, Type, Property", "Table Per Hierarchy, Type, Table", "None"],
+      "answer": 0,
+      "explanation": "TPH: single table; TPT: table per type (EF Core 5+); TPC: table per concrete class."
+    },
+    {
+      "q": "Which method is used to reload an entity from database?",
+      "options": [".Reload()", ".Refresh()", ".Load()", ".Entry().Reload()"],
+      "answer": 3,
+      "explanation": "context.Entry(entity).Reload() fetches fresh data from DB."
+    },
+    {
+      "q": "What is the use of HasData() in seed?",
+      "options": ["Inserts initial data", "Updates data", "Deletes data", "Validates data"],
+      "answer": 0,
+      "explanation": "HasData() generates INSERTs in migration for initial data."
+    },
+    {
+      "q": "How to configure decimal precision in EF Core?",
+      "options": [".HasPrecision(18,2)", ".HasColumnType(\"decimal(18,2)\")", "Both", "[Column(TypeName = \"decimal(18,2)\")]"],
+      "answer": 2,
+      "explanation": "Use fluent API or data annotation for precision."
+    },
+    {
+      "q": "What is a DbSet<TEntity> in DbContext?",
+      "options": ["Table representation", "Query root", "Both", "Cache"],
+      "answer": 2,
+      "explanation": "DbSet represents table and starting point for queries."
+    },
+    {
+      "q": "Which is true about EF Core transactions?",
+      "options": ["Auto per SaveChanges", "Manual with BeginTransaction", "Both", "None"],
+      "answer": 2,
+      "explanation": "EF manages transaction in SaveChanges; explicit control via Database.BeginTransaction()."
+    },
+    {
+      "q": "How to map a property to a different column name?",
+      "options": [".HasColumnName(\"DBColumn\")", "[Column(\"DBColumn\")]", "Both", "Not possible"],
+      "answer": 2,
+      "explanation": "Use attribute or fluent API to rename mapped column."
+    },
+    {
+      "q": "What does UseInMemoryDatabase() do?",
+      "options": ["For testing", "Production ready", "Persistent", "Encrypted"],
+      "answer": 0,
+      "explanation": "In-memory provider for unit/integration testing; data lost on restart."
+    },
+    {
+      "q": "Which is correct for optimistic concurrency?",
+      "options": ["[ConcurrencyCheck]", "[Timestamp]", "Both", "None"],
+      "answer": 2,
+      "explanation": "Use [Timestamp]/IsRowVersion or [ConcurrencyCheck] on properties."
     }
+  
   ],
   "linq": [
     {
@@ -965,7 +2045,447 @@
       ],
       "answer": 0,
       "explanation": "OfType<T>() filters a sequence to include only elements that are of type T or can be cast to type T, ignoring others."
+    },
+
+    {
+      "q": "What does the `First()` LINQ method return when the sequence is empty?",
+      "options": ["null", "default(T)", "Throws InvalidOperationException", "Returns the last element"],
+      "answer": 2,
+      "explanation": "`First()` throws `InvalidOperationException` if no element is found. Use `FirstOrDefault()` to return `default(T)` instead."
+    },
+    {
+      "q": "Which LINQ method is used to project each element into a new form?",
+      "options": ["Where", "Select", "GroupBy", "OrderBy"],
+      "answer": 1,
+      "explanation": "`Select` transforms each element via a projection. Example: `list.Select(x => x.Name)`."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Where(x => x > 1).Count()`?",
+      "options": ["0", "2", "3", "Throws exception"],
+      "answer": 1,
+      "explanation": "Filters elements > 1 → [2,3] → `Count()` returns 2."
+    },
+    {
+      "q": "Which of the following is a deferred execution LINQ method?",
+      "options": ["ToList()", "Count()", "Where()", "First()"],
+      "answer": 2,
+      "explanation": "`Where()` returns `IEnumerable<T>` and executes only when enumerated. `ToList()`, `Count()`, `First()` execute immediately."
+    },
+    {
+      "q": "What is the output of the following code?\n```csharp\nint[] nums = {1,2,3};\nvar result = nums.Select(x => { Console.Write(x); return x*2; }).ToList();\n```",
+      "options": ["123", "246", "Nothing printed", "Throws exception"],
+      "answer": 0,
+      "explanation": "`ToList()` triggers enumeration → `Select` runs → prints `123`."
+    },
+    {
+      "q": "Which operator is used to flatten a collection of collections?",
+      "options": ["Select", "SelectMany", "Join", "GroupJoin"],
+      "answer": 1,
+      "explanation": "`SelectMany` flattens nested sequences. Example: `orders.SelectMany(o => o.Items)`."
+    },
+    {
+      "q": "What happens when you call `list.AsParallel().Where(...)` on a small list (e.g., 10 items)?",
+      "options": ["Always faster", "May be slower due to overhead", "Throws exception", "No effect"],
+      "answer": 1,
+      "explanation": "PLINQ has threading overhead. For small datasets, sequential execution is faster."
+    },
+    {
+      "q": "Which LINQ method returns `IGrouping<TKey, TElement>`?",
+      "options": ["GroupBy", "ToLookup", "Join", "Select"],
+      "answer": 0,
+      "explanation": "`GroupBy` returns `IEnumerable<IGrouping<TKey, TElement>>`. Each group has `Key` and elements."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,2,3}.Distinct().Count()`?",
+      "options": ["3", "4", "Throws exception", "2"],
+      "answer": 0,
+      "explanation": "`Distinct()` removes duplicates → [1,2,3] → `Count()` = 3."
+    },
+    {
+      "q": "Which method should be used to avoid multiple enumerations of the same LINQ query?",
+      "options": ["ToArray()", "Where()", "Select()", "OrderBy()"],
+      "answer": 0,
+      "explanation": "`ToArray()` or `ToList()` materializes results to prevent re-execution on each enumeration."
+    },
+    {
+      "q": "What is the default value returned by `FirstOrDefault()` on an empty int array?",
+      "options": ["null", "0", "-1", "Throws exception"],
+      "answer": 1,
+      "explanation": "For value types, `FirstOrDefault()` returns `default(int)` → `0`."
+    },
+    {
+      "q": "Which LINQ method is most appropriate to get the top 3 highest salaries from a list of employees?",
+      "options": ["Take(3)", "OrderByDescending(e => e.Salary).Take(3)", "Where(e => e.Salary > threshold)", "Skip(3)"],
+      "answer": 1,
+      "explanation": "Sort descending by salary, then take first 3. `Take(3)` alone doesn't guarantee highest values."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar list = new[] {1,2,3};\nvar query = list.Where(x => x > 1);\nlist[0] = 5;\nConsole.Write(query.Count());\n```",
+      "options": ["2", "3", "1", "Throws exception"],
+      "answer": 1,
+      "explanation": "Deferred execution. After mutation, array is `[5,2,3]`. Filter `x > 1` → all three match → `Count()` = 3."
+    },
+    {
+      "q": "In a real production API, you receive a list of 1 million orders. You need to get distinct customer IDs. Which is better?",
+      "options": ["orders.Select(o => o.CustomerId).Distinct().ToList()", "orders.GroupBy(o => o.CustomerId).Select(g => g.Key).ToList()", "orders.ToLookup(o => o.CustomerId).Keys", "All same performance"],
+      "answer": 0,
+      "explanation": "`Distinct()` is optimized for deduplication using hash-based tracking. `GroupBy` has higher overhead."
+    },
+    {
+      "q": "What does `Any()` return on an empty collection?",
+      "options": ["true", "false", "null", "Throws exception"],
+      "answer": 1,
+      "explanation": "`Any()` returns `false` if the sequence is empty or no elements match."
+    },
+    {
+      "q": "Which of the following causes multiple database hits in Entity Framework?\n```csharp\nvar query = context.Orders.Where(o => o.Date > DateTime.Today.AddDays(-7));\nforeach(var o in query) { Console.Write(o.Customer.Name); }\n```",
+      "options": ["Lazy loading of Customer", "Eager loading with Include", "Explicit loading", "No extra hits"],
+      "answer": 0,
+      "explanation": "Accessing `o.Customer.Name` triggers lazy load → N+1 queries. Use `.Include(o => o.Customer)`."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Aggregate((a,b) => a * b)`?",
+      "options": ["6", "123", "Throws exception", "1"],
+      "answer": 0,
+      "explanation": "`1 * 2 = 2` → `2 * 3 = 6`. `Aggregate` applies the accumulator function."
+    },
+    {
+      "q": "Which LINQ method is used to perform inner join?",
+      "options": ["Join", "GroupJoin", "SelectMany", "Zip"],
+      "answer": 0,
+      "explanation": "`Join` performs inner join using key selectors and result selector."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar dict = new Dictionary<int,string> { {1,\"A\"}, {2,\"B\"} };\nvar result = dict.Select(kvp => kvp.Key);\n```",
+      "options": ["IEnumerable<int>", "int[]", "List<int>", "Throws exception"],
+      "answer": 0,
+      "explanation": "`Select` returns `IEnumerable<int>` with keys. Deferred execution."
+    },
+    {
+      "q": "Which of the following improves performance when chaining multiple LINQ operations on large collections?",
+      "options": ["Using AsParallel()", "Calling ToList() early", "Using deferred execution", "Using foreach instead of LINQ"],
+      "answer": 1,
+      "explanation": "Materializing early with `ToList()` after filtering reduces data passed to subsequent operations."
+    },
+    {
+      "q": "What is the correct way to check if a sequence contains at least one element?",
+      "options": ["list.Count > 0", "list.Any()", "list.First() != null", "list.Length > 0"],
+      "answer": 1,
+      "explanation": "`Any()` stops at first element. `Count > 0` enumerates all."
+    },
+    {
+      "q": "What happens when you use `OrderBy` followed by `ThenBy`?",
+      "options": ["Sorts only by ThenBy", "Sorts by OrderBy first, then ThenBy", "Throws exception", "Random order"],
+      "answer": 1,
+      "explanation": "`ThenBy` applies secondary sort after primary `OrderBy`."
+    },
+    {
+      "q": "Which method returns elements from the first collection not in the second?",
+      "options": ["Union", "Intersect", "Except", "Concat"],
+      "answer": 2,
+      "explanation": "`Except` returns elements in first sequence but not in second."
+    },
+    {
+      "q": "In production, you notice slow API response. Query: `context.Users.Where(u => u.IsActive).ToList()`. What’s a common cause?",
+      "options": ["Missing index on IsActive", "Too many users", "LINQ is slow", "ToList() is the issue"],
+      "answer": 0,
+      "explanation": "Without index on `IsActive`, EF performs full table scan."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Skip(5).Any()`?",
+      "options": ["true", "false", "Throws exception", "null"],
+      "answer": 1,
+      "explanation": "`Skip(5)` on 3-element array → empty → `Any()` returns `false`."
+    },
+    {
+      "q": "Which LINQ method is used to pair elements from two sequences?",
+      "options": ["Join", "Zip", "SelectMany", "GroupJoin"],
+      "answer": 1,
+      "explanation": "`Zip` applies a function to corresponding pairs from two sequences."
+    },
+    {
+      "q": "What is the output?\n```csharp\nIEnumerable<int> GetNumbers() { yield return 1; yield return 2; }\nvar list = GetNumbers().ToList();\nlist.Add(3);\n```",
+      "options": ["list has 1,2,3", "Throws exception", "list has 1,2", "Compiler error"],
+      "answer": 0,
+      "explanation": "`ToList()` materializes `[1,2]`. `list` is `List<int>`, so `Add(3)` succeeds → `[1,2,3]`."
+    },
+    {
+      "q": "Which of the following avoids closure variable capture issues in LINQ?",
+      "options": ["Using foreach with local copy", "Using let in query syntax", "Both", "Neither"],
+      "answer": 2,
+      "explanation": "Capturing loop variable in lambda causes all closures to use final value. Fix: copy to local or use `let`."
+    },
+    {
+      "q": "What is the result of `new[] {\"A\",\"B\"}.DefaultIfEmpty(\"X\").First()`?",
+      "options": ["A", "X", "Throws exception", "null"],
+      "answer": 0,
+      "explanation": "Sequence is not empty → `DefaultIfEmpty` has no effect → returns first element \"A\"."
+    },
+    {
+      "q": "Which LINQ method is used to implement pagination?",
+      "options": ["Take", "Skip", "Both Skip and Take", "Where"],
+      "answer": 2,
+      "explanation": "`Skip(pageSize * (page-1)).Take(pageSize)` implements paging."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar list = new List<int> {1,2,3};\nvar query = list.Select(x => x * 2);\nlist.Clear();\nConsole.Write(query.Sum());\n```",
+      "options": ["12", "0", "6", "Throws exception"],
+      "answer": 1,
+      "explanation": "Deferred execution. `Sum()` enumerates empty list → returns `0` for `int` (no exception)."
+    },
+    {
+      "q": "Which of the following is true about `IQueryable<T>` vs `IEnumerable<T>`?",
+      "options": ["IQueryable executes in memory", "IQueryable builds expression tree", "IEnumerable supports SQL translation", "No difference"],
+      "answer": 1,
+      "explanation": "`IQueryable` builds expression trees for providers (e.g., EF) to translate to SQL."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Reverse().First()`?",
+      "options": ["1", "3", "Throws exception", "null"],
+      "answer": 1,
+      "explanation": "`Reverse()` → `[3,2,1]` → `First()` returns `3`."
+    },
+    {
+      "q": "In production logging, you see repeated SQL queries for the same data. Likely cause?",
+      "options": ["Multiple ToList() calls on same IQueryable", "Using IEnumerable", "Using async/await", "Using Select"],
+      "answer": 0,
+      "explanation": "Each `ToList()` on `IQueryable` executes a new DB query. Cache result."
+    },
+    {
+      "q": "Which method returns the number of elements that match a condition?",
+      "options": ["Count()", "LongCount()", "Both", "Where().Length"],
+      "answer": 2,
+      "explanation": "Both `Count(predicate)` and `LongCount(predicate)` count matching elements. Use `LongCount` for >2B items."
+    },
+    {
+      "q": "What is the output?\n```csharp\nint?[] arr = {1, null, 3};\nvar result = arr.Where(x => x.HasValue).Select(x => x.Value);\n```",
+      "options": ["1,3", "1,null,3", "Throws exception", "Empty"],
+      "answer": 0,
+      "explanation": "Filters nulls → `[1,3]` → selects values → `1,3`."
+    },
+    {
+      "q": "Which LINQ method is used to get one unique element?",
+      "options": ["Single()", "SingleOrDefault()", "Both", "First()"],
+      "answer": 2,
+      "explanation": "`Single()` throws if not exactly one. `SingleOrDefault()` returns `default` if none."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.ElementAt(5)`?",
+      "options": ["3", "null", "Throws ArgumentOutOfRangeException", "1"],
+      "answer": 2,
+      "explanation": "Index 5 is out of bounds → throws `ArgumentOutOfRangeException`."
+    },
+    {
+      "q": "Which of the following improves readability of complex LINQ?",
+      "options": ["Query syntax", "Method syntax", "Both same", "SQL-like comments"],
+      "answer": 0,
+      "explanation": "Query syntax (`from...where...select`) is more readable for joins and grouping."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar numbers = Enumerable.Range(1, 5);\nvar result = numbers.TakeWhile(n => n < 3);\n```",
+      "options": ["1,2", "1,2,3,4,5", "1,2,3", "Empty"],
+      "answer": 0,
+      "explanation": "`TakeWhile` takes elements until condition fails → `1,2` (stops before `3`)."
+    },
+    {
+      "q": "Which method is used to concatenate two sequences?",
+      "options": ["Union", "Concat", "Zip", "Join"],
+      "answer": 1,
+      "explanation": "`Concat` appends second sequence to first, preserving duplicates."
+    },
+    {
+      "q": "In production, memory spike observed during report generation. Likely LINQ cause?",
+      "options": ["Using ToList() on large query", "Using Where()", "Using Select()", "Using OrderBy()"],
+      "answer": 0,
+      "explanation": "`ToList()` loads all data into memory. Use streaming or pagination."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.All(x => x > 0)`?",
+      "options": ["true", "false", "Throws exception", "null"],
+      "answer": 0,
+      "explanation": "All elements > 0 → returns `true`."
+    },
+    {
+      "q": "Which LINQ method is used to create a lookup?",
+      "options": ["ToDictionary", "ToLookup", "GroupBy", "Both ToLookup and GroupBy"],
+      "answer": 1,
+      "explanation": "`ToLookup` returns `ILookup<TKey,TElement>` — immediate execution, supports multiple values per key."
+    },
+    {
+      "q": "Which of the following is a common LINQ performance pitfall?",
+      "options": ["Using Contains() on List<T>", "Using multiple Where() clauses", "Using Select() with anonymous types", "Using OrderBy() before Take()"],
+      "answer": 3,
+      "explanation": "Sorting entire dataset before `Take(n)` is inefficient. Use indexed columns or DB-level sorting."
+    },
+    {
+      "q": "What does `SequenceEqual` compare?",
+      "options": ["Reference equality", "Value equality in order", "Set equality", "Length only"],
+      "answer": 1,
+      "explanation": "Compares elements in order using default equality comparer."
+    },
+    {
+      "q": "Which method is used to get the last element matching a condition?",
+      "options": ["Last()", "LastOrDefault()", "Both", "Reverse().First()"],
+      "answer": 2,
+      "explanation": "`Last(predicate)` scans entire sequence. `Reverse().First()` is less efficient."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Cast<double>().Sum()`?",
+      "options": ["6.0", "6", "Throws InvalidCastException", "1.0,2.0,3.0"],
+      "answer": 0,
+      "explanation": "`Cast<double>()` converts ints → sum = `6.0`."
+    },
+    {
+      "q": "In production, API times out. Query: `context.Orders.Where(o => o.Items.Any(i => i.Price > 100))`. Cause?",
+      "options": ["Subquery not optimized", "Missing index on Price", "Any() not supported", "Both A and B"],
+      "answer": 3,
+      "explanation": "EF may generate inefficient SQL. Index `Price` and ensure proper translation."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar src = new[] { new {Id=1, Name=\"A\"}, new {Id=2, Name=\"B\"} };\nvar result = src.ToDictionary(x => x.Id);\n```",
+      "options": ["Dictionary<int, anonymous>", "Dictionary<int, string>", "Throws exception", "No output"],
+      "answer": 0,
+      "explanation": "`ToDictionary` uses anonymous type as value. Key: `Id`, Value: entire object."
+    },
+    {
+      "q": "Which LINQ method returns the minimum value?",
+      "options": ["Min()", "MinBy() (C# 12+)", "Both", "Aggregate()"],
+      "answer": 2,
+      "explanation": "`Min()` for scalar, `MinBy()` for key selector (e.g., object with min property)."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.OfType<string>()`?",
+      "options": ["1,2,3", "Empty sequence", "Throws exception", "null"],
+      "answer": 1,
+      "explanation": "`OfType<string>()` filters only strings → none → empty sequence."
+    },
+    {
+      "q": "Which of the following is true about `AsEnumerable()`?",
+      "options": ["Forces SQL execution", "Switches to LINQ to Objects", "Improves performance", "No effect"],
+      "answer": 1,
+      "explanation": "`AsEnumerable()` switches from `IQueryable` to `IEnumerable`, forcing in-memory execution."
+    },
+    {
+      "q": "What is the output?\n```csharp\nIEnumerable<int> Infinite() { while(true) yield return 1; }\nvar result = Infinite().Take(3).ToList();\n```",
+      "options": ["[1,1,1]", "Infinite loop", "Throws exception", "Empty list"],
+      "answer": 0,
+      "explanation": "`Take(3)` limits enumeration → yields three `1`s → `[1,1,1]`."
+    },
+    {
+      "q": "Which method is used to group contiguous equal elements?",
+      "options": ["GroupBy", "Chunk() (C# 12+)", "TakeWhile", "SelectMany"],
+      "answer": 1,
+      "explanation": "`Chunk(size)` splits into fixed-size groups. For runs, use custom logic."
+    },
+    {
+      "q": "In production, high CPU during data export. Likely cause?",
+      "options": ["Using AsParallel() on I/O bound operation", "Using ToList() on DB query", "Using Where() with complex lambda", "Using Select() with projection"],
+      "answer": 0,
+      "explanation": "PLINQ on I/O-bound tasks (DB, file) adds overhead. Use for CPU-bound work."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Average()`?",
+      "options": ["2", "2.0", "6", "Throws exception"],
+      "answer": 1,
+      "explanation": "Sum = 6, Count = 3 → Average = `2.0` (returns `double`)."
+    },
+    {
+      "q": "Which LINQ method is used to implement left outer join?",
+      "options": ["Join", "GroupJoin with SelectMany", "SelectMany", "Union"],
+      "answer": 1,
+      "explanation": "`GroupJoin` + `SelectMany` + `DefaultIfEmpty` simulates left outer join."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar list = new List<int>{1,2};\nvar e = list.GetEnumerator();\ne.MoveNext();\nlist.Add(3);\ne.MoveNext();\n```",
+      "options": ["Works, current=2", "Throws InvalidOperationException", "current=3", "No effect"],
+      "answer": 1,
+      "explanation": "Modifying collection during enumeration invalidates enumerator → throws `InvalidOperationException`."
+    },
+    {
+      "q": "Which of the following is a thread-safe way to update a shared counter in PLINQ?",
+      "options": ["Interlocked.Increment", "lock()", "volatile", "Monitor.Enter"],
+      "answer": 0,
+      "explanation": "`Interlocked` operations are lock-free and safe in parallel loops."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.Contains(2, EqualityComparer<int>.Default)`?",
+      "options": ["true", "false", "Throws exception", "null"],
+      "answer": 0,
+      "explanation": "Uses default comparer → `2` exists → returns `true`."
+    },
+    {
+      "q": "Which method is used to partition data into two groups?",
+      "options": ["PartitionBy (custom)", "GroupBy with boolean key", "Where and Except", "All of the above"],
+      "answer": 3,
+      "explanation": "Multiple approaches work. `GroupBy(x => condition)` is common."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar query = from x in new[] {1,2,3}\n            let y = x * 2\n            where y > 3\n            select y;\n```",
+      "options": ["4,6", "2,4,6", "Throws exception", "1,2,3"],
+      "answer": 0,
+      "explanation": "`let y = x*2` → `y`: 2,4,6 → filter `y > 3` → `4,6`."
+    },
+    {
+      "q": "In production, NRE occurs intermittently. Code: `items.Where(i => i.Name != null).OrderBy(i => i.Name.Length)` — cause?",
+      "options": ["i is null", "Name is null after filter", "OrderBy causes NRE", "Where removes nulls"],
+      "answer": 0,
+      "explanation": "If `items` contains `null` references, `i.Name` throws before `Where` filters. Filter `i != null` first."
+    },
+    {
+      "q": "Which LINQ method has O(1) average lookup after materialization?",
+      "options": ["ToList()", "ToArray()", "ToDictionary()", "ToLookup()"],
+      "answer": 2,
+      "explanation": "`ToDictionary()` creates hash table → O(1) key lookup."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.SkipWhile(x => x < 2).Take(1)`?",
+      "options": ["2", "1", "3", "Empty"],
+      "answer": 0,
+      "explanation": "`SkipWhile x < 2` skips `1` → starts at `2` → `Take(1)` → `[2]`."
+    },
+    {
+      "q": "Which of the following is true about `yield return` in LINQ?",
+      "options": ["Executes immediately", "Supports deferred execution", "Materializes all data", "Thread-safe"],
+      "answer": 1,
+      "explanation": "`yield return` enables streaming and deferred execution."
+    },
+    {
+      "q": "What is the output?\n```csharp\nint[] a = {1,2}, b = {2,3};\nvar result = a.Intersect(b);\n```",
+      "options": ["2", "1,2,3", "1,3", "Empty"],
+      "answer": 0,
+      "explanation": "Intersection → common elements → `[2]`."
+    },
+    {
+      "q": "In production, slow search API. Query uses `Contains` on large list in memory. Better approach?",
+      "options": ["Convert to HashSet", "Keep List", "Use Any()", "Use Where()"],
+      "answer": 0,
+      "explanation": "`HashSet.Contains` is O(1) vs O(n) for `List`."
+    },
+    {
+      "q": "What is the result of `new[] {1,2,3}.MaxBy(x => -x)` (C# 12+)?",
+      "options": ["3", "1", "Throws exception", "null"],
+      "answer": 1,
+      "explanation": "`MaxBy(x => -x)` finds max of `-1,-2,-3` → `-1` → original element `1` (minimum)."
+    },
+    {
+      "q": "Which method should be used to avoid SQL injection in EF LINQ?",
+      "options": ["Parameterized queries (automatic)", "String concatenation in Where", "Raw SQL with FromSql", "Dynamic LINQ"],
+      "answer": 0,
+      "explanation": "EF parameterizes LINQ expressions automatically. Avoid string concatenation."
+    },
+    {
+      "q": "What is the output?\n```csharp\nvar list = new List<int> {1,2,3};\nvar query = list.Where(x => { Console.Write(x); return true; });\nquery.Count();\n```",
+      "options": ["123", "Nothing", "1", "Throws exception"],
+      "answer": 0,
+      "explanation": "`Count()` enumerates → predicate runs for each → prints `123`."
+    },
+    {
+      "q": "Which of the following is a LINQ anti-pattern in web APIs?",
+      "options": ["Returning IQueryable", "Returning IEnumerable", "Returning List", "Using async LINQ"],
+      "answer": 0,
+      "explanation": "Exposing `IQueryable` allows client to control query → security/performance risk."
     }
+  
   ],
   "dotnet9_features": [
     {
@@ -1873,6 +3393,2260 @@
       "answer": 1,
       "explanation": "Middleware wraps all responses uniformly. Filter applies only to MVC actions."
     }
-  ]
+  ],
+
+  "csharp_core" :
+  [
+    {
+    "q": "In a high-traffic e-commerce API, you see inconsistent discount calculations. Code uses `var discountRate = Config.DiscountRate;` at startup. Config is reloaded every 5 mins. Why is discount stale?",
+    "options": ["var prevents runtime updates", "Value captured at startup, not refreshed", "Config.DiscountRate is const", "var causes boxing"],
+    "answer": 1,
+    "explanation": "`var` is compile-time inference. The issue is the value is read once and not re-read after config reload."
+  },
+  {
+    "q": "A background service logs 'Connection failed' every retry. Code: `const int MaxRetries = 3;`. After hotfix to 5, logs still show 3 retries. Why?",
+    "options": ["const requires app restart", "Value inlined into IL of consumer", "const is readonly", "Compiler caches value"],
+    "answer": 1,
+    "explanation": "`const` values are baked into calling assembly at compile time. Redeploy required."
+  },
+  {
+    "q": "In a payment gateway integration, `readonly decimal amount = transaction.Amount;` shows 0 in logs. Transaction object is updated later. Why?",
+    "options": ["readonly copies value at init", "decimal needs 'm' suffix", "transaction is null", "readonly prevents logging"],
+    "answer": 0,
+    "explanation": "`readonly` field captures the value at construction time. Later mutation of `transaction.Amount` doesn't affect it."
+  },
+  {
+    "q": "You're debugging a memory leak in a .NET Worker Service. 10K+ instances of `AppSettings` remain in heap. It has `public static readonly AppSettings Instance = new();`. Cause?",
+    "options": ["readonly prevents GC", "Static root keeps object alive", "AppSettings has finalizer", "Instance recreated per call"],
+    "answer": 1,
+    "explanation": "`static readonly` creates a root reference. Object lives for app domain lifetime."
+  },
+  {
+    "q": "In a multi-tenant SaaS app, `const string TenantId = 'ACME';` causes all tenants to see same data. Fix?",
+    "options": ["Use readonly", "Use var", "Resolve at runtime via DI", "Make it nullable"],
+    "answer": 2,
+    "explanation": "`const` is compile-time and shared. Use ITenantResolver injected at runtime."
+  },
+  {
+    "q": "Performance drops 20% after changing `int count = 0;` to `var count = 0;` in a tight loop. Expected?",
+    "options": ["Yes, var adds overhead", "No, identical after JIT", "Only in debug", "var prevents inlining"],
+    "answer": 1,
+    "explanation": "`var` is compile-time sugar. IL and runtime performance are identical."
+  },
+  {
+    "q": "In a gRPC service, client times out at 30s despite server changing `const int Timeout = 60;`. Why?",
+    "options": ["const inlined in client proxy", "Server needs restart", "gRPC ignores const", "Timeout in channel options"],
+    "answer": 0,
+    "explanation": "Generated client code embeds `const`. Regenerate and redeploy client."
+  },
+  {
+    "q": "A Blazor component shows counter reset on every button click. Code: `void Increment() { var count = 0; count++; }`. Why?",
+    "options": ["var is local to method", "Blazor re-renders", "count needs to be static", "var prevents state"],
+    "answer": 0,
+    "explanation": "Local `var` resets on each call. Use instance field: `private int count;`"
+  },
+  {
+    "q": "In Entity Framework, `var user = context.Users.First();` throws 'sequence contains no elements'. Is `var` the issue?",
+    "options": ["Yes, use explicit type", "No, var is fine", "Only if anonymous type", "var breaks LINQ"],
+    "answer": 1,
+    "explanation": "`var` infers `User`. Exception is from `.First()` on empty result."
+  },
+  {
+    "q": "You're optimizing a game loop. `readonly Vector3 direction;` causes frame hitches. Why?",
+    "options": ["readonly struct copies on access", "Vector3 is class", "readonly prevents caching", "JIT ignores readonly"],
+    "answer": 0,
+    "explanation": "`readonly struct` + method call triggers defensive copy. Use `in` parameter."
+  },
+  {
+    "q": "In a logging middleware, `const string CorrelationIdKey = 'X-Corr-Id';` is not found in header dictionary. Why?",
+    "options": ["Keys are case-sensitive", "const is inlined", "Dictionary ignores const", "Use readonly"],
+    "answer": 0,
+    "explanation": "Header keys are case-insensitive in ASP.NET, but dictionary access is case-sensitive by default."
+  },
+  {
+    "q": "A config class uses `public const string ApiUrl = 'https://api.prod.com';`. Staging uses same URL. How to fix without code change?",
+    "options": ["Use appsettings.json", "Use readonly", "Use #if DEBUG", "const can't be overridden"],
+    "answer": 0,
+    "explanation": "Move to `appsettings.json` and inject via `IConfiguration`."
+  },
+  {
+    "q": "Code: `var result = GetData() ?? throw new Exception();`. Compiles but `GetData()` returns `int`. Is `var` valid?",
+    "options": ["No, can't infer from null", "Yes, infers int", "Only with nullable", "var requires initializer"],
+    "answer": 1,
+    "explanation": "`var` infers `int` from `GetData()`. Null-coalescing doesn't affect type."
+  },
+  {
+    "q": "In a factory pattern, `readonly ILogger logger;` is null in produced objects. Constructor injection missing?",
+    "options": ["Yes, readonly needs DI", "No, assign in constructor", "readonly can't be injected", "Use const"],
+    "answer": 1,
+    "explanation": "`readonly` fields can be set in constructor. DI frameworks support this."
+  },
+  {
+    "q": "A junior dev wrote: `public const int CacheSeconds = Environment.TickCount;`. Compiler error?",
+    "options": ["No, valid runtime value", "Yes, not compile-time constant", "Only in static ctor", "TickCount is readonly"],
+    "answer": 1,
+    "explanation": "`const` requires compile-time literal. Use `readonly` for runtime values."
+  },
+  {
+    "q": "In a singleton service, `var instance = this;` causes stack overflow. Why?",
+    "options": ["var creates new instance", "Infinite recursion", "var is null", "Singleton pattern broken"],
+    "answer": 1,
+    "explanation": "Likely in property: `public Service Instance => instance = instance ?? new();`"
+  },
+  {
+    "q": "You see `var` used in a public method return type. Compiles?",
+    "options": ["Yes, same as local", "No, must be explicit", "Only in C# 10+", "var not allowed in methods"],
+    "answer": 1,
+    "explanation": "`var` only in local scope with initializer. Method returns need explicit type."
+  },
+  {
+    "q": "In a financial app, `readonly double interestRate = CalculateRate();` shows different values per instance. Expected?",
+    "options": ["No, readonly is shared", "Yes, instance field", "Only if static", "CalculateRate() is const"],
+    "answer": 1,
+    "explanation": "Instance `readonly` set per object in constructor."
+  },
+  {
+    "q": "A library defines `public const string Version = '1.0';`. Consumer sees '0.9' after update. Why?",
+    "options": ["const cached in GAC", "Consumer not rebuilt", "Version is readonly", "IL rewrite failed"],
+    "answer": 1,
+    "explanation": "`const` inlined at compile time. Consumer assembly must be rebuilt."
+  },
+  {
+    "q": "In a WPF app, `const Brush Background = Brushes.White;` causes error. Why?",
+    "options": ["Brush not literal", "const can't be object", "Brushes is static", "Use readonly"],
+    "answer": 0,
+    "explanation": "`const` only for primitives, string, null. Use `readonly` for reference types."
+  },
+  {
+    "q": "In ASP.NET Core, `IOptions<T>.Value` is used in singleton. Config changes ignored. Why?",
+    "options": ["Value is snapshot", "var caches it", "const under hood", "Singleton scope issue"],
+    "answer": 0,
+    "explanation": "`IOptions<T>.Value` captures config at startup. Use `IOptionsMonitor<T>`."
+  },
+  {
+    "q": "In a CI/CD pipeline, build fails after `const int Version = 2;`. Old build used 1. Why?",
+    "options": ["const not updated", "Pipeline cache", "Assembly not rebuilt", "const is readonly"],
+    "answer": 2,
+    "explanation": "Dependent projects must be rebuilt to pick up new `const`."
+  },
+  {
+    "q": "In a microservice, `readonly HttpClient client = new();` - lifetime issue?",
+    "options": ["Yes, socket exhaustion", "No, readonly safe", "Only if static", "Use IHttpClientFactory"],
+    "answer": 3,
+    "explanation": "Use `IHttpClientFactory` for managed lifetime."
+  },
+  {
+    "q": "In a signalR hub, `const int MaxMessages = 100;` - client sees old value. Why?",
+    "options": ["Client not reloaded", "const inlined", "Hub stateless", "Use config"],
+    "answer": 1,
+    "explanation": "Client JavaScript embeds `const` - needs redeploy."
+  },
+  {
+    "q": "In a cache service, `readonly TimeSpan Expiry = TimeSpan.FromMinutes(5);` - safe?",
+    "options": ["Yes", "No, TimeSpan mutable", "Only if const", "Use struct"],
+    "answer": 0,
+    "explanation": "`TimeSpan` is immutable struct - safe."
+  },
+  {
+    "q": "In a distributed cache, `const string KeyPrefix = 'user:';` - safe?",
+    "options": ["Yes", "No, const inlined", "Only if internal", "Use config"],
+    "answer": 0,
+    "explanation": "Safe if internal. Public `const` risks breaking change."
+  },
+  {
+    "q": "In a banking app, `const decimal Zero = 0;` - better alternative?",
+    "options": ["readonly", "static field", "decimal.Zero", "enum"],
+    "answer": 2,
+    "explanation": "`decimal.Zero` is built-in constant."
+  },
+  {
+    "q": "In a web API, `const string Route = 'api/values';` - can be localized?",
+    "options": ["Yes", "No, compile-time", "Use resource", "Use readonly"],
+    "answer": 1,
+    "explanation": "`const` cannot be changed per culture."
+  },
+  {
+    "q": "In a factory, `readonly Func<T> creator;` - safe to call multiple times?",
+    "options": ["Yes", "No, delegate mutable", "Only if static", "Use const"],
+    "answer": 0,
+    "explanation": "Delegate instance is immutable."
+  },
+  {
+    "q": "In a thread pool, `readonly int threadId = Thread.CurrentThread.ManagedThreadId;` - same for all threads?",
+    "options": ["Yes, static", "No, per instance", "Only if static", "readonly shared"],
+    "answer": 1,
+    "explanation": "Set in constructor per object instance."
+  },
+  {
+    "q": "In a MAUI app, `const Color Primary = Colors.Blue;` fails. Why?",
+    "options": ["Color not struct", "const needs literal", "Colors is static", "Use readonly"],
+    "answer": 1,
+    "explanation": "`const` cannot use object references."
+  },
+  {
+    "q": "In a unit test, `const string Expected = GetExpected();` fails. Why?",
+    "options": ["GetExpected() runtime", "const needs literal", "string not allowed", "Use readonly"],
+    "answer": 1,
+    "explanation": "`const` cannot call methods - only literals."
+  },
+  {
+    "q": "In a logging service, `const LogLevel Level = LogLevel.Info;` - can be changed at runtime?",
+    "options": ["Yes", "No", "Only via config", "Use readonly"],
+    "answer": 1,
+    "explanation": "`const` is compile-time - cannot change."
+  },
+  {
+    "q": "Code: `readonly static List<string> Cache = new();` - thread safe?",
+    "options": ["Yes", "No, list not thread-safe", "Only for read", "Use const"],
+    "answer": 1,
+    "explanation": "Object is immutable reference, but `List<T>` contents are mutable."
+  },
+  {
+    "q": "Code: `var x = 5; x = 'hello';` - compiles?",
+    "options": ["Yes", "No, type mismatch", "Only in dynamic", "var allows change"],
+    "answer": 1,
+    "explanation": "`var` locks type at first assignment."
+  },
+  {
+    "q": "Why does `var x = 1_000_000;` compile?",
+    "options": ["Underscore ignored", "C# 7 feature", "var allows it", "Compiler error"],
+    "answer": 0,
+    "explanation": "Digit separators for readability."
+  },
+  {
+    "q": "Why avoid `var` in public APIs?",
+    "options": ["Performance", "Clarity for consumers", "Breaks binary", "Not allowed"],
+    "answer": 1,
+    "explanation": "Consumers see inferred type - prefer explicit for contracts."
+  },
+  {
+    "q": "Why does `var` fail: `var x; x = 5;`?",
+    "options": ["No initializer", "var not local", "x unassigned", "Syntax error"],
+    "answer": 0,
+    "explanation": "`var` requires immediate initializer for type inference."
+  },
+  {
+    "q": "Can `var` infer from conditional?",
+    "options": ["Yes", "No, ambiguous", "Only same type", "var becomes object"],
+    "answer": 2,
+    "explanation": "Both sides must be same type: `var x = flag ? 1 : 2;`"
+  },
+  {
+    "q": "What is the default value of `static readonly int Counter;`?",
+    "options": ["0", "null", "Compiler error", "Random"],
+    "answer": 0,
+    "explanation": "Static fields default to `default(T)` if not initialized."
+  },
+  {
+    "q": "Can `var` infer `dynamic` type?",
+    "options": ["Yes, var x = (dynamic)5;", "No, var can't be dynamic", "Only in C# 7+", "var becomes object"],
+    "answer": 1,
+    "explanation": "`var` must resolve to a compile-time type. `dynamic` is not allowed."
+  },
+  {
+    "q": "Which is true about `const` fields?",
+    "options": ["Can be instance members", "Implicitly static", "Can be assigned in ctor", "Support non-literals"],
+    "answer": 1,
+    "explanation": "`const` is always `static` and compile-time constant."
+  },
+  {
+    "q": "What is the type of `var x = 3.14;`?",
+    "options": ["float", "double", "decimal", "object"],
+    "answer": 1,
+    "explanation": "Literal `3.14` defaults to `double` unless suffixed."
+  },
+  {
+    "q": "Can you modify a `readonly` field via reflection?",
+    "options": ["No, enforced by CLR", "Yes, reflection bypasses", "Only in debug", "Only static fields"],
+    "answer": 1,
+    "explanation": "Reflection can modify `readonly` fields. Use with caution."
+  },
+  {
+    "q": "Which can be `const`?",
+    "options": ["new object()", "\"Hello\"", "DateTime.Now", "Guid.NewGuid()"],
+    "answer": 1,
+    "explanation": "Only string literals and primitives allowed."
+  },
+  {
+    "q": "What happens if you assign `readonly` field outside constructor?",
+    "options": ["Allowed in static ctor", "Compiler error", "Runtime exception", "Silent failure"],
+    "answer": 1,
+    "explanation": "Instance `readonly` only in constructor or inline. Static in static ctor."
+  },
+  {
+    "q": "Is `var` allowed in field declaration?",
+    "options": ["Yes", "No, only local", "Only in records", "C# 9+"],
+    "answer": 1,
+    "explanation": "`var` requires initializer for type inference - not allowed at class level."
+  },
+  {
+    "q": "What is the IL opcode for loading a `const int`?",
+    "options": ["ldfld", "ldc.i4", "ldsfld", "ldarg"],
+    "answer": 1,
+    "explanation": "`const` inlined via `ldc.i4.<value>` - no field access."
+  },
+  {
+    "q": "Which improves performance with structs in loops?",
+    "options": ["readonly struct", "const struct", "var struct", "static struct"],
+    "answer": 0,
+    "explanation": "`readonly struct` avoids defensive copies when used with `in`."
+  },
+  {
+    "q": "Code: `const double Pi = 3.14;` - valid?",
+    "options": ["Yes", "No, needs 'd'", "No, use float", "Only in const class"],
+    "answer": 0,
+    "explanation": "`3.14` is valid `double` literal for `const`."
+  },
+  {
+    "q": "Why prefer `readonly` over `const` for connection strings?",
+    "options": ["const is slower", "readonly supports runtime", "const can't be string", "readonly is instance"],
+    "answer": 1,
+    "explanation": "Connection strings from config - need runtime evaluation."
+  },
+  {
+    "q": "Can `var` be used with out parameters?",
+    "options": ["No", "Yes, var x; TryParse(s, out x);", "Only C# 7+", "var x; TryParse(s, out var x);"],
+    "answer": 3,
+    "explanation": "C# 7+ allows `out var` inline declaration."
+  },
+  {
+    "q": "What is the scope of `var` in a foreach loop?",
+    "options": ["Loop body only", "Entire method", "Block scope", "Class level"],
+    "answer": 0,
+    "explanation": "`foreach (var item in list)` - `item` scoped to loop body."
+  },
+  {
+    "q": "Which is immutable?",
+    "options": ["const", "readonly", "var", "None"],
+    "answer": 0,
+    "explanation": "`const` is truly immutable and compile-time."
+  },
+  {
+    "q": "Can `readonly` be used with ref struct?",
+    "options": ["Yes", "No", "Only in C# 8+", "Only span"],
+    "answer": 0,
+    "explanation": "`readonly ref struct` is valid and common (e.g., `Span<T>`)."
+  },
+  {
+    "q": "What is the default value of `bool` local variable?",
+    "options": ["true", "false", "null", "Uninitialized error"],
+    "answer": 3,
+    "explanation": "Local variables must be definitely assigned before use."
+  },
+  {
+    "q": "In a DI container, `readonly` field injection fails. Why?",
+    "options": ["DI can't set readonly", "Must use constructor", "readonly not supported", "Use property injection"],
+    "answer": 1,
+    "explanation": "Most DI frameworks support constructor injection into `readonly` fields."
+  },
+  {
+    "q": "Code: `var list = new List<string> { 'a', 'b' };` - type of `list`?",
+    "options": ["IEnumerable<string>", "List<string>", "var", "object"],
+    "answer": 1,
+    "explanation": "`list` infers exact type: `List<string>`."
+  },
+  {
+    "q": "Why avoid `const` in public APIs?",
+    "options": ["Runtime overhead", "Breaking change on update", "Can't be null", "Not serializable"],
+    "answer": 1,
+    "explanation": "Changing `const` requires consumer recompilation."
+  },
+  {
+    "q": "Can `const` be used with enum?",
+    "options": ["Yes", "No", "Only underlying type", "C# 10+"],
+    "answer": 0,
+    "explanation": "`const int Red = 1;` is valid and common."
+  },
+  {
+    "q": "What is `var` in lambda: `(var x) => x * 2`?",
+    "options": ["Valid", "Syntax error", "C# 11 feature", "Implicitly typed"],
+    "answer": 1,
+    "explanation": "Lambda parameters must have explicit type or `var` not allowed."
+  },
+  {
+    "q": "Which keyword prevents field mutation after construction?",
+    "options": ["const", "readonly", "var", "static"],
+    "answer": 1,
+    "explanation": "`readonly` enforces immutability post-constructor."
+  },
+  {
+    "q": "What is the size of `char` in C#?",
+    "options": ["1 byte", "2 bytes", "4 bytes", "Platform dependent"],
+    "answer": 1,
+    "explanation": "`char` is 16-bit Unicode (UTF-16)."
+  },
+  {
+    "q": "Can `var` infer null type?",
+    "options": ["Yes, var x = null;", "No, ambiguous", "Only with cast", "var becomes object"],
+    "answer": 2,
+    "explanation": "`null` needs cast: `var x = (string)null;`"
+  },
+  {
+    "q": "Which is value type?",
+    "options": ["string", "object", "int", "dynamic"],
+    "answer": 2,
+    "explanation": "Primitives, structs, enums are value types."
+  },
+  {
+    "q": "Why use `in` with `readonly struct`?",
+    "options": ["Prevent copy", "Allow mutation", "Force const", "Improve GC"],
+    "answer": 0,
+    "explanation": "`in` passes by reference, avoids defensive copy."
+  },
+  {
+    "q": "What is `default(int)`?",
+    "options": ["null", "0", "1", "Uninitialized"],
+    "answer": 1,
+    "explanation": "`default(T)` returns zero-initialized value."
+  },
+  {
+    "q": "Can `readonly` be applied to properties?",
+    "options": ["Yes", "No", "Only auto-prop", "C# 8+"],
+    "answer": 1,
+    "explanation": "`readonly` is for fields. Use init-only properties."
+  },
+  {
+    "q": "What is the range of `sbyte`?",
+    "options": ["0 to 255", "-128 to 127", "-32768 to 32767", "Platform dependent"],
+    "answer": 1,
+    "explanation": "Signed 8-bit integer."
+  },
+  {
+    "q": "Why does `var` improve readability?",
+    "options": ["Reduces boilerplate", "Faster execution", "Prevents errors", "Enforces const"],
+    "answer": 0,
+    "explanation": "When type is obvious from RHS: `var list = new List<string>();`"
+  },
+  {
+    "q": "Can `const` be `protected`?",
+    "options": ["Yes", "No, always public", "No, always private", "Only internal"],
+    "answer": 0,
+    "explanation": "`const` can have access modifiers, defaults to `internal`."
+  },
+  {
+    "q": "What is `var` in `for (var i = 0; i < 10; i++)`?",
+    "options": ["int", "object", "dynamic", "var"],
+    "answer": 0,
+    "explanation": "Infers `int` from literal `0`."
+  },
+  {
+    "q": "Which is nullable by default?",
+    "options": ["int", "string", "DateTime", "bool"],
+    "answer": 1,
+    "explanation": "Reference types can be `null`. Value types need `?`."
+  },
+  {
+    "q": "What is the underlying type of enum by default?",
+    "options": ["byte", "short", "int", "long"],
+    "answer": 2,
+    "explanation": "`int` unless specified: `enum X : byte`"
+  },
+  {
+    "q": "Can `var` be used in switch expression?",
+    "options": ["Yes", "No", "Only C# 9+", "var not expression"],
+    "answer": 0,
+    "explanation": "`var x = y switch { ... };` - valid."
+  },
+  {
+    "q": "What is `sizeof(int)` in C#?",
+    "options": ["2", "4", "8", "Platform dependent"],
+    "answer": 1,
+    "explanation": "4 bytes on all .NET platforms."
+  },
+  {
+    "q": "Can `readonly` field be assigned in `finally` block?",
+    "options": ["Yes", "No", "Only static", "Compiler error"],
+    "answer": 1,
+    "explanation": "Only in constructor (instance) or static constructor."
+  },
+  {
+    "q": "Which is faster: `const` or `readonly` field access?",
+    "options": ["const", "readonly", "Same", "var"],
+    "answer": 0,
+    "explanation": "`const` inlined - no field load."
+  },
+  {
+    "q": "What is `float.NaN`?",
+    "options": ["0", "Infinity", "Not a Number", "null"],
+    "answer": 2,
+    "explanation": "Represents undefined result (e.g., 0/0)."
+  },
+  {
+    "q": "Can `const` be used in attributes?",
+    "options": ["Yes", "No", "Only string", "C# 10+"],
+    "answer": 0,
+    "explanation": "Attribute parameters must be compile-time constants."
+  },
+  {
+    "q": "What is the max value of `byte`?",
+    "options": ["255", "256", "127", "65535"],
+    "answer": 0,
+    "explanation": "Unsigned 8-bit: 0 to 255."
+  },
+  {
+    "q": "Can `readonly` be used with local variables?",
+    "options": ["Yes", "No", "C# 8+", "Only ref"],
+    "answer": 1,
+    "explanation": "`readonly` not allowed on locals. Use `in`, `ref readonly`."
+  },
+  {
+    "q": "Which is correct: `var numbers = new[] { 1, 2, 3 };`?",
+    "options": ["int[]", "object[]", "var[]", "IEnumerable<int>"],
+    "answer": 0,
+    "explanation": "Array initializer infers `int[]`."
+  },
+  {
+    "q": "Why use `readonly` in DTOs?",
+    "options": ["Performance", "Immutability", "Serialization", "DI"],
+    "answer": 1,
+    "explanation": "Prevents accidental mutation after creation."
+  },
+  {
+    "q": "Can `const` be `decimal`?",
+    "options": ["Yes", "No, needs 'm'", "No, not literal", "Only int"],
+    "answer": 0,
+    "explanation": "`const decimal x = 5.5m;` is valid."
+  },
+  {
+    "q": "What is `ushort` size?",
+    "options": ["1 byte", "2 bytes", "4 bytes", "8 bytes"],
+    "answer": 1,
+    "explanation": "Unsigned 16-bit integer."
+  },
+  {
+    "q": "Can `var` be used in property getters?",
+    "options": ["Yes", "No", "Only auto-prop", "C# 9+"],
+    "answer": 1,
+    "explanation": "`var` only in local scope."
+  },
+  {
+    "q": "Which is not a primitive type?",
+    "options": ["int", "string", "bool", "char"],
+    "answer": 1,
+    "explanation": "`string` is reference type, not primitive."
+  },
+  {
+    "q": "Code: `readonly var x = 5;` - valid?",
+    "options": ["Yes", "No, var not field", "Only local", "C# 10+"],
+    "answer": 2,
+    "explanation": "`var` not allowed at field level."
+  },
+  {
+    "q": "What is `int.MinValue`?",
+    "options": ["0", "-2147483648", "2147483647", "null"],
+    "answer": 1,
+    "explanation": "Lowest 32-bit signed integer."
+  },
+  {
+    "q": "Can `const` be used with `null`?",
+    "options": ["Yes", "No", "Only string", "C# 8+"],
+    "answer": 0,
+    "explanation": "`const string Null = null;` is valid."
+  },
+  {
+    "q": "Which is mutable?",
+    "options": ["string", "StringBuilder", "const", "readonly"],
+    "answer": 1,
+    "explanation": "`StringBuilder` allows in-place changes."
+  },
+  {
+    "q": "Can `readonly` struct have mutable fields?",
+    "options": ["Yes", "No", "Only private", "C# 8+"],
+    "answer": 0,
+    "explanation": "Compiler warns but allows - defeats purpose."
+  },
+  {
+    "q": "What is `var` in `using var fs = new FileStream(...);`?",
+    "options": ["FileStream", "Stream", "IDisposable", "object"],
+    "answer": 0,
+    "explanation": "Infers exact type: `FileStream`."
+  },
+  {
+    "q": "Why avoid `var` with LINQ?",
+    "options": ["Performance", "Readability", "Breaks query", "Not allowed"],
+    "answer": 1,
+    "explanation": "Anonymous types - type not obvious."
+  },
+  {
+    "q": "Can `const` be `volatile`?",
+    "options": ["Yes", "No", "Only static", "C# 10+"],
+    "answer": 1,
+    "explanation": "`const` is compile-time - `volatile` meaningless."
+  },
+  {
+    "q": "What is the type of `0b1010`?",
+    "options": ["byte", "int", "binary", "string"],
+    "answer": 1,
+    "explanation": "Binary literal - defaults to `int`."
+  },
+  {
+    "q": "Which is not allowed in `const` expression?",
+    "options": ["5 + 3", "Math.PI", "'a' + 'b'", "sizeof(int)"],
+    "answer": 1,
+    "explanation": "`Math.PI` is `static readonly`, not `const`."
+  },
+  {
+    "q": "What is a variable in C#?",
+    "options": ["A named memory location", "A compile-time constant", "A method", "A type"],
+    "answer": 0,
+    "explanation": "Variable is a named storage that holds a value of a specific type."
+  },
+  {
+    "q": "Which is not a valid data type in C#?",
+    "options": ["int", "string", "var", "bool"],
+    "answer": 2,
+    "explanation": "`var` is a keyword for type inference, not a data type."
+  },
+  {
+    "q": "What is the size of `bool` in memory?",
+    "options": ["1 bit", "1 byte", "4 bytes", "Depends on context"],
+    "answer": 1,
+    "explanation": "`bool` occupies 1 byte in memory (8 bits)."
+  },
+  {
+    "q": "Which keyword declares a compile-time constant?",
+    "options": ["var", "readonly", "const", "static"],
+    "answer": 2,
+    "explanation": "`const` declares immutable compile-time constants."
+  },
+  {
+    "q": "What is the default value of an uninitialized `int` field?",
+    "options": ["null", "0", "Garbage", "Compiler error"],
+    "answer": 1,
+    "explanation": "Instance and static fields are zero-initialized to `0`."
+  },
+  {
+    "q": "Which suffix makes a literal `float`?",
+    "options": ["f", "d", "m", "l"],
+    "answer": 0,
+    "explanation": "`3.14f` is a `float`. Default is `double`."
+  },
+  {
+    "q": "What is the range of `short`?",
+    "options": ["-128 to 127", "-32768 to 32767", "0 to 65535", "-2147483648 to 2147483647"],
+    "answer": 1,
+    "explanation": "`short` is 16-bit signed integer."
+  },
+  {
+    "q": "Which is a reference type?",
+    "options": ["int", "struct", "class", "enum"],
+    "answer": 2,
+    "explanation": "`class`, `interface`, `delegate`, `array`, `string` are reference types."
+  },
+  {
+    "q": "What does `var` do?",
+    "options": ["Declares a dynamic variable", "Infers type from initializer", "Makes variable constant", "Allows null only"],
+    "answer": 1,
+    "explanation": "`var` enables implicit typing based on assigned value."
+  },
+  {
+    "q": "Can `const` be changed at runtime?",
+    "options": ["Yes", "No", "Only via reflection", "Only in debug"],
+    "answer": 1,
+    "explanation": "`const` is replaced at compile time - cannot be changed."
+  },
+  {
+    "q": "What is the default value of a `string` field?",
+    "options": ["\"\"", "null", "String.Empty", "Compiler error"],
+    "answer": 1,
+    "explanation": "Reference type fields default to `null`."
+  },
+  {
+    "q": "Which is valid for `const`?",
+    "options": ["const int x = 5;", "const string s = null;", "const object o = new();", "All of the above"],
+    "answer": 1,
+    "explanation": "Only primitives and `string`/`null` allowed in `const`."
+  },
+  {
+    "q": "What is `ulong`?",
+    "options": ["Signed 64-bit", "Unsigned 64-bit", "Signed 32-bit", "Unsigned 32-bit"],
+    "answer": 1,
+    "explanation": "`ulong` = unsigned long (0 to 18,446,744,073,709,551,615)."
+  },
+  {
+    "q": "Which keyword allows runtime initialization in constructor?",
+    "options": ["const", "var", "readonly", "static"],
+    "answer": 2,
+    "explanation": "`readonly` fields can be set in constructor or inline."
+  },
+  {
+    "q": "What is the size of `decimal`?",
+    "options": ["8 bytes", "12 bytes", "16 bytes", "4 bytes"],
+    "answer": 2,
+    "explanation": "`decimal` uses 128 bits (16 bytes) for precision."
+  },
+  {
+    "q": "Which is not a value type?",
+    "options": ["int", "bool", "string", "DateTime"],
+    "answer": 2,
+    "explanation": "`string` is a reference type."
+  },
+  {
+    "q": "What is `nint` in C#?",
+    "options": ["Native-sized integer", "Nullable int", "New int", "C# 9 feature"],
+    "answer": 0,
+    "explanation": "`nint` = native integer (32-bit or 64-bit based on platform)."
+  },
+  {
+    "q": "Which literal represents `long`?",
+    "options": ["100L", "100l", "100M", "100UL"],
+    "answer": 0,
+    "explanation": "`L` suffix denotes `long`. Case-insensitive but `L` preferred."
+  },
+  {
+    "q": "What is the default value of `DateTime` field?",
+    "options": ["DateTime.MinValue", "DateTime.Now", "null", "01/01/0001"],
+    "answer": 0,
+    "explanation": "Default is `0001-01-01 00:00:00` (`DateTime.MinValue`)."
+  },
+  {
+    "q": "Can `var` be used without initializer?",
+    "options": ["Yes", "No", "Only in methods", "Only in loops"],
+    "answer": 1,
+    "explanation": "`var` requires initializer for type inference."
+  },
+  {
+    "q": "Which is valid `const` declaration?",
+    "options": ["const int x;", "const int x = 10;", "const int x = null;", "const string s;"],
+    "answer": 1,
+    "explanation": "`const` must be initialized at declaration."
+  },
+  {
+    "q": "What is `byte` range?",
+    "options": ["-128 to 127", "0 to 255", "0 to 127", "-255 to 255"],
+    "answer": 1,
+    "explanation": "Unsigned 8-bit integer."
+  },
+  {
+    "q": "Which keyword makes a field immutable after object construction?",
+    "options": ["const", "readonly", "static", "sealed"],
+    "answer": 1,
+    "explanation": "`readonly` prevents changes after constructor."
+  },
+  {
+    "q": "What is the type of `true` literal?",
+    "options": ["int", "bool", "string", "object"],
+    "answer": 1,
+    "explanation": "`true` and `false` are `bool` literals."
+  },
+  {
+    "q": "Which is a valid `var` usage?",
+    "options": ["var x;", "var x = 5;", "public var y = 10;", "var z = null;"],
+    "answer": 1,
+    "explanation": "Must have initializer and be local."
+  },
+  {
+    "q": "In a high-throughput payment service, a DTO uses `public init string CardNumber { get; init; }`. After deserialization, `CardNumber` is null despite JSON input. Why?",
+    "options": ["init prevents deserialization", "JSON serializer ignores init", "Property must be public set", "init requires constructor assignment"],
+    "answer": 1,
+    "explanation": "System.Text.Json supports `init` properties by default. Ensure `[JsonInclude]` or public init accessor."
+  },
+  {
+    "q": "A configuration object is injected as a singleton with `init` properties. Config hot-reload doesn't update values. Why?",
+    "options":["init allows mutation", "Singleton instance is immutable after creation", "init prevents DI", "Config reload creates new type"],
+    "answer": 1,
+    "explanation": "`init` properties can only be set during object initialization. Singleton is created once - use `IOptionsMonitor<T>` for live updates."
+  },
+  {
+    "q": "In a Blazor component, you see `public init int Count { get; init; } = 5;`. Value resets to 5 on every render. Why?",
+    "options": ["init resets on render", "Component is re-instantiated", "init prevents state", "Blazor ignores init"],
+    "answer": 1,
+    "explanation": "Blazor re-creates component instance on navigation or parameter change. Use `[Parameter]` or state container for persistence."
+  },
+  {
+    "q": "You're debugging a race condition in a caching layer. `volatile int _counter;` is still showing stale reads across threads. Why?",
+    "options": ["volatile only works on bool", "volatile doesn't prevent reordering", "volatile requires lock", "JIT ignores volatile in release"],
+    "answer": 1,
+    "explanation": "`volatile` prevents caching and reordering for that field only. Complex operations need `Interlocked` or `lock`."
+  },
+  {
+    "q": "A background service uses `volatile bool _isRunning = true;` in a while loop. CPU usage is 100%. Is `volatile` the issue?",
+    "options": ["Yes, volatile causes spinning", "No, loop needs delay", "volatile prevents optimization", "Use const instead"],
+    "answer": 1,
+    "explanation": "`while(_isRunning)` spins without yield. Add `await Task.Delay(1);` or use `CancellationToken`."
+  },
+  {
+    "q": "In a microservice, `public string? TenantId { get; init; }` throws nullability warning even when set in constructor. Why?",
+    "options": ["init bypasses null check", "nullable reference types enabled", "init requires non-null", "Compiler bug"],
+    "answer": 1,
+    "explanation": "With `#nullable enable`, `string?` allows null. Warning if flow analysis can't prove non-null. Use `!` or validate."
+  },
+  {
+    "q": "A POCO has `public init List<string> Tags { get; init; } = new();`. After init, `Tags.Add()` throws. Why?",
+    "options": ["init makes list readonly", "List is mutable", "init prevents mutation", "Use IReadOnlyList"],
+    "answer": 1,
+    "explanation": "`init` only protects the property reference. The `List<T>` object is still mutable. Use `IReadOnlyList<T>` for immutability."
+  },
+  {
+    "q": "Code: `volatile readonly int _maxRetries = 3;`. Compiler error?",
+    "options": ["Yes, volatile + readonly invalid", "No, valid combination", "Only in struct", "Only in unsafe"],
+    "answer": 0,
+    "explanation": "`readonly` means assign only in ctor. `volatile` means no caching. Combination is meaningless - compiler error."
+  },
+  {
+    "q": "In a logging service, `public string ServiceName { get; init; } = null!;`. No warning. Why?",
+    "options": ["init suppresses null", "null! suppresses warning", "string is nullable", "init requires value"],
+    "answer": 1,
+    "explanation": "`null!` (null-forgiving) tells compiler to ignore nullability warning."
+  },
+  {
+    "q": "A factory returns `record Person(string Name) { public init int Age { get; init; } }`. Can you change `Age` after creation?",
+    "options": ["Yes", "No, record is immutable", "Only with `with`", "init allows mutation"],
+    "answer": 2,
+    "explanation": "Positional records are immutable. Use `with` expression: `person = person with { Age = 30 };`"
+  },
+  {
+    "q": "What is the primary purpose of the `init` keyword?",
+    "options": ["Prevent mutation after construction", "Improve performance", "Enable DI", "Replace readonly"],
+    "answer": 0,
+    "explanation": "`init` allows setting only during object initialization (ctor or object initializer)."
+  },
+  {
+    "q": "Which is true about `volatile`?",
+    "options": ["Prevents all race conditions", "Applies to reference types", "Guarantees atomic reads/writes", "Only works on primitives"],
+    "answer": 2,
+    "explanation": "`volatile` ensures reads/writes are not cached and not reordered - atomic for 32-bit aligned fields."
+  },
+  {
+    "q": "What does `#nullable enable` do?",
+    "options": ["Makes all types nullable", "Enables nullability analysis", "Disables null checks", "Changes runtime behavior"],
+    "answer": 1,
+    "explanation": "Compile-time feature. Treats reference types as non-nullable by default; emits warnings."
+  },
+  {
+    "q": "Can `init` be used on fields?",
+    "options": ["Yes", "No, only properties", "Only auto-properties", "C# 10+"],
+    "answer": 1,
+    "explanation": "`init` is for properties only. Use `readonly` for fields."
+  },
+  {
+    "q": "Which is equivalent to `init` property?",
+    "options": ["private set", "public set in ctor only", "readonly backing field", "All of the above"],
+    "answer": 3,
+    "explanation": "`init` = settable in ctor and object initializer. Same as private setter with public init."
+  },
+  {
+    "q": "What is the default nullability of `string` with `#nullable enable`?",
+    "options": ["string", "string?", "object", "string!"],
+    "answer": 0,
+    "explanation": "Reference types are non-nullable by default. Use `string?` for nullable."
+  },
+  {
+    "q": "Can `volatile` be applied to `long` on 32-bit systems?",
+    "options": ["Yes", "No, not atomic", "Only with lock", "Use Interlocked"],
+    "answer": 1,
+    "explanation": "`volatile` does not guarantee atomicity for 64-bit types on 32-bit runtime."
+  },
+  {
+    "q": "What is `init-only` property in IL?",
+    "options": ["set method marked initonly", "get only", "private set", "readonly field"],
+    "answer": 0,
+    "explanation": "Compiler emits `.init` metadata on setter - CLR enforces init-only."
+  },
+  {
+    "q": "Is `volatile` needed with `Interlocked` operations?",
+    "options": ["Yes", "No, Interlocked is atomic", "Only for reads", "Only in release"],
+    "answer": 1,
+    "explanation": "`Interlocked` provides full memory barrier and atomicity - `volatile` redundant."
+  },
+  {
+    "q": "Code: `string? name = GetName(); Console.WriteLine(name.Length);` - warning?",
+    "options": ["No", "Yes, possible null", "Only in debug", "Use null!"],
+    "answer": 1,
+    "explanation": "Nullable analysis warns about potential null dereference."
+  },
+  {
+    "q": "Can `init` properties be set in `with` expression?",
+    "options": ["Yes", "No", "Only in records", "C# 10+"],
+    "answer": 0,
+    "explanation": "`with` creates new instance and can set `init` properties."
+  },
+  {
+    "q": "What is the scope of `volatile` memory barrier?",
+    "options": ["Field only", "Entire object", "Method", "Class"],
+    "answer": 0,
+    "explanation": "`volatile` applies only to the specific field - not other fields."
+  },
+  {
+    "q": "Which is mutable after construction?",
+    "options": ["init string Name", "readonly string Name", "const string Name", "None"],
+    "answer": 3,
+    "explanation": "All prevent mutation. `init` protects property, not string contents."
+  },
+  {
+    "q": "Can `nullable` be disabled in a file?",
+    "options": ["Yes, #nullable disable", "No", "Only project-wide", "Use [Nullable]"],
+    "answer": 0,
+    "explanation": "`#nullable disable` / `restore` controls per-file."
+  },
+  {
+    "q": "What is `init` in a record?",
+    "options": ["Required", "Optional", "Not allowed", "Default"],
+    "answer": 1,
+    "explanation": "Records can have `init` properties in body: `public init int Age { get; init; }`"
+  },
+  {
+    "q": "Is `volatile` thread-safe for compound operations?",
+    "options": ["Yes", "No, read-modify-write not atomic", "Only for bool", "Use lock"],
+    "answer": 1,
+    "explanation": "`_counter++` is not atomic even if `volatile`."
+  },
+  {
+    "q": "What does `!` operator do in nullability?",
+    "options": ["Null check", "Null-forgiving", "Null-coalescing", "Assert non-null"],
+    "answer": 1,
+    "explanation": "`x!` tells compiler 'x is not null' - suppresses warning."
+  },
+  {
+    "q": "Can `init` be used with `required`?",
+    "options": ["Yes", "No", "C# 11+", "Only in records"],
+    "answer": 2,
+    "explanation": "C# 11: `required init string Name { get; init; }`"
+  },
+  {
+    "q": "Which is correct about `volatile`?",
+    "options": ["Applies to local variables", "Applies to properties", "Applies to fields", "Applies to parameters"],
+    "answer": 2,
+    "explanation": "Only fields (instance or static) can be `volatile`."
+  },
+  {
+    "q": "What is the default value of `int?` field?",
+    "options": ["0", "null", "default", "Compiler error"],
+    "answer": 1,
+    "explanation": "Nullable value types default to `null` (no value)."
+  },
+  {
+    "q": "Can `init` property have a setter in derived class?",
+    "options": ["Yes", "No, sealed", "Only virtual", "Use new"],
+    "answer": 1,
+    "explanation": "`init` setter is not overridable. Base class controls init."
+  },
+  {
+    "q": "Is `volatile` needed in `Singleton` with double-check locking?",
+    "options": ["Yes", "No, lock provides barrier", "Only in .NET Framework", "Use Lazy<T>"],
+    "answer": 1,
+    "explanation": "`lock` provides full barrier. `volatile` was needed pre-.NET 2.0."
+  },
+  {
+    "q": "Code: `public string Name { get; init; } = null!;` - best practice?",
+    "options": ["Valid", "Avoid null!", "Use string?", "Make required"],
+    "answer": 2,
+    "explanation": "Prefer `string?` and handle null explicitly. `null!` hides intent."
+  },
+  {
+    "q": "Which supports `required init`?",
+    "options": ["Class", "Struct", "Record", "All of the above"],
+    "answer": 3,
+    "explanation": "C# 11 `required` works with any type having `init` or setter."
+  },
+  {
+    "q": "What is `volatile` in `volatile int`?",
+    "options": ["Thread-safe", "No caching, no reordering", "Atomic increment", "Lock-free"],
+    "answer": 1,
+    "explanation": "Prevents compiler/CPU from caching or reordering access to the field."
+  },
+  {
+    "q": "Can `nullable` warnings be suppressed?",
+    "options": ["Yes, #pragma warning disable", "No", "Only project-wide", "Use [NotNull]"],
+    "answer": 0,
+    "explanation": "`#pragma warning disable CS8618` suppresses uninitialized non-nullable property."
+  },
+  {
+    "q": "What is `init` equivalent in older C#?",
+    "options": ["public set", "private set + ctor", "readonly field", "No equivalent"],
+    "answer": 1,
+    "explanation": "Pattern: `public string Name { get; }` with ctor parameter."
+  },
+  {
+    "q": "Is `volatile` needed for `bool` stop flag?",
+    "options": ["Yes", "No, any write is visible", "Only in loops", "Use ManualResetEvent"],
+    "answer": 0,
+    "explanation": "Common pattern: `volatile bool _stop;` - ensures visibility across threads."
+  },
+  {
+    "q": "What is `null!`?",
+    "options": ["Null literal", "Null-forgiving operator", "Null check", "Compile error"],
+    "answer": 1,
+    "explanation": "Postfix `!` suppresses nullability warning."
+  },
+  {
+    "q": "Can `init` be used in interface?",
+    "options": ["Yes", "No", "C# 11+", "Only default implementation"],
+    "answer": 1,
+    "explanation": "Interfaces cannot have `init` - only classes, structs, records."
+  },
+  {
+    "q": "Which is atomic with `volatile`?",
+    "options": ["_counter++", "_counter = 5", "Interlocked.Increment", "_flag = true"],
+    "answer": 3,
+    "explanation": "Simple write to `volatile` field ≤32 bits is atomic."
+  },
+  {
+    "q": "What is `#nullable disable`?",
+    "options": ["Disables null checks", "Treats all refs as nullable", "Restores legacy behavior", "Runtime feature"],
+    "answer": 2,
+    "explanation": "Reference types can be null without warning - like pre-C# 8."
+  },
+  {
+    "q": "Can `required` be used with `readonly`?",
+    "options": ["Yes", "No", "Only init", "C# 12+"],
+    "answer": 0,
+    "explanation": "`required readonly string Name { get; init; }` valid."
+  },
+  {
+    "q": "Is `volatile` compatible with `const`?",
+    "options": ["Yes", "No", "Only static", "Compiler error"],
+    "answer": 1,
+    "explanation": "`const` is compile-time - `volatile` is runtime. Incompatible."
+  },
+  {
+    "q": "What is `string?` with `#nullable enable`?",
+    "options": ["Non-nullable string", "Nullable string", "Same as string", "Compile error"],
+    "answer": 1,
+    "explanation": "Explicitly allows `null`."
+  },
+  {
+    "q": "Can `init` property be set via reflection?",
+    "options": ["Yes", "No, CLR enforces", "Only in debug", "Use private set"],
+    "answer": 0,
+    "explanation": "Reflection can bypass `init` restriction."
+  },
+  {
+    "q": "Which is best for immutable DTO?",
+    "options": ["init properties", "readonly fields", "record", "All valid"],
+    "answer": 3,
+    "explanation": "All achieve immutability. `record` is most concise."
+  },
+  {
+    "q": "What is `volatile` in `Stopwatch`?",
+    "options": ["Not used", "On _elapsed", "On IsRunning", "On constructor"],
+    "answer": 2,
+    "explanation": "`volatile bool _isRunning` in `System.Diagnostics.Stopwatch`."
+  },
+  {
+    "q": "Can `nullable` context be nested?",
+    "options": ["Yes", "No", "Only in methods", "C# 10+"],
+    "answer": 0,
+    "explanation": "`#nullable enable` inside `disable` region allowed."
+  },
+  {
+    "q": "What is `init` in primary constructor?",
+    "options": ["Allowed", "Not needed", "Compile error", "C# 12+"],
+    "answer": 1,
+    "explanation": "Primary ctor params auto become `init` properties in records."
+  },
+  {
+    "q": "Is `volatile` needed in `async` method?",
+    "options": ["Yes", "No, await provides barrier", "Only local", "Never"],
+    "answer": 1,
+    "explanation": "`await` yields - no guarantee of visibility without `volatile` or other sync."
+  },
+  {
+    "q": "What is `[AllowNull]` attribute?",
+    "options": ["Allows null input", "Allows null output", "Disables warning", "Runtime check"],
+    "answer": 0,
+    "explanation": "For input parameters: non-nullable but null allowed."
+  },
+  {
+    "q": "Can `init` be used with `ref struct`?",
+    "options": ["Yes", "No", "Only Span<T>", "C# 11+"],
+    "answer": 1,
+    "explanation": "`ref struct` cannot have `init` properties."
+  },
+  {
+    "q": "Which is correct nullability?",
+    "options": ["string? = null OK", "string = null error", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "With `#nullable enable`, `string` warns on null assignment."
+  },
+  {
+    "q": "What is `required` modifier?",
+    "options": ["Runtime check", "Compile-time requirement", "Forces constructor", "Like init"],
+    "answer": 1,
+    "explanation": "Compiler ensures `required` members are set in object initializer."
+  },
+  {
+    "q": "Is `volatile` sufficient for lazy initialization?",
+    "options": ["Yes", "No, race condition", "Use Lazy<T>", "Only with lock"],
+    "answer": 2,
+    "explanation": "`Lazy<T>` handles thread-safety. `volatile` alone risks double init."
+  },
+  {
+    "q": "What is `MaybeNull` attribute?",
+    "options": ["Return can be null", "Input can be null", "Field can be null", "Suppress warning"],
+    "answer": 0,
+    "explanation": "For non-nullable return types that may return null."
+  },
+  {
+    "q": "Can `init` and `set` coexist?",
+    "options": ["Yes", "No", "Only in records", "Compile error"],
+    "answer": 1,
+    "explanation": "Property can have only one setter kind."
+  },
+  {
+    "q": "What is the size of `bool`?",
+    "options": ["1 bit", "1 byte", "4 bytes", "Depends"],
+    "answer": 1,
+    "explanation": "`true`/`false` stored as 1 byte."
+  },
+  {
+    "q": "Is `null!` runtime checked?",
+    "options": ["Yes", "No, compile-time only", "Throws NullRef", "Use in debug"],
+    "answer": 1,
+    "explanation": "`null!` is compile-time only - no runtime effect."
+  },
+  {
+    "q": "Can `volatile` be used with `decimal`?",
+    "options": ["Yes", "No, not supported", "Only in struct", "Use lock"],
+    "answer": 1,
+    "explanation": "`volatile` only for reference types and limited primitives (`int`, `float`, etc.). Not `decimal`."
+  },
+  {
+    "q": "What is `init` in JSON deserialization?",
+    "options": ["Ignored", "Supported", "Requires [JsonSetter]", "Only Newtonsoft"],
+    "answer": 1,
+    "explanation": "`System.Text.Json` supports `init` since .NET 6."
+  },
+  {
+    "q": "Which is immutable?",
+    "options": ["init List<T>", "IReadOnlyList<T>", "readonly List<T>", "const List<T>"],
+    "answer": 1,
+    "explanation": "Only `IReadOnlyList<T>` prevents mutation of contents."
+  },
+  {
+    "q": "What is `#nullable restore`?",
+    "options": ["Restores previous context", "Enables nullable", "Disables nullable", "Runtime"],
+    "answer": 0,
+    "explanation": "Returns to nullable context before directive."
+  },
+  {
+    "q": "Can `required` be used on static?",
+    "options": ["Yes", "No", "Only init", "C# 12+"],
+    "answer": 1,
+    "explanation": "`required` only on instance members."
+  },
+  {
+    "q": "Is `volatile` needed for `MemoryBarrier`?",
+    "options": ["Yes", "No", "Only in unsafe", "Use Thread.MemoryBarrier"],
+    "answer": 1,
+    "explanation": "`volatile` emits acquire/release fences - sufficient for most cases."
+  },
+  {
+    "q": "What is `[NotNull]` attribute?",
+    "options": ["Input cannot be null", "Output cannot be null", "Field cannot be null", "Compiler hint"],
+    "answer": 0,
+    "explanation": "For parameters: non-nullable and null not allowed."
+  },
+  {
+    "q": "Can `init` be used in `struct`?",
+    "options": ["Yes", "No", "Only record", "C# 10+"],
+    "answer": 0,
+    "explanation": "`init` properties allowed in `struct` - enables immutability."
+  },
+  {
+    "q": "What is `volatile` in `Thread.VolatileRead`?",
+    "options": ["Same as volatile field", "Forces fresh read", "Atomic", "All of the above"],
+    "answer": 3,
+    "explanation": "`VolatileRead` ensures no caching and acquire fence."
+  },
+  {
+    "q": "Which is valid?",
+    "options": ["init int X { get; }", "init int X { get; set; }", "init int X { get; init; }", "All"],
+    "answer": 2,
+    "explanation": "Correct syntax: `get; init;`"
+  },
+  {
+    "q": "What is `null` conditional with nullable types?",
+    "options": ["?. compiles to null check", "Always safe", "No warning", "Runtime only"],
+    "answer": 0,
+    "explanation": "`x?.Length` safe even if `x` is `string?`"
+  },
+  {
+    "q": "Can `required` and `init` be combined?",
+    "options": ["Yes", "No", "Only in class", "C# 11+"],
+    "answer": 0,
+    "explanation": "`required init string Name { get; init; }`"
+  },
+  {
+    "q": "Is `volatile` obsolete?",
+    "options": ["Yes", "No, still useful", "Only in .NET Framework", "Use lock"],
+    "answer": 1,
+    "explanation": "Still used in low-level code, but higher constructs preferred."
+  },
+  {
+    "q": "What is `init` in `record struct`?",
+    "options": ["Allowed", "Not allowed", "Default", "C# 10+"],
+    "answer": 0,
+    "explanation": "`record struct` supports `init` properties."
+  },
+  {
+    "q": "Can `nullable` warnings be errors?",
+    "options": ["Yes, <Nullable>enable</Nullable>", "No", "Only in CI", "Use #warning"],
+    "answer": 0,
+    "explanation": "Set `<Nullable>enable</Nullable>` and `<WarningsAsErrors>nullable</WarningsAsErrors>`"
+  },
+  {
+    "q": "What is `volatile` in `double`?",
+    "options": ["Atomic on 64-bit", "Not atomic on 32-bit", "Always safe", "Use Interlocked"],
+    "answer": 1,
+    "explanation": "64-bit write not atomic on 32-bit systems."
+  },
+  {
+    "q": "Can `init` be used with `get` only?",
+    "options": ["No, needs init", "Yes", "Compile error", "Runtime error"],
+    "answer": 1,
+    "explanation": "`public int X { get; init; } = 5;` valid."
+  },
+  {
+    "q": "Can `required` be ignored?",
+    "options": ["Yes, with warning", "No, compiler error", "Only in ctor", "Use [Optional]"],
+    "answer": 1,
+    "explanation": "Must set `required` members in object initializer."
+  },
+  {
+    "q": "Is `volatile` needed in `lock`?",
+    "options": ["Yes", "No, lock provides barrier", "Only for fields", "Use Monitor"],
+    "answer": 1,
+    "explanation": "`lock` ensures visibility and prevents reordering."
+  },
+  {
+    "q": "What is `[DisallowNull]`?",
+    "options": ["Input cannot be null", "Output cannot be null", "Field cannot be null", "Compiler error"],
+    "answer": 0,
+    "explanation": "For nullable input: null not allowed."
+  },
+  {
+    "q": "Can `init` be used in `interface default implementation`?",
+    "options": ["Yes", "No", "C# 11+", "Only records"],
+    "answer": 1,
+    "explanation": "Interfaces cannot have state - no `init`."
+  },
+  {
+    "q": "What is `volatile` in `struct`?",
+    "options": ["Allowed on fields", "Not allowed", "Only ref struct", "C# 10+"],
+    "answer": 0,
+    "explanation": "`struct S { volatile int x; }` valid."
+  },
+  {
+    "q": "Can `nullable` be enabled per method?",
+    "options": ["Yes", "No", "Only file", "Use attribute"],
+    "answer": 0,
+    "explanation": "`#nullable enable` at top of file or in block."
+  },
+  {
+    "q": "What is `init` in `with` expression?",
+    "options": ["Sets property", "Creates new", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "`p2 = p1 with { Age = 30 };`"
+  },
+  {
+    "q": "Is `volatile` compatible with `in` parameter?",
+    "options": ["Yes", "No", "Only ref", "Compile error"],
+    "answer": 1,
+    "explanation": "`in` is readonly - `volatile` is about visibility."
+  },
+  {
+    "q": "What is `null` state of `int?`?",
+    "options": ["HasValue = false", "Value = 0", "null", "default"],
+    "answer": 0,
+    "explanation": "`int? x = null;` → `x.HasValue == false`"
+  },
+  {
+    "q": "Can `required` be used with `readonly` field?",
+    "options": ["Yes", "No", "Only init", "C# 12+"],
+    "answer": 1,
+    "explanation": "`required` only on properties with setters."
+  },
+  {
+    "q": "What is `volatile` vs `Thread.MemoryBarrier`?",
+    "options": ["Same", "volatile is lighter", "Barrier is stronger", "Use both"],
+    "answer": 2,
+    "explanation": "`MemoryBarrier` is full fence - `volatile` is half-fence."
+  },
+  {
+    "q": "Can `init` be used in `abstract` property?",
+    "options": ["Yes", "No", "Only virtual", "C# 11+"],
+    "answer": 0,
+    "explanation": "Derived class can override with `init` or `set`."
+  },
+  {
+    "q": "What is `nullable` in `Dictionary<string, int?>`?",
+    "options": ["Key nullable", "Value nullable", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Value type is nullable - key is non-nullable."
+  },
+  {
+    "q": "Can `volatile` be used with `const`?",
+    "options": ["Yes", "No", "Only static", "Compiler error"],
+    "answer": 1,
+    "explanation": "Incompatible concepts."
+  },
+  {
+    "q": "What is `init` in `record class`?",
+    "options": ["Default for properties", "Optional", "Not allowed", "Required"],
+    "answer": 1,
+    "explanation": "Can declare `init` explicitly."
+  },
+  {
+    "q": "Is `null!` safe?",
+    "options": ["Yes", "No, hides bugs", "Only in ctor", "Use in release"],
+    "answer": 1,
+    "explanation": "Use only when certain - prefer null checks."
+  },
+  {
+    "q": "Can `required` be used in `interface`?",
+    "options": ["Yes", "No", "C# 11+", "Only default"],
+    "answer": 1,
+    "explanation": "Interfaces cannot have `required` members."
+  },
+  {
+    "q": "What is `volatile` in `async` state machine?",
+    "options": ["Preserved", "Lost", "Compiler handles", "Use Task"],
+    "answer": 2,
+    "explanation": "Compiler emits correct barriers for `volatile` fields."
+  },
+  {
+    "q": "Can `init` be used with `get` and `private set`?",
+    "options": ["Yes", "No", "Compile error", "Use init only"],
+    "answer": 1,
+    "explanation": "Cannot have both `init` and `set`."
+  },
+  {
+    "q": "What is `null` forgiving in expression?",
+    "options": ["x!.Length", "x?.Length", "x ?? 0", "x or null"],
+    "answer": 0,
+    "explanation": "`!` asserts non-null."
+  },
+  {
+    "q": "Can `nullable` be enabled in `.csproj`?",
+    "options": ["Yes", "No", "Only file", "Use directive"],
+    "answer": 0,
+    "explanation": "` <Nullable>enable</Nullable> `"
+  },
+  {
+    "q": "What is `init` in `anonymous type`?",
+    "options": ["Supported", "Not supported", "Readonly", "C# 10+"],
+    "answer": 1,
+    "explanation": "Anonymous types use `readonly` fields."
+  },
+  {
+    "q": "Is `volatile` needed for `static` fields in `AppDomain`?",
+    "options": ["Yes", "No, static is shared", "Only in web", "Use lock"],
+    "answer": 0,
+    "explanation": "Still needed for visibility across threads."
+  },
+  {
+    "q": "What is `[MemberNotNull]`?",
+    "options": ["Ensures field set", "Runtime check", "Compile hint", "Like required"],
+    "answer": 0,
+    "explanation": "Tells analyzer that method sets field."
+  },
+  {
+    "q": "Can `init` be used in `enum`?",
+    "options": ["Yes", "No", "Only flags", "C# 12+"],
+    "answer": 1,
+    "explanation": "Enums have no properties."
+  },
+  {
+    "q": "What is `volatile` in `unsafe` code?",
+    "options": ["Same", "Different", "Not allowed", "Use fixed"],
+    "answer": 0,
+    "explanation": "Same semantics in `unsafe`."
+  },
+  {
+    "q": "Can `nullable` warnings be treated as errors?",
+    "options": ["Yes", "No", "Only in build", "Use #error"],
+    "answer": 0,
+    "explanation": "` <WarningsAsErrors>nullable</WarningsAsErrors> `"
+  },
+  {
+    "q": "What is `init` in `partial` class?",
+    "options": ["Allowed in one part", "Must be in all", "Not allowed", "C# 11+"],
+    "answer": 0,
+    "explanation": "Property defined in one part - `init` in declaration."
+  },
+  {
+    "q": "Is `volatile` compatible with `ref` field?",
+    "options": ["Yes", "No", "Only in struct", "Unsafe only"],
+    "answer": 1,
+    "explanation": "Fields cannot be `ref`."
+  },
+  {
+    "q": "What is `null` in `object?`?",
+    "options": ["Allowed", "Not allowed", "Compile error", "Runtime null"],
+    "answer": 0,
+    "explanation": "`object?` allows null."
+  },
+  {
+    "q": "Can `required` be used with `init` in `struct`?",
+    "options": ["Yes", "No", "Only class", "C# 11+"],
+    "answer": 0,
+    "explanation": "Valid in `struct`."
+  },
+  {
+    "q": "What is `volatile` in `Monitor.Enter`?",
+    "options": ["Needed", "Not needed", "Only for fields", "Use lock"],
+    "answer": 1,
+    "explanation": "`lock` uses `Monitor` - provides barrier."
+  },
+  {
+    "q": "Can `init` be used in `event`?",
+    "options": ["Yes", "No", "Only add/remove", "C# 12+"],
+    "answer": 1,
+    "explanation": "Events have `add`/`remove`, not `init`."
+  },
+  {
+    "q": "What is `nullable` in `Task<string?>`?",
+    "options": ["Task nullable", "Result nullable", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Result can be null."
+  },
+  {
+    "q": "Can `volatile` be used with `nint`?",
+    "options": ["Yes", "No", "Only 64-bit", "C# 9+"],
+    "answer": 0,
+    "explanation": "`nint` is primitive - supports `volatile`."
+  },
+  {
+    "q": "What is `init` in `expression-bodied` property?",
+    "options": ["Allowed", "Not allowed", "Only get =>", "C# 10+"],
+    "answer": 0,
+    "explanation": "`public int Age { get => _age; init => _age = value; }`"
+  },
+  {
+    "q": "Is `null!` needed after `new`?",
+    "options": ["Yes", "No", "Only for fields", "Use in ctor"],
+    "answer": 1,
+    "explanation": "`new MyClass()` is non-null."
+  },
+  {
+    "q": "Can `required` be used in `record` primary constructor?",
+    "options": ["Yes", "No", "Only init", "C# 11+"],
+    "answer": 0,
+    "explanation": "Parameters are auto `required`."
+  },
+  {
+    "q": "What is `volatile` in `Array`?",
+    "options": ["On Length", "On elements", "Not used", "Use Concurrent"],
+    "answer": 1,
+    "explanation": "Array elements can be `volatile`."
+  },
+  {
+    "q": "Can `nullable` be disabled in `csproj`?",
+    "options": ["Yes", "No", "Only enable", "Use directive"],
+    "answer": 0,
+    "explanation": "`<Nullable>disable</Nullable>`"
+  },
+  {
+    "q": "What is `init` in `auto-property`?",
+    "options": ["public int X { get; init; }", "public int X { get; set; } = 5;", "public int X => 5;", "All"],
+    "answer": 0,
+    "explanation": "Auto-property with `init`."
+  },
+  {
+    "q": "Is `volatile` needed in `SemaphoreSlim`?",
+    "options": ["Yes", "No", "Only for count", "Use async"],
+    "answer": 1,
+    "explanation": "Synchronization primitives handle visibility."
+  },
+  {
+    "q": "What is `[DoesNotReturn]`?",
+    "options": ["Method never returns", "Returns null", "Throws", "All"],
+    "answer": 0,
+    "explanation": "For `throw` or `Environment.Exit`."
+  },
+  {
+    "q": "Can `init` be used in `indexer`?",
+    "options": ["Yes", "No", "C# 11+", "Only get"],
+    "answer": 0,
+    "explanation": "`public string this[int i] { get => ...; init => ...; }`"
+  },
+  {
+    "q": "What is `null` in `default` expression?",
+    "options": ["For reference types", "For value types", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "`default(string)` is `null`"
+  },
+  {
+    "q": "Can `required` be used with `static`?",
+    "options": ["Yes", "No", "Only init", "C# 12+"],
+    "answer": 1,
+    "explanation": "No instance - no `required`."
+  },
+  {
+    "q": "What is `volatile` in `Lazy<T>`?",
+    "options": ["On Value", "On IsValueCreated", "Not used", "Use ThreadLocal"],
+    "answer": 1,
+    "explanation": "`volatile bool` in `Lazy<T>` implementation."
+  },
+  {
+    "q": "Can `nullable` context affect generics?",
+    "options": ["Yes", "No", "Only unconstrained", "Use where T : notnull"],
+    "answer": 0,
+    "explanation": "`T?` allowed only if unconstrained or `T : class?`"
+  },
+  {
+    "q": "What is `init` in `deconstructor`?",
+    "options": ["Allowed", "Not relevant", "Compile error", "C# 12+"],
+    "answer": 1,
+    "explanation": "Deconstruct uses `out` - not `init`."
+  },
+  {
+    "q": "Is `volatile` compatible with `readonly`?",
+    "options": ["Yes", "No", "Only static", "Compiler error"],
+    "answer": 1,
+    "explanation": "Meaningless combination."
+  },
+  {
+    "q": "What is `null` in `is null`?",
+    "options": ["Pattern matching", "Equality", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "`x is null`"
+  },
+  {
+    "q": "Can `required` be used in `partial` method?",
+    "options": ["Yes", "No", "Only implementation", "C# 11+"],
+    "answer": 1,
+    "explanation": "No - methods have no state."
+  },
+  {
+    "q": "What is `volatile` in `SpinWait`?",
+    "options": ["Used internally", "Not used", "On count", "Use Thread.SpinWait"],
+    "answer": 0,
+    "explanation": "Uses `volatile` for coordination."
+  },
+  {
+    "q": "Can `init` be used in `operator`?",
+    "options": ["Yes", "No", "Only implicit", "C# 12+"],
+    "answer": 1,
+    "explanation": "Operators return values - no `init`."
+  },
+  {
+    "q": "What is `nullable` in `nullable struct`?",
+    "options": ["Allowed", "Not needed", "Compile error", "Use ?"],
+    "answer": 1,
+    "explanation": "`Nullable<T>` already represents nullability."
+  },
+  {
+    "q": "Can `volatile` be used with `ref` return?",
+    "options": ["Yes", "No", "Only in unsafe", "C# 11+"],
+    "answer": 1,
+    "explanation": "Not applicable."
+  },
+  {
+    "q": "What is `init` in `file-scoped` type?",
+    "options": ["Allowed", "Not allowed", "Only class", "C# 10+"],
+    "answer": 0,
+    "explanation": "No difference."
+  },
+  {
+    "q": "Is `null!` needed in `switch` expression?",
+    "options": ["Yes", "No", "Only default", "Use when"],
+    "answer": 1,
+    "explanation": "Exhaustiveness handles null."
+  },
+  {
+    "q": "Can `required` be used with `record` positional?",
+    "options": ["Yes", "No", "Auto-required", "C# 11+"],
+    "answer": 2,
+    "explanation": "Positional parameters are required by default."
+  },
+  {
+    "q": "What is `volatile` in `ConcurrentDictionary`?",
+    "options": ["Used internally", "Not used", "On Count", "Use lock"],
+    "answer": 0,
+    "explanation": "Uses `volatile` and `Interlocked`."
+  },
+  {
+    "q": "Can `nullable` be used with `unmanaged` constraint?",
+    "options": ["Yes", "No", "Only T?", "C# 11+"],
+    "answer": 1,
+    "explanation": "`unmanaged` types cannot be nullable."
+  },
+  {
+    "q": "What is `init` in `global using`?",
+    "options": ["Allowed", "Not relevant", "Compile error", "C# 10+"],
+    "answer": 1,
+    "explanation": "`global using` is for namespaces."
+  },
+  {
+    "q": "Is `volatile` needed in `Channel<T>`?",
+    "options": ["Yes", "No", "Only for completion", "Use async"],
+    "answer": 1,
+    "explanation": "Channel handles synchronization."
+  },
+  {
+    "q": "What is `[UnmanagedCallersOnly]`?",
+    "options": ["Native interop", "COM", "P/Invoke", "All"],
+    "answer": 0,
+    "explanation": "For native export."
+  },
+  {
+    "q": "Can `init` be used in `local function`?",
+    "options": ["Yes", "No", "Only parameters", "C# 11+"],
+    "answer": 1,
+    "explanation": "Local functions have no properties."
+  },
+  {
+    "q": "What is `null` in `default literal`?",
+    "options": ["C# 7.1", "C# 8", "C# 9", "C# 10"],
+    "answer": 3,
+    "explanation": "`default` infers type."
+  },
+  {
+    "q": "Can `required` be used with `params`?",
+    "options": ["Yes", "No", "Only array", "C# 12+"],
+    "answer": 1,
+    "explanation": "Not applicable."
+  },
+  {
+    "q": "What is `volatile` in `Task`?",
+    "options": ["On Result", "On IsCompleted", "Not used", "Use ContinueWith"],
+    "answer": 1,
+    "explanation": "Uses `volatile` for completion flags."
+  },
+  {
+    "q": "Can `nullable` be used with `in` parameter?",
+    "options": ["Yes", "No", "Only ref", "C# 11+"],
+    "answer": 0,
+    "explanation": "`in string?` allowed."
+  },
+  {
+    "q": "What is `init` in `source generator`?",
+    "options": ["Supported", "Not supported", "Partial", "C# 11+"],
+    "answer": 0,
+    "explanation": "Generators can emit `init` properties."
+  },
+  {
+    "q": "Is `null!` needed in `JSON`?",
+    "options": ["Yes", "No", "Only required", "Use [JsonIgnore]"],
+    "answer": 1,
+    "explanation": "Serializer handles null."
+  },
+  {
+    "q": "Can `required` be used in `static class`?",
+    "options": ["Yes", "No", "Only fields", "C# 12+"],
+    "answer": 1,
+    "explanation": "No instance."
+  },
+  {
+    "q": "What is `volatile` in `ReaderWriterLockSlim`?",
+    "options": ["Used", "Not used", "On count", "Use lock"],
+    "answer": 0,
+    "explanation": "Uses `volatile` for fast paths."
+  },
+  {
+    "q": "Can `nullable` be used with `record struct`?",
+    "options": ["Yes", "No", "Only class", "C# 10+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `module initializer`?",
+    "options": ["Allowed", "Not relevant", "Compile error", "C# 11+"],
+    "answer": 1,
+    "explanation": "Module initializers are static."
+  },
+  {
+    "q": "Is `volatile` needed in `ValueTask`?",
+    "options": ["Yes", "No", "Only result", "Use Task"],
+    "answer": 1,
+    "explanation": "Uses `volatile` internally."
+  },
+  {
+    "q": "What is `[SkipLocalsInit]`?",
+    "options": ["No zero-init", "Performance", "Unsafe", "All"],
+    "answer": 3,
+    "explanation": "Skips stack zeroing."
+  },
+  {
+    "q": "Can `init` be used in `extension`?",
+    "options": ["Yes", "No", "Only get", "C# 12+"],
+    "answer": 1,
+    "explanation": "Extensions add methods, not properties."
+  },
+  {
+    "q": "What is `null` in `switch` expression?",
+    "options": ["Allowed", "Not allowed", "Only default", "Use when"],
+    "answer": 0,
+    "explanation": "`x switch { null => ... }`"
+  },
+  {
+    "q": "Can `required` be used with `record`?",
+    "options": ["Yes", "No", "Only positional", "C# 11+"],
+    "answer": 0,
+    "explanation": "Explicit `required` properties allowed."
+  },
+  {
+    "q": "What is `volatile` in `HttpClient`?",
+    "options": ["Not used", "On handler", "On timeout", "Use factory"],
+    "answer": 0,
+    "explanation": "No `volatile` in `HttpClient`."
+  },
+  {
+    "q": "Can `nullable` be used with `ref struct`?",
+    "options": ["Yes", "No", "Only Span", "C# 11+"],
+    "answer": 1,
+    "explanation": "`ref struct` cannot contain nullable reference types."
+  },
+  {
+    "q": "What is `init` in `top-level statements`?",
+    "options": ["Allowed", "Not relevant", "Compile error", "C# 10+"],
+    "answer": 1,
+    "explanation": "No class context."
+  },
+  {
+    "q": "Is `null!` needed in `Main`?",
+    "options": ["Yes", "No", "Only args", "Use async"],
+    "answer": 1,
+    "explanation": "`args` is `string[]` - non-null."
+  },
+  {
+    "q": "Can `required` be used in `interface`?",
+    "options": ["Yes", "No", "C# 11+", "Only default"],
+    "answer": 1,
+    "explanation": "Not supported."
+  },
+  {
+    "q": "What is `volatile` in `Parallel.For`?",
+    "options": ["Used", "Not used", "On local", "Use lock"],
+    "answer": 1,
+    "explanation": "Uses thread-local storage."
+  },
+  {
+    "q": "Can `nullable` be used with `function pointer`?",
+    "options": ["Yes", "No", "Only unsafe", "C# 11+"],
+    "answer": 1,
+    "explanation": "Not applicable."
+  },
+  {
+    "q": "What is `init` in `native AOT`?",
+    "options": ["Supported", "Not supported", "Trimmed", "C# 11+"],
+    "answer": 0,
+    "explanation": "Fully supported."
+  },
+  {
+    "q": "Is `null!` needed in `LINQ`?",
+    "options": ["Yes", "No", "Only Select", "Use Where"],
+    "answer": 1,
+    "explanation": "Analyzer handles flow."
+  },
+  {
+    "q": "Can `required` be used with `readonly struct`?",
+    "options": ["Yes", "No", "Only init", "C# 12+"],
+    "answer": 0,
+    "explanation": "Valid."
+  },
+  {
+    "q": "What is `volatile` in `GC`?",
+    "options": ["On roots", "Not used", "On finalizer", "Use KeepAlive"],
+    "answer": 1,
+    "explanation": "GC handles visibility."
+  },
+  {
+    "q": "Can `nullable` be used with `stackalloc`?",
+    "options": ["Yes", "No", "Only span", "C# 11+"],
+    "answer": 1,
+    "explanation": "`stackalloc` returns `Span<T>`."
+  },
+  {
+    "q": "What is `init` in `com` interop?",
+    "options": ["Supported", "Not supported", "Use [In]", "C# 12+"],
+    "answer": 1,
+    "explanation": "COM uses `ref`/`out`."
+  },
+  {
+    "q": "Is `null!` needed in `async`?",
+    "options": ["Yes", "No", "Only Task", "Use ConfigureAwait"],
+    "answer": 1,
+    "explanation": "Analyzer tracks null state."
+  },
+  {
+    "q": "Can `required` be used in `delegate`?",
+    "options": ["Yes", "No", "Only params", "C# 12+"],
+    "answer": 1,
+    "explanation": "No properties."
+  },
+  {
+    "q": "What is `volatile` in `EF Core`?",
+    "options": ["On shadow", "Not used", "On key", "Use concurrency token"],
+    "answer": 1,
+    "explanation": "EF uses change tracking."
+  },
+  {
+    "q": "Can `nullable` be used with `record class`?",
+    "options": ["Yes", "No", "Only struct", "C# 10+"],
+    "answer": 0,
+    "explanation": "Fully supported."
+  },
+  {
+    "q": "What is `init` in `blazor` component?",
+    "options": ["For parameters", "For fields", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "`[Parameter] public init string? Name { get; init; }`"
+  },
+  {
+    "q": "Is `null!` needed in `record`?",
+    "options": ["Yes", "No", "Only positional", "Use with"],
+    "answer": 1,
+    "explanation": "Deconstruction handles null."
+  },
+  {
+    "q": "Can `required` be used with `interface` default?",
+    "options": ["Yes", "No", "C# 11+", "Only class"],
+    "answer": 1,
+    "explanation": "No state."
+  },
+  {
+    "q": "What is `volatile` in `SignalR`?",
+    "options": ["On hub", "Not used", "On connection", "Use hub context"],
+    "answer": 1,
+    "explanation": "Uses `ConcurrentDictionary`."
+  },
+  {
+    "q": "Can `nullable` be used with `native int`?",
+    "options": ["Yes", "No", "Only nint?", "C# 11+"],
+    "answer": 0,
+    "explanation": "`nint?` allowed."
+  },
+  {
+    "q": "What is `init` in `minimal API`?",
+    "options": ["For parameters", "For services", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "Route handlers use parameters."
+  },
+  {
+    "q": "Is `null!` needed in `middleware`?",
+    "options": ["Yes", "No", "Only context", "Use UseWhen"],
+    "answer": 1,
+    "explanation": "`HttpContext` is non-null."
+  },
+  {
+    "q": "Can `required` be used in `static constructor`?",
+    "options": ["Yes", "No", "Only fields", "C# 12+"],
+    "answer": 1,
+    "explanation": "No instance."
+  },
+  {
+    "q": "What is `volatile` in `gRPC`?",
+    "options": ["On channel", "Not used", "On call", "Use metadata"],
+    "answer": 1,
+    "explanation": "Uses `HttpClient`."
+  },
+  {
+    "q": "Can `nullable` be used with `function pointer`?",
+    "options": ["Yes", "No", "Only delegate", "C# 11+"],
+    "answer": 1,
+    "explanation": "Not supported."
+  },
+  {
+    "q": "What is `init` in `worker service`?",
+    "options": ["For config", "For logger", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "Injected via constructor."
+  },
+  {
+    "q": "Is `null!` needed in `DI`?",
+    "options": ["Yes", "No", "Only scoped", "Use ValidateScopes"],
+    "answer": 1,
+    "explanation": "Container ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `extension method`?",
+    "options": ["Yes", "No", "Only this", "C# 12+"],
+    "answer": 1,
+    "explanation": "No properties."
+  },
+  {
+    "q": "What is `volatile` in `memory cache`?",
+    "options": ["On entry", "Not used", "On expiration", "Use lock"],
+    "answer": 1,
+    "explanation": "Uses `ConcurrentDictionary`."
+  },
+  {
+    "q": "Can `nullable` be used with `ref return`?",
+    "options": ["Yes", "No", "Only local", "C# 11+"],
+    "answer": 0,
+    "explanation": "`ref string?` allowed."
+  },
+  {
+    "q": "What is `init` in `razor page`?",
+    "options": ["For model", "For handler", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "`[BindProperty] public init string? Name { get; init; }`"
+  },
+  {
+    "q": "Is `null!` needed in `unit test`?",
+    "options": ["Yes", "No", "Only Assert", "Use Fact"],
+    "answer": 1,
+    "explanation": "Setup ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `attribute`?",
+    "options": ["Yes", "No", "Only params", "C# 12+"],
+    "answer": 1,
+    "explanation": "No instance."
+  },
+  {
+    "q": "What is `volatile` in `distributed cache`?",
+    "options": ["On local", "Not used", "On remote", "Use IDistributedCache"],
+    "answer": 1,
+    "explanation": "External system."
+  },
+  {
+    "q": "Can `nullable` be used with `static local function`?",
+    "options": ["Yes", "No", "Only instance", "C# 11+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `maui`?",
+    "options": ["For binding", "For state", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "Used in view models."
+  },
+  {
+    "q": "Is `null!` needed in `configuration`?",
+    "options": ["Yes", "No", "Only Get", "Use Bind"],
+    "answer": 1,
+    "explanation": "`IOptions<T>` handles null."
+  },
+  {
+    "q": "Can `required` be used in `module`?",
+    "options": ["Yes", "No", "Only class", "C# 12+"],
+    "answer": 1,
+    "explanation": "No instance."
+  },
+  {
+    "q": "What is `volatile` in `logging`?",
+    "options": ["On level", "Not used", "On scope", "Use ILogger"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `file-scoped namespace`?",
+    "options": ["Yes", "No", "Only class", "C# 10+"],
+    "answer": 0,
+    "explanation": "No impact."
+  },
+  {
+    "q": "What is `init` in `winforms`?",
+    "options": ["For controls", "For properties", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Used in data binding."
+  },
+  {
+    "q": "Is `null!` needed in `entity`?",
+    "options": ["Yes", "No", "Only navigation", "Use [Required]"],
+    "answer": 1,
+    "explanation": "EF handles null."
+  },
+  {
+    "q": "Can `required` be used in `enum`?",
+    "options": ["Yes", "No", "Only flags", "C# 12+"],
+    "answer": 1,
+    "explanation": "No properties."
+  },
+  {
+    "q": "What is `volatile` in `metrics`?",
+    "options": ["On counter", "Not used", "On gauge", "Use Meter"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `global using static`?",
+    "options": ["Yes", "No", "Only types", "C# 10+"],
+    "answer": 0,
+    "explanation": "No impact."
+  },
+  {
+    "q": "What is `init` in `console app`?",
+    "options": ["For args", "For config", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Used in settings."
+  },
+  {
+    "q": "Is `null!` needed in `builder`?",
+    "options": ["Yes", "No", "Only services", "Use Add"],
+    "answer": 1,
+    "explanation": "Host builder ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `partial type`?",
+    "options": ["Yes", "No", "Only one part", "C# 11+"],
+    "answer": 0,
+    "explanation": "Defined in one part."
+  },
+  {
+    "q": "What is `volatile` in `health checks`?",
+    "options": ["On status", "Not used", "On result", "Use IHealthCheck"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `implicit usings`?",
+    "options": ["Yes", "No", "Only SDK", "C# 10+"],
+    "answer": 0,
+    "explanation": "No impact."
+  },
+  {
+    "q": "What is `init` in `library`?",
+    "options": ["For API", "For internals", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "Used in public DTOs."
+  },
+  {
+    "q": "Is `null!` needed in `serializer`?",
+    "options": ["Yes", "No", "Only required", "Use JsonSerializer"],
+    "answer": 1,
+    "explanation": "Serializer handles null."
+  },
+  {
+    "q": "Can `required` be used in `source generator`?",
+    "options": ["Yes", "No", "Only partial", "C# 11+"],
+    "answer": 0,
+    "explanation": "Generator can emit."
+  },
+  {
+    "q": "What is `volatile` in `feature flag`?",
+    "options": ["On value", "Not used", "On refresh", "Use IOptionsMonitor"],
+    "answer": 1,
+    "explanation": "Uses `IOptionsMonitor`."
+  },
+  {
+    "q": "Can `nullable` be used with `record` primary?",
+    "options": ["Yes", "No", "Only properties", "C# 10+"],
+    "answer": 0,
+    "explanation": "`record Person(string? Name)`"
+  },
+  {
+    "q": "What is `init` in `test project`?",
+    "options": ["For setup", "For mocks", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "Used in test fixtures."
+  },
+  {
+    "q": "Is `null!` needed in `mock`?",
+    "options": ["Yes", "No", "Only Setup", "Use Moq"],
+    "answer": 1,
+    "explanation": "Mock setup ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `analyzer`?",
+    "options": ["Yes", "No", "Only diagnostic", "C# 11+"],
+    "answer": 1,
+    "explanation": "No runtime."
+  },
+  {
+    "q": "What is `volatile` in `circuit breaker`?",
+    "options": ["On state", "Not used", "On count", "Use Polly"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `module initializer`?",
+    "options": ["Yes", "No", "Only static", "C# 11+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `docker`?",
+    "options": ["For env", "For config", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Used in config binding."
+  },
+  {
+    "q": "Is `null!` needed in `kubernetes`?",
+    "options": ["Yes", "No", "Only config", "Use helm"],
+    "answer": 1,
+    "explanation": "Config ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `cloud event`?",
+    "options": ["Yes", "No", "Only data", "C# 12+"],
+    "answer": 0,
+    "explanation": "Used in event schema."
+  },
+  {
+    "q": "What is `volatile` in `rate limiter`?",
+    "options": ["On tokens", "Not used", "On window", "Use middleware"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `native AOT`?",
+    "options": ["Yes", "No", "Only trim", "C# 11+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `serverless`?",
+    "options": ["For input", "For output", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "Used in function models."
+  },
+  {
+    "q": "Is `null!` needed in `event grid`?",
+    "options": ["Yes", "No", "Only payload", "Use trigger"],
+    "answer": 1,
+    "explanation": "Schema ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `cosmos`?",
+    "options": ["Yes", "No", "Only partition", "C# 12+"],
+    "answer": 0,
+    "explanation": "Used in document models."
+  },
+  {
+    "q": "What is `volatile` in `service bus`?",
+    "options": ["On message", "Not used", "On lock", "Use receiver"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `blazor wasm`?",
+    "options": ["Yes", "No", "Only server", "C# 10+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `graphql`?",
+    "options": ["For args", "For result", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "Used in input types."
+  },
+  {
+    "q": "Is `null!` needed in `openapi`?",
+    "options": ["Yes", "No", "Only schema", "Use Swashbuckle"],
+    "answer": 1,
+    "explanation": "Generator handles null."
+  },
+  {
+    "q": "Can `required` be used in `dapr`?",
+    "options": ["Yes", "No", "Only state", "C# 12+"],
+    "answer": 0,
+    "explanation": "Used in state models."
+  },
+  {
+    "q": "What is `volatile` in `actor`?",
+    "options": ["On state", "Not used", "On timer", "Use Orleans"],
+    "answer": 1,
+    "explanation": "Uses `Concurrent`."
+  },
+  {
+    "q": "Can `nullable` be used with `unity`?",
+    "options": ["Yes", "No", "Only DI", "C# 11+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `uno`?",
+    "options": ["For view", "For model", "Both", "Neither"],
+    "answer": 1,
+    "explanation": "Used in view models."
+  },
+  {
+    "q": "Is `null!` needed in `xunit`?",
+    "options": ["Yes", "No", "Only Theory", "Use InlineData"],
+    "answer": 1,
+    "explanation": "Test framework ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `nunit`?",
+    "options": ["Yes", "No", "Only Test", "C# 12+"],
+    "answer": 1,
+    "explanation": "No runtime."
+  },
+  {
+    "q": "What is `volatile` in `benchmark`?",
+    "options": ["On field", "Not used", "On result", "Use BenchmarkDotNet"],
+    "answer": 1,
+    "explanation": "Uses `volatile` for accuracy."
+  },
+  {
+    "q": "Can `nullable` be used with `analyzers`?",
+    "options": ["Yes", "No", "Only CA", "C# 11+"],
+    "answer": 0,
+    "explanation": "Analyzers enforce nullability."
+  },
+  {
+    "q": "What is `init` in `roslyn`?",
+    "options": ["For syntax", "For semantic", "Both", "Neither"],
+    "answer": 2,
+    "explanation": "Used in analyzer models."
+  },
+  {
+    "q": "Is `null!` needed in `code fix`?",
+    "options": ["Yes", "No", "Only document", "Use provider"],
+    "answer": 1,
+    "explanation": "Analyzer ensures non-null."
+  },
+  {
+    "q": "Can `required` be used in `source gen`?",
+    "options": ["Yes", "No", "Only partial", "C# 11+"],
+    "answer": 0,
+    "explanation": "Generator can emit."
+  },
+  {
+    "q": "What is `volatile` in `diagnostics`?",
+    "options": ["On counter", "Not used", "On event", "Use EventSource"],
+    "answer": 1,
+    "explanation": "Uses `Interlocked`."
+  },
+  {
+    "q": "Can `nullable` be used with `com`?",
+    "options": ["Yes", "No", "Only interface", "C# 11+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `init` in `win32`?",
+    "options": ["For struct", "For handle", "Both", "Neither"],
+    "answer": 0,
+    "explanation": "Used in P/Invoke structs."
+  },
+  {
+    "q": "Is `null!` needed in `pinvoke`?",
+    "options": ["Yes", "No", "Only IntPtr", "Use Marshal"],
+    "answer": 1,
+    "explanation": "Marshal handles null."
+  },
+  {
+    "q": "Can `required` be used in `unsafe`?",
+    "options": ["Yes", "No", "Only pointer", "C# 12+"],
+    "answer": 0,
+    "explanation": "Supported."
+  },
+  {
+    "q": "What is `volatile` in `fixed`?",
+    "options": ["Allowed", "Not allowed", "Only pointer", "C# 11+"],
+    "answer": 0,
+    "explanation": "`fixed (volatile int* p = &x)`"
+  },
+  {
+    "q": "Can `nullable` be used with `stackalloc`?",
+    "options": ["Yes", "No", "Only span", "C# 11+"],
+    "answer": 1,
+    "explanation": "Returns `Span<T>`."
+  },
+  {
+    "q": "What is `init` in `span`?",
+    "options": ["Not allowed", "Allowed", "Only readonly", "C# 11+"],
+    "answer": 0,
+    "explanation": "`Span<T>` is `ref struct` - no `init`."
+  },
+  {
+    "q": "Is `null!` needed in `unsafe`?",
+    "options": ["Yes", "No", "Only pointer", "Use fixed"],
+    "answer": 1,
+    "explanation": "Pointer semantics."
+  },
+  {
+    "q": "Can `required` be used in `ref struct`?",
+    "options": ["Yes", "No", "Only span", "C# 12+"],
+    "answer": 1,
+    "explanation": "Not supported."
+  }
+]
 
 }

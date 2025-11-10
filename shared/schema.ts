@@ -2,6 +2,8 @@ import { z } from "zod";
 
 export const quizTopics = [
   "C# Basics",
+  "Control Flows C#",
+  "C# Core",
   "ASP.NET Core",
   "Entity Framework",
   "LINQ",
