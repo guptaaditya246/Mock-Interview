@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Quiz from "@/pages/quiz";
 import Results from "@/pages/results";
 import NotFound from "@/pages/not-found";
+import TopicPage from "./pages/topic";
 
 function Router() {
   return (
@@ -15,6 +16,16 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
       <Route path="/results" component={Results} />
+
+      <Route path="/csharp_basics" component={TopicPage} />
+      <Route path="/control_flows_csharp" component={TopicPage} />
+      <Route path="/aspdotnet_core" component={TopicPage} />
+      <Route path="/entity_framework" component={TopicPage} />
+      <Route path="/linq" component={TopicPage} />
+      <Route path="/dotnet9_features" component={TopicPage} />
+      <Route path="/aspdotnet_middleware" component={TopicPage} />
+      <Route path="/csharp_core" component={TopicPage} />
+
       <Route component={NotFound} />
     </Switch>
   );

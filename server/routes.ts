@@ -34,7 +34,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     
     if (!topic || !quizTopics.includes(topic as any)) {
-      
+      console.log("Invalid topic requested:", topic);
       return res.status(400).json({ error: "Invalid topic" });
     }
 
@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       .replace(/\s+/g, "_")
       .replace(/\./g, "");
     const allQuestions = questionsData[topicKey] || [];
-
+    console.log(`Fetched ${allQuestions.length} questions for topic: ${topicKey}`);
     if (allQuestions.length === 0) {
       return res.status(404).json({ error: "No questions found for this topic" });
     }

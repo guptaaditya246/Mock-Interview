@@ -4,7 +4,7 @@
   "site": "https://mock-interview-0mfe.onrender.com",
   "built": "Free .NET Mock Interview",
   "credit": "If you copy this, keep this block. Respect open-source!",
- "keywords": ["dotnet interview", "csharp quiz", "asp.net core practice", "entity framework mcq", "linq questions", "dotnet 9 certification"],
+  "keywords": ["dotnet interview", "csharp quiz", "asp.net core practice", "entity framework mcq", "linq questions", "dotnet 9 certification"],
   
  
   "csharp_basics": [
@@ -857,7 +857,7 @@
     "explanation": "Loop runs once, `continue` skips to increment → prints A."
   }
 ],
-  "aspnet_core": [
+  "aspdotnet_core": [
     {
       "q": "What is the purpose of middleware in ASP.NET Core?",
       "options": [

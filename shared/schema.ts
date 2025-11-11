@@ -7,7 +7,7 @@ export const quizTopics = [
   "ASP.NET Core",
   "Entity Framework",
   "LINQ",
-  ".NET 9 Features",
+  ".NET9 Features",
   "ASP.NET Core Middleware & Pipeline"
 ] as const;
 

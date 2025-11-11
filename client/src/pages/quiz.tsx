@@ -20,14 +20,52 @@ export default function Quiz() {
   const [isAnswerLocked, setIsAnswerLocked] = useState(false);
   const [showQuitDialog, setShowQuitDialog] = useState(false);
 
-  const quizConfig = JSON.parse(
-    sessionStorage.getItem("quizConfig") || "{}"
-  ) as QuizConfig;
+  const topicMap = {
+  "csharp_basics": "C# Basics",
+  "control_flows_csharp": "Control Flows C#",
+  "aspdotnet_core": "ASP.NET Core",
+  "entity_framework": "Entity Framework",
+  "linq": "LINQ",
+  "dotnet9_features": ".NET9 Features",
+  "aspdotnet_middleware": "ASP.NET Core Middleware & Pipeline",
+  "csharp_core": "C# Core",
+} as const;
 
-  if (!quizConfig.topic) {
-    setLocation("/");
-    return null;
+  // const quizConfig = JSON.parse(
+  //   sessionStorage.getItem("quizConfig") || "{}"
+  // ) as QuizConfig;
+
+  // if (!quizConfig.topic) {
+  //   setLocation("/");
+  //   return null;
+  // }
+
+  const [quizConfig, setQuizConfig] = useState<QuizConfig | null>(() => {
+  const stored = sessionStorage.getItem("quizConfig");
+  return stored ? (JSON.parse(stored) as QuizConfig) : null;
+});
+
+useEffect(() => {
+  if (!quizConfig?.topic) {
+    const topicFromPath = window.location.pathname.replace("/", "");
+    const topic = topicMap[topicFromPath as keyof typeof topicMap];
+    if (topic) {
+      const newConfig = { topic: topic as QuizConfig["topic"], questionCount: 10 };
+      sessionStorage.setItem("quizConfig", JSON.stringify(newConfig));
+      setQuizConfig(newConfig);
+    } else {
+      setLocation("/");
+    }
   }
+}, [quizConfig, setLocation]);
+
+if (!quizConfig?.topic) {
+  return (
+    <div className="min-h-screen flex items-center justify-center text-muted-foreground">
+      Redirecting...
+    </div>
+  );
+}
 
   const { data: questions, isLoading } = useQuery<Question[]>({
     queryKey: ["/api/questions", quizConfig.topic, quizConfig.questionCount],
