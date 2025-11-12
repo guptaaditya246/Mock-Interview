@@ -82,11 +82,11 @@ app.get('/wake', (_req: Request, res: Response) => {
   // }, () => {
   //   log(`serving on port ${port}`);
   // });
-  const port = Number(process.env.PORT) || 1999;
+  const port = process.env.NODE_ENV === "development" ? 1999 : 3000;
 
 server.listen(port, () => {
-  console.log(`🚀 QUIZ LIVE → http://localhost:${port}`);
-  console.log(`🚀 .NET Quiz LIVE | Built by @thelifesyntax | https://mock-interview-0mfe.onrender.com`);
-  console.log(`Press Ctrl+C to stop`);
+  // console.log(`🚀 QUIZ LIVE → http://localhost:${port}`);
+  // console.log(`🚀 .NET Quiz LIVE | Built by @thelifesyntax | https://mock-interview-0mfe.onrender.com`);
+  // console.log(`Press Ctrl+C to stop`);
 });
 })();

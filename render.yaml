@@ -3,6 +3,7 @@ services:
     name: MockDotNet-Client
     env: static
     buildCommand: npm run build
+    startCommand: npm start
     staticPublishPath: dist
     routes:
       - type: rewrite

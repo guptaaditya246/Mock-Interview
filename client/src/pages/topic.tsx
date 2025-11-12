@@ -1,10 +1,10 @@
-// client/src/pages/topic.tsx → PURA FILE REPLACE KAR DE
+
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
 const topicMap: Record<string, {
   topic: string;
-  count: 10;  // ← FIXED 10 QUESTIONS
+  count: 10;  
   title: string;
   description: string;
 }> = {
@@ -65,10 +65,10 @@ export default function TopicPage() {
     const path = location.slice(1);
     const config = topicMap[path];
 
-    console.log("Current location path:", path);
-    console.log("Location :", location);
-    console.log("Topic map keys:", Object.keys(topicMap));
-    console.log("Config found for this path:", config);
+    // console.log("Current location path:", path);
+    // console.log("Location :", location);
+    // console.log("Topic map keys:", Object.keys(topicMap));
+    // console.log("Config found for this path:", config);
 
     if (config) {
       document.title = config.title;
@@ -88,5 +88,5 @@ export default function TopicPage() {
     }
   }, [location, setLocation]);
 
-  return null; // Renders nothing as it redirects immediately
+  return null; 
 }

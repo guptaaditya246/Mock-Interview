@@ -35,13 +35,12 @@ function WorkInProgressPopup() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Force show on every load
+   
     const hasSeen = localStorage.getItem('wip-seen-nov2025');
     if (!hasSeen) {
       setShow(true);
     }
-  }, []); // empty dependency = runs once per mount
-
+  }, []); 
   if (!show) return null;
 
   const handleOk = () => {
