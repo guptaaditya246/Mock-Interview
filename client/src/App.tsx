@@ -19,11 +19,11 @@ function Router() {
 
       <Route path="/csharp_basics" component={TopicPage} />
       <Route path="/control_flows_csharp" component={TopicPage} />
-      <Route path="/aspdotnet_core" component={TopicPage} />
-      <Route path="/entity_framework" component={TopicPage} />
-      <Route path="/linq" component={TopicPage} />
+      <Route path="/csharp_aspdotnet_core" component={TopicPage} />
+      <Route path="/csharp_entity_framework" component={TopicPage} />
+      <Route path="/csharp_linq" component={TopicPage} />
       <Route path="/dotnet9_features" component={TopicPage} />
-      <Route path="/aspdotnet_middleware" component={TopicPage} />
+      <Route path="/csharp_aspdotnet_middleware" component={TopicPage} />
       <Route path="/csharp_core" component={TopicPage} />
 
       <Route component={NotFound} />

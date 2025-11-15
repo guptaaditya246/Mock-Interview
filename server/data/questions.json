@@ -857,7 +857,7 @@
     "explanation": "Loop runs once, `continue` skips to increment → prints A."
   }
 ],
-  "aspdotnet_core": [
+  "csharp_aspdotnet_core": [
     {
       "q": "What is the purpose of middleware in ASP.NET Core?",
       "options": [
@@ -1101,7 +1101,7 @@
       "explanation": "Endpoint routing decouples the selection of an endpoint from the execution of that endpoint, enabling middleware to see which endpoint will be executed."
     }
   ],
-  "entity_framework": [
+  "csharp_entity_framework": [
     {
       "q": "What is Entity Framework Core?",
       "options": [
@@ -1803,7 +1803,7 @@
     }
   
   ],
-  "linq": [
+  "csharp_linq": [
     {
       "q": "What does LINQ stand for?",
       "options": [
@@ -2732,7 +2732,7 @@
     }
   ],
 
-  "aspdotnet_core_middleware_and_pipeline": [
+  "csharp_aspdotnet_core_middleware_and_pipeline": [
     {
       "q": "In an enterprise e-commerce platform, you need to log every incoming request with correlation ID for distributed tracing. Where should you place this middleware in the pipeline?",
       "options": [

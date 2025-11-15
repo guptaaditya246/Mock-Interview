@@ -4,11 +4,11 @@ export const quizTopics = [
   "C# Basics",
   "Control Flows C#",
   "C# Core",
-  "ASP.NET Core",
-  "Entity Framework",
-  "LINQ",
+  "C# ASP.NET Core",
+  "C# Entity Framework",
+  "C# LINQ",
   ".NET9 Features",
-  "ASP.NET Core Middleware & Pipeline"
+  "C# ASP.NET Core Middleware & Pipeline"
 ] as const;
 
 

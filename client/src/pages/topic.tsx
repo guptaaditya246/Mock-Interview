@@ -26,20 +26,20 @@ const topicMap: Record<string, {
     title: "C# Core Advanced: 10 Questions in 3 Minutes (Direct Start) - MockDotNet.dev",
     description: "Free C# Core quiz. No login required. 10 quick questions, instant feedback. Go!"
   },
-  "aspdotnet_core": {
-    topic: "ASP.NET Core",
+  "csharp_aspdotnet_core": {
+    topic: "C# ASP.NET Core",
     count: 10,
     title: "ASP.NET Core: 10 Questions in 3 Minutes (No Signup) - MockDotNet.dev",
     description: "Free ASP.NET Core quiz. No login, no signup. 10 questions, direct start!"
   },
-  "entity_framework": {
-    topic: "Entity Framework",
+  "csharp_entity_framework": {
+    topic: "C# Entity Framework",
     count: 10,
     title: "Entity Framework: 10 Questions in 3 Minutes (Instant) - MockDotNet.dev",
     description: "Free EF quiz. No signup, no email. 10 questions, instant answers. Start now!"
   },
-  "linq": {
-    topic: "LINQ",
+  "csharp_linq": {
+    topic: "C# LINQ",
     count: 10,
     title: "LINQ: 10 Questions in 3 Minutes (No Login) - MockDotNet.dev",
     description: "Free LINQ quiz. No login, no signup. 10 quick questions. Start instantly!"
@@ -50,8 +50,8 @@ const topicMap: Record<string, {
     title: ".NET 9 Features: 10 Questions in 3 Minutes (Direct) - MockDotNet.dev",
     description: "Free .NET 9 quiz. No signup, no email. 10 fresh questions for 2025 interviews!"
   },
-  "aspdotnet_middleware": {
-    topic: "ASP.NET Core Middleware & Pipeline",
+  "csharp_aspdotnet_middleware": {
+    topic: "C# ASP.NET Core Middleware & Pipeline",
     count: 10,
     title: "ASP.NET Middleware: 10 Questions in 3 Minutes (No Login) - MockDotNet.dev",
     description: "Free Middleware quiz. No signup, no email. 10 questions, instant start!"

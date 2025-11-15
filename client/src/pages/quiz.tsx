@@ -23,11 +23,11 @@ export default function Quiz() {
   const topicMap = {
   "csharp_basics": "C# Basics",
   "control_flows_csharp": "Control Flows C#",
-  "aspdotnet_core": "ASP.NET Core",
-  "entity_framework": "Entity Framework",
-  "linq": "LINQ",
+  "csharp_aspdotnet_core": "C# ASP.NET Core",
+  "csharp_entity_framework": "C# Entity Framework",
+  "csharp_linq": "C# LINQ",
   "dotnet9_features": ".NET9 Features",
-  "aspdotnet_middleware": "ASP.NET Core Middleware & Pipeline",
+  "csharp_aspdotnet_middleware": "C# ASP.NET Core Middleware & Pipeline",
   "csharp_core": "C# Core",
 } as const;
 
