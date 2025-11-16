@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.mockdotnet.dev/</loc><priority>1.0</priority></url>
+  <url><loc>https://mockdotnet.dev/</loc><priority>1.0</priority></url>
   <url>
-    <loc>https://www.mockdotnet.dev/</loc>
+    <loc>https://mockdotnet.dev/</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_basics</loc>
+    <loc>https://mockdotnet.dev/csharp_basics</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/control_flows_csharp</loc>
+    <loc>https://mockdotnet.dev/control_flows_csharp</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_core</loc>
+    <loc>https://mockdotnet.dev/csharp_core</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_aspdotnet_core</loc>
+    <loc>https://mockdotnet.dev/csharp_aspdotnet_core</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_entity_framework</loc>
+    <loc>https://mockdotnet.dev/csharp_entity_framework</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_linq</loc>
+    <loc>https://mockdotnet.dev/csharp_linq</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/dotnet9_features</loc>
+    <loc>https://mockdotnet.dev/dotnet9_features</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/csharp_aspdotnet_middleware</loc>
+    <loc>https://mockdotnet.dev/csharp_aspdotnet_middleware</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/about</loc>
+    <loc>https://mockdotnet.dev/about</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/privacy</loc>
+    <loc>https://mockdotnet.dev/privacy</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mockdotnet.dev/contact</loc>
+    <loc>https://mockdotnet.dev/contact</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
