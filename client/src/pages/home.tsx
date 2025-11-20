@@ -128,7 +128,7 @@ function WorkInProgressPopup() {
       </header>
 
       {/* AdSense Top Banner */}
-      <div className="py-6">
+      <div className="py-6 hidden">
         <AdSensePlaceholder variant="banner" />
       </div>
 

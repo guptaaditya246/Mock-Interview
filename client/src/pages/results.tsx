@@ -159,7 +159,8 @@ export default function Results() {
           </Card>
 
           {/* AdSense Rectangle - Desktop Right, Mobile Below */}
-          <div className="flex justify-center lg:hidden">
+          {/* <div className="flex justify-center lg:hidden hidden"> */}
+          <div className="py-6 hidden">
             <AdSensePlaceholder variant="rectangle" />
           </div>
 
@@ -261,7 +262,8 @@ export default function Results() {
             </div>
 
             {/* Sidebar AdSense - Desktop Only */}
-            <div className="hidden lg:block">
+            {/* <div className="hidden lg:block hidden" > */}
+              <div className="py-6 hidden">
               <div className="sticky top-24">
                 <AdSensePlaceholder variant="rectangle" />
               </div>
