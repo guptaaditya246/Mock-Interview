@@ -109,7 +109,7 @@ function WorkInProgressPopup() {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between max-w-7xl">
           <div className="flex items-center gap-2">
             <Code2 className="w-6 h-6 text-primary" />
-            <span className="font-bold text-lg">.NET Quiz</span>
+            <span className="font-bold text-lg">MockDotNet</span>
           </div>
           <Button
             size="icon"
