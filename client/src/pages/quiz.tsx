@@ -9,6 +9,8 @@ import { type QuizConfig, type Question, type QuizAnswer } from "@shared/schema"
 import { useQuery } from "@tanstack/react-query";
 import { Moon, Sun, ChevronLeft, ChevronRight, SkipForward, Timer, Code2 } from "lucide-react";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Light theme; swap for dark if needed
 
 export default function Quiz() {
   const [, setLocation] = useLocation();
@@ -189,6 +191,85 @@ if (!quizConfig?.topic) {
   const timerColor = timeRemaining <= 5 ? "text-destructive" : timeRemaining <= 10 ? "text-warning" : "text-primary";
   const timerPercentage = (timeRemaining / 30) * 100;
 
+  const renderQuestion = (question: string) => {
+  // First, handle triple backticks for blocks (priority)
+  let parts = question.split(/```(\w+)?\n?([^`]+)```/g); // Captures lang (optional), code
+  if (parts.length > 1) {
+    // Rebuild with blocks; fallback to single if no triples
+    return parts.map((part, i) => {
+      if (i % 3 === 2) { // Code parts (every 3rd: lang?, code, closing)
+        const lang = parts[i - 1] || 'csharp'; // Default C#
+        return (
+          <SyntaxHighlighter
+            key={i}
+            language={lang}
+            style={oneLight}
+            customStyle={{
+              borderRadius: '0.5rem',
+              margin: '0.5rem 0',
+              padding: '1rem',
+              backgroundColor: '#f8fafc', // Tailwind slate-50 vibe
+              border: '1px solid #e2e8f0', // slate-200
+              fontSize: '0.875rem', // text-sm
+            }}
+            showLineNumbers={part.includes('\n')}
+            wrapLongLines={true}
+            lineNumberStyle={{ color: '#94a3b8' }} // Muted for numbers
+          >
+            {part.trim()} // Trim any extra spaces
+          </SyntaxHighlighter>
+        );
+      }
+      return <span key={i} className="inline">{part}</span>;
+    });
+  }
+
+  // Fallback: Single backticks for inlines/blocks
+  parts = question.split(/`([^`]+)`/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? ( // Code part
+      (() => {
+        const code = part.trim();
+        const isShortInline = code.length < 20 && !code.includes('\n');
+        if (isShortInline) {
+          // Inline badge: No highlighter (too heavy), just styled code
+          return (
+            <code
+              key={i}
+              className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded-md font-mono text-sm border border-gray-200 inline-block mx-1"
+            >
+              {code}
+            </code>
+          );
+        } else {
+          // Full block
+          return (
+            <SyntaxHighlighter
+              key={i}
+              language="csharp"
+              style={oneLight}
+              customStyle={{
+                borderRadius: '0.5rem',
+                margin: '0.5rem 0',
+                padding: '1rem',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                fontSize: '0.875rem',
+              }}
+              showLineNumbers={code.includes('\n')}
+              wrapLongLines={true}
+              lineNumberStyle={{ color: '#94a3b8' }}
+            >
+              {code}
+            </SyntaxHighlighter>
+          );
+        }
+      })()
+    ) : (
+      <span key={i} className="inline">{part}</span>
+    )
+  );
+};
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -287,7 +368,8 @@ if (!quizConfig?.topic) {
           <Card className="shadow-lg">
             <CardHeader className="pb-4">
               <h2 className="text-xl md:text-2xl font-medium leading-relaxed" data-testid="text-question">
-                {currentQuestion.q}
+                {/* {currentQuestion.q} */}
+                {renderQuestion(currentQuestion.q)}
               </h2>
             </CardHeader>
             <CardContent className="space-y-3">
