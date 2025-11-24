@@ -132,7 +132,7 @@
       "q": "You're reading user input: `string input = Console.ReadLine();`. How to safely convert to int?",
       "options": ["int num = (int)input;", "int num = int.Parse(input);", "int.TryParse(input, out int num);", "int num = Convert.ToInt32(input);"],
       "answer": 2,
-      "explanation": "`TryParse` is safe — returns `false` on invalid input instead of throwing.\n```csharp\nif (!int.TryParse(input, out int num)) { /* handle error */ }\n```"
+      "explanation": "`TryParse` is safe - returns `false` on invalid input instead of throwing.\n```csharp\nif (!int.TryParse(input, out int num)) { /* handle error */ }\n```"
     },
     {
       "q": "What will `var x = 5; var y = x is int;` output for `y`?",
@@ -228,7 +228,7 @@
       "q": "In a loop processing 1 million records, you want to skip null entries. Which is efficient?",
       "options": ["if (item == null) { continue; }", "if (item != null) { process; }", "Both same", "Use LINQ .Where(x => x != null)"],
       "answer": 0,
-      "explanation": "`continue` skips rest of iteration early — slightly more efficient."
+      "explanation": "`continue` skips rest of iteration early - slightly more efficient."
     },
     {
       "q": "What is the scope of a variable declared inside `if` block?",
@@ -294,7 +294,7 @@
       "q": "You're validating email in registration form. Which check is mandatory first?",
       "options": ["Length > 5", "Contains @", "if (string.IsNullOrWhiteSpace(email)) return false;", "Regex match"],
       "answer": 2,
-      "explanation": "Null/empty check first — avoids `NullReferenceException`."
+      "explanation": "Null/empty check first - avoids `NullReferenceException`."
     },
     {
       "q": "What will `int x = 5; int y = x+++x;` result in?",
@@ -346,7 +346,7 @@
     },
     {
       "q": "Which keyword forces garbage collection?",
-      "options": ["GC.Collect()", "finalize", "dispose", "None — cannot force"],
+      "options": ["GC.Collect()", "finalize", "dispose", "None - cannot force"],
       "answer": 0,
       "explanation": "`GC.Collect()` requests collection, but not guaranteed."
     },
@@ -420,7 +420,7 @@
       "q": "What does `ref` keyword do in method parameter?",
       "options": ["Passes by reference", "Passes by value", "Creates copy", "Prevents modification"],
       "answer": 0,
-      "explanation": "`ref` passes reference to variable — modifications affect caller."
+      "explanation": "`ref` passes reference to variable - modifications affect caller."
     },
     {
       "q": "You're optimizing: `for(int i=0; i<list.Count; i++)`. Better for `List<T>`?",
@@ -433,6 +433,548 @@
       "options": ["virtual", "override", "sealed", "abstract"],
       "answer": 2,
       "explanation": "`sealed override` prevents further overriding."
+    }
+  ],
+  "csharp_classes": [
+    {
+      "q": "When you declare a class in C#, what happens if you don't specify an access modifier?",
+      "options": ["It's public by default", "It's private by default", "It causes a compilation error", "It's internal by default"],
+      "answer": 3,
+      "explanation": "Top-level classes without an access modifier are internal by default, meaning they're accessible only within the same assembly. This is a common gotcha for juniors who assume public visibility, leading to unexpected linking errors in multi-project solutions. Per the C# spec, this promotes encapsulation in larger codebases."
+    },
+    {
+      "q": "What's the difference between a field and a property in a C# class?",
+      "options": ["Fields store data directly; properties provide controlled access", "Properties are always static; fields are instance", "Fields can have getters; properties cannot", "There's no functional difference"],
+      "answer": 0,
+      "explanation": "Fields are simple variables for data storage, while properties add logic like validation via getters/setters, enhancing encapsulation. In real-world apps, mistaking them leads to brittle code-e.g., exposing a field publicly invites direct manipulation without checks. Best practice: Use properties for all external data access as recommended by Microsoft docs."
+    },
+    {
+      "q": "If you create two instances of the same class and assign one to another variable, what happens when you modify a property on one?",
+      "options": ["Both instances change", "Only the original changes", "It throws a NullReferenceException", "The assignment fails"],
+      "answer": 0,
+      "explanation": "Classes are reference types, so assigning one instance to another variable points both to the same object in memory-modifying one affects both. This trips up beginners from value-type languages, causing bugs like unintended state sharing in collections. Understanding this prevents subtle issues in multi-threaded scenarios."
+    },
+    {
+      "q": "What does the `static` keyword do when applied to a class member?",
+      "options": ["It makes it thread-safe", "It belongs to the type, not instances", "It prevents inheritance", "It initializes lazily"],
+      "answer": 1,
+      "explanation": "Static members are shared across all instances and accessed via the class name, useful for utilities like Math.PI. Juniors often confuse them with instance members, leading to errors in singleton patterns or config holders. Docs emphasize statics for non-instance data to avoid memory bloat."
+    },
+    {
+      "q": "In a class hierarchy, what does the `base` keyword refer to?",
+      "options": ["The current instance", "The parent class", "A static base class", "An abstract base"],
+      "answer": 1,
+      "explanation": "The `base` keyword accesses members of the immediate base class, essential for calling parent constructors or overriding methods. Forgetting it in constructors causes incomplete initialization, a pitfall in EF entity hierarchies. It's a core inheritance tool per C# language reference."
+    },
+    {
+      "q": "Why might you use a `sealed` class in C#?",
+      "options": ["To allow multiple inheritance", "To prevent further inheritance", "To make it thread-safe", "To enable partial definitions"],
+      "answer": 1,
+      "explanation": "Sealing a class stops it from being inherited, improving performance and security by avoiding unintended extensions. In libraries, unsealed classes invite misuse; sealing atomic units like String prevents tampering. Real-world: Use for final DTOs in APIs to enforce contracts."
+    },
+    {
+      "q": "What happens if you forget to call the base constructor in a derived class?",
+      "options": ["It calls the parameterless base constructor automatically", "Compilation error", "Runtime exception", "The object is uninitialized"],
+      "answer": 0,
+      "explanation": "If no explicit constructor call, C# implicitly invokes the base class's parameterless constructor, which must exist. This surprises devs when the base lacks one, causing errors-common in custom exceptions. Always define explicit chains for clarity, as per best practices."
+    },
+    {
+      "q": "In a C# class, what's the purpose of the `this` keyword?",
+      "options": ["To create a new instance", "To refer to the current instance", "To access static members", "To hide base members"],
+      "answer": 1,
+      "explanation": " `this` disambiguates instance members from parameters and refers to the current object, vital in chaining methods. Beginners overlook it in constructors, leading to self-assignment bugs. It's key for fluent APIs in real projects like validation chains."
+    },
+    {
+      "q": "Can a C# class implement multiple interfaces, and how does that differ from inheritance?",
+      "options": ["Yes, unlike single class inheritance", "No, only one interface allowed", "Interfaces replace inheritance", "Multiple inheritance is supported via classes"],
+      "answer": 0,
+      "explanation": "Classes support multiple interfaces for polymorphism without the diamond problem of multiple inheritance, which C# avoids for classes. This flexibility shines in plugging services into ASP.NET DI, but confusing it leads to rigid designs. Docs highlight interfaces for contracts over implementation inheritance."
+    },
+    {
+      "q": "What is a constructor in a C# class used for?",
+      "options": ["To destroy the object", "To initialize instance members", "To define static data", "To handle exceptions"],
+      "answer": 1,
+      "explanation": "Constructors set up an object's state upon creation, running before the instance is usable. Skipping initialization causes null refs in production-e.g., un-set DB connections. Parameterless ones are default if none defined, per language spec."
+    },
+    {
+      "q": "If a class has a static constructor, when is it invoked?",
+      "options": ["On first instance creation", "On every instantiation", "Manually by the developer", "Never, it's optional"],
+      "answer": 0,
+      "explanation": "Static constructors run once, before the first use of the type or instance, for one-time setup like logging config. Misuse causes lazy-loading delays in web apps; juniors forget it's parameterless and private. Best for thread-safe init per docs."
+    },
+    {
+      "q": "What's the output if you have a class with a readonly field set in the constructor?",
+      "options": ["It can be changed later", "It's immutable after constructor", "It throws at assignment", "Readonly applies only to statics"],
+      "answer": 1,
+      "explanation": "Readonly fields are settable only in declaration or constructor, enforcing immutability post-init. This prevents accidental mutations in shared state, a pitfall in concurrent code. Real-world: Ideal for config values in services."
+    },
+    {
+      "q": "In inheritance, what does `virtual` on a base method enable?",
+      "options": ["Hiding in derived classes", "Overriding in derived classes", "Static access only", "Sealing the method"],
+      "answer": 1,
+      "explanation": "Virtual methods allow polymorphic overriding with `override`, central to extensible designs like strategy patterns. Without it, derived `new` hides instead, breaking polymorphism-a common interview trap. Use for behaviors that subclasses customize."
+    },
+    {
+      "q": "Why use properties over public fields in class design?",
+      "options": ["Properties are faster", "They allow validation and lazy loading", "Fields can't be inherited", "No difference in access speed"],
+      "answer": 1,
+      "explanation": "Properties encapsulate logic like get/set validation, unlike direct field access. In EF entities, this catches invalid data early, avoiding DB errors. Auto-properties simplify while keeping flexibility, per FxCop rules."
+    },
+    {
+      "q": "What access level does `protected` grant in a C# class?",
+      "options": ["Assembly-wide access", "Within class and derived classes", "Public to all", "Private to the class"],
+      "answer": 1,
+      "explanation": "Protected members are accessible in the class and subclasses, supporting inheritance without full exposure. Exposing too much via public leads to fragile base class issues in teams. Key for internal state in base classes like controllers."
+    },
+    {
+      "q": "Can a struct inherit from a class, or vice versa?",
+      "options": ["Yes, both ways", "No, structs can't inherit classes", "Only classes inherit structs", "Inheritance is bidirectional"],
+      "answer": 1,
+      "explanation": "Structs are value types and can't inherit classes (or anything), while classes can only inherit other classes-preventing mixing semantics. This confuses C++ migrants, causing stack/heap mismatches. Classes for complex objects; structs for primitives."
+    },
+    {
+      "q": "In a derived class, what does `new` do to a method compared to `override`?",
+      "options": ["It calls the base", "It hides the base declaration", "It makes it virtual", "It seals it"],
+      "answer": 1,
+      "explanation": " `new` hides the base method at compile-time, not polymorphically-use `override` for runtime binding. Hiding breaks LSP in collections, a pitfall in plugin systems. Always prefer virtual/override for extensibility."
+    },
+    {
+      "q": "What's an abstract class in C#, and when would you use one?",
+      "options": ["A class with only static members", "A base class that can't be instantiated", "A sealed derived class", "A class with multiple constructors"],
+      "answer": 1,
+      "explanation": "Abstract classes provide partial implementation and can't be instantiated, forcing subclasses to complete it. Use for shared logic in hierarchies like payment processors. Unlike interfaces, they allow state-common in mid-level design tasks."
+    },
+    {
+      "q": "If you define a destructor in a C#, what is it called?",
+      "options": ["~ClassName()", "delete ClassName()", "dispose()", "finalize()"],
+      "answer": 0,
+      "explanation": "Destructors (~T()) run by GC for cleanup, but avoid them-prefer IDisposable for deterministic release. Rarely used, they surprise with non-deterministic timing, delaying resources in servers. Docs recommend patterns over raw finalizers."
+    },
+    {
+      "q": "In a class, how do you expose a private field safely?",
+      "options": ["Make it public", "Use a public property", "Use internal access", "Static getter"],
+      "answer": 1,
+      "explanation": "Public properties with private backing fields encapsulate access, allowing future changes without breaking clients. Direct public fields couple tightly, causing refactors in growing apps. Encapsulation is OOP pillar per SOLID."
+    },
+    {
+      "q": "What happens when you instantiate an abstract class?",
+      "options": ["It compiles but fails at runtime", "Compilation error", "It runs the base constructor only", "Abstract classes auto-instantiate"],
+      "answer": 1,
+      "explanation": "Abstract classes can't be instantiated directly; you must derive a concrete subclass. This enforces abstraction, preventing half-baked objects-a gotcha in hurried prototyping. Use for templates like base controllers in ASP.NET."
+    },
+    {
+      "q": "Why might a class with many static members indicate poor design?",
+      "options": ["Statics are slow", "It violates single responsibility", "It can't be mocked", "Memory leaks guaranteed"],
+      "answer": 2,
+      "explanation": "Static-heavy classes resist testing via mocking, complicating unit tests in TDD teams. Real-world: God classes emerge, hard to refactor-favor instances for dependency injection. Promotes procedural over OOP style."
+    },
+    {
+      "q": "In a scenario where you're building a User class for an ASP.NET app, why add a private constructor?",
+      "options": ["To prevent instantiation", "To enforce factory creation", "To speed up creation", "To hide from EF"],
+      "answer": 1,
+      "explanation": "Private constructors force use of static factories for controlled creation, like validating inputs upfront. In auth systems, this avoids invalid users slipping through. Ties to builder patterns for complex objects."
+    },
+    {
+      "q": "What's the default access for class members if unspecified?",
+      "options": ["Public", "Private", "Internal", "Protected"],
+      "answer": 1,
+      "explanation": "Members default to private, promoting encapsulation by hiding implementation. Public by mistake exposes internals, a security risk in APIs. Always explicit for clarity in team code."
+    },
+    {
+      "q": "Can a C# class be both abstract and sealed?",
+      "options": ["Yes, for final implementations", "No, contradictory", "Only if no members", "Sealed makes it concrete"],
+      "answer": 1,
+      "explanation": "Abstract requires derivation; sealed prevents it-mutually exclusive. Attempting both errors at compile, catching design flaws early. Use abstract for bases, sealed for leaves."
+    },
+    {
+      "q": "In inheritance, how do you call a base class method from a derived override?",
+      "options": ["super.method()", "base.method()", "this.method()", "Parent.method()"],
+      "answer": 1,
+      "explanation": " `base.method()` invokes the parent's version, useful for extension without replacement. Omitting it loses base logic, breaking contracts in event handlers. Essential for DRY in hierarchies."
+    },
+    {
+      "q": "What is partial classes useful for in C# projects?",
+      "options": ["Splitting definition across files", "Sharing with other languages", "Lazy loading members", "Multiple inheritance"],
+      "answer": 0,
+      "explanation": "Partial classes allow splitting a class into multiple files, aiding code generation like in WinForms or EF. Without, generated code overwrites custom logic-a nightmare in maintenance. Great for separating concerns in large teams."
+    },
+    {
+      "q": "When debugging a NullReferenceException in a class property getter, what common cause related to lazy initialization?",
+      "options": ["Property is static", "Backing field not initialized", "Class is abstract", "Multiple constructors"],
+      "answer": 1,
+      "explanation": "Getters assuming initialized backing fields fail if null, especially in lazy props. In web apps, this crashes on first access-use null checks or init in ctor. Common pitfall from assuming default init."
+    },
+    {
+      "q": "Why use indexers in a C# class?",
+      "options": ["For array-like access", "To replace properties", "For static collections only", "To handle events"],
+      "answer": 0,
+      "explanation": "Indexers let classes respond to [] notation like collections, e.g., dictionary wrappers. Overusing confuses with props, but shines in custom lists. Real-world: Simplifies config access in services."
+    },
+    {
+      "q": "In a base class, what does `internal` protected allow?",
+      "options": ["Assembly and derived access", "Public inheritance only", "Private to base", "Global access"],
+      "answer": 0,
+      "explanation": "`protected internal` grants access within assembly or derived classes anywhere, balancing visibility. Misuse exposes internals cross-assembly, a DLL hell trigger. For shared frameworks."
+    },
+    {
+      "q": "What issue arises if you shadow a base property with `new` in derived?",
+      "options": ["Polymorphism breaks", "No issue, it's equivalent", "Memory leak", "Compilation warning only"],
+      "answer": 0,
+      "explanation": "Shadowing hides base via `new`, but polymorphic calls hit base-breaking expectations in casts. Common in EF when mapping inheritance, causing wrong data. Prefer override for consistency."
+    },
+    {
+      "q": "For a logging class in a microservice, why prefer instance over static methods?",
+      "options": ["Instances are faster", "For dependency injection", "Statics can't log", "To avoid GC"],
+      "answer": 1,
+      "explanation": "Instance methods enable DI for swappable loggers, like Serilog vs Console. Statics tie to concrete impl, hard to test/mock in integration. Promotes loose coupling in .NET Core."
+    },
+    {
+      "q": "What's the role of the object class in every C# class?",
+      "options": ["It's optional base", "All classes inherit from it implicitly", "For disposal only", "Static utilities"],
+      "answer": 1,
+      "explanation": "Object is the root of all classes, providing Equals, GetHashCode, ToString. Overriding them fixes default behaviors in custom types, e.g., for dict keys. Universal, per CLS."
+    },
+    {
+      "q": "In a team project, forgetting to make a base class constructor protected causes what?",
+      "options": ["Derived can't call it", "Public exposure", "No effect", "Static init fails"],
+      "answer": 0,
+      "explanation": "Private base ctors block derived explicit calls, forcing parameterless-mismatching params errors. Hits in EF base entities. Make ctors protected for inheritance flexibility."
+    },
+    {
+      "q": "Why avoid public constructors in singleton classes?",
+      "options": ["To enforce single instance via private ctor", "Public is slower", "Can't be sealed", "GC issues"],
+      "answer": 0,
+      "explanation": "Private constructors prevent direct instantiation, forcing static Instance property. Public allows multiples, defeating singleton in caches. Pattern for global state like config."
+    },
+    {
+      "q": "What does `const` vs `readonly` mean for class fields?",
+      "options": ["Const is runtime; readonly compile-time", "Const compile-time constant; readonly instance init", "Both immutable", "Const for objects only"],
+      "answer": 1,
+      "explanation": "Const are compile-time literals, shared; readonly set at runtime in ctor, per instance. Const can't be objects (null issue); use readonly for configs.  Const in loops re-evals unnecessarily."
+    },
+    {
+      "q": "In polymorphism, calling a virtual method on a base reference to derived object does what?",
+      "options": ["Calls base version", "Calls derived override", "Compilation error", "Calls static"],
+      "answer": 1,
+      "explanation": "Runtime polymorphism dispatches to derived override via vtable. Essential for plugging strategies, but forgetting virtual calls base-bug in event systems. Core OOP benefit."
+    },
+    {
+      "q": "For a data class in ASP.NET, why use init-only properties?",
+      "options": ["C# 9+ for immutable post-ctor", "Faster than set", "EF ignores them", "Static only"],
+      "answer": 0,
+      "explanation": "Init properties set only in object init or ctor, making records immutable after. Prevents mutation in DTOs, reducing concurrency bugs. Newer feature for safer APIs."
+    },
+    {
+      "q": "What's a common pitfall with nested classes in C#?",
+      "options": ["Can't access outer", "Nested are private by default", "No inheritance", "Always static"],
+      "answer": 1,
+      "explanation": "Nested classes default private, inaccessible outside-surprise for visibility. Use for helpers like comparers, but expose carefully. Limits scope intentionally."
+    },
+    {
+      "q": "Why might overriding ToString() in a class be useful in debugging?",
+      "options": ["Default shows type name only", "It serializes fully", "For JSON", "Replaces Equals"],
+      "answer": 0,
+      "explanation": "Default ToString() is '{Type}'; override for meaningful output like Id:Name. Speeds debugging lists in VS-juniors miss this, staring at hex. Best for loggable types."
+    },
+    {
+      "q": "In a derived class constructor, order of execution for base() and field init?",
+      "options": ["Field init first, then base", "Base first, then field init", "Parallel", "Undefined"],
+      "answer": 1,
+      "explanation": "Base ctor runs before field initializers in derived, ensuring parent state first. Wrong order bugs init logic, e.g., null props in EF. Spec-defined for predictability."
+    },
+    {
+      "q": "What does `internal` access mean for a class?",
+      "options": ["Visible in same assembly", "Public but sealed", "Protected only", "Global"],
+      "answer": 0,
+      "explanation": "Internal limits to assembly, hiding from other projects-great for impl details. Public by default exposes too much in NuGets. Balances reuse and encapsulation."
+    },
+    {
+      "q": "In an e-commerce app, why base a Product class on an Entity base?",
+      "options": ["For shared Id and auditing", "To make it abstract", "For multiple inheritance", "To speed queries"],
+      "answer": 0,
+      "explanation": "Base provides common props like CreatedDate, reducing duplication in EF models. Without, each entity repeats boilerplate-maintenance hell. Inheritance for shared behavior."
+    },
+    {
+      "q": "What if a class has no parameterless constructor and you try new MyClass()?",
+      "options": ["Calls static ctor", "Compilation error", "Runtime fail", "Uses default"],
+      "answer": 1,
+      "explanation": "Must explicitly call an existing ctor; no paramless means error on implicit. Catches in unit tests early. Define one or chain properly."
+    },
+    {
+      "q": "Why use `ref` in a class method parameter?",
+      "options": ["To pass by reference for mutation", "For async only", "To make it static", "For out values"],
+      "answer": 0,
+      "explanation": "Ref passes the variable location, allowing caller mutation-efficient for large structs. Confused with out (no read-before-write); use sparingly to avoid aliasing bugs. For swap-like ops."
+    },
+    {
+      "q": "In class design, what's the benefit of favoring composition over inheritance?",
+      "options": ["Reduces coupling", "Faster runtime", "Enables multiple bases", "Hides impl"],
+      "answer": 0,
+      "explanation": "Composition via fields/interfaces is flexible, avoiding deep hierarchies' fragility. Inheritance locks subtypes; real bug: Can't change base without ripple. SOLID's 'D' favors it."
+    },
+    {
+      "q": "What triggers a NullReferenceException in a static class?",
+      "options": ["Accessing null instance", "Statics can't be null", "Uninit readonly", "All members static"],
+      "answer": 1,
+      "explanation": "Pure static classes have no instances, so no null refs there-but misuse non-static members errors. Confuses when adding instance by mistake. For utilities only."
+    },
+    {
+      "q": "For Equals() override in a class, why also override GetHashCode()?",
+      "options": ["To maintain dict consistency", "Equals uses it", "For ToString", "Optional for perf"],
+      "answer": 0,
+      "explanation": "HashCode must match Equals for collections like HashSet-mismatch causes misses. Default object impl is ref-based; override for value equality.  Bugs in caching."
+    },
+    {
+      "q": "Team forgets virtual on base logger method; derived override fails how?",
+      "options": ["Hides instead of overrides", "Throws at runtime", "No call to base", "Compiles fine"],
+      "answer": 0,
+      "explanation": "Without virtual, `override` errors; use `new` to hide, losing poly. In DI chains, wrong impl called. Always virtual for extensibility."
+    },
+    {
+      "q": "What's a static class in C#, and a use case?",
+      "options": ["No instances, for helpers", "Immutable class", "Abstract statics", "Thread-only"],
+      "answer": 0,
+      "explanation": "Static classes can't be instantiated, all members static-ideal for Math or String utils. Can't inherit, so pure functions. Avoid stateful; for stateless ops."
+    },
+    {
+      "q": " Can you declare a class inside a method?",
+      "options": ["Yes, local class", "No, compile error", "Only structs", "Nested only"],
+      "answer": 1,
+      "explanation": "Local classes allowed but scoped to method-rare, for anon helpers. Visibility limits reuse. Generally prefer top-level for clarity."
+    },
+    {
+      "q": "Why might a class with finalizer (~T()) hurt performance?",
+      "options": ["GC pauses longer", "Can't be sealed", "Memory leak", "Thread block"],
+      "answer": 0,
+      "explanation": "Finalizers queue for second GC pass, delaying collection. In servers, accumulates pressure-use IDisposable. Rare need; prefer RAII patterns."
+    },
+    {
+      "q": "In ASP.NET controller base class, what common design pitfall with properties?",
+      "options": ["Not virtual for testing", "Always static", "Null init", "EF conflict"],
+      "answer": 0,
+      "explanation": "Non-virtual props can't be mocked in tests, forcing real impl. Make virtual or abstract for stubs. Ties to dependency inversion."
+    },
+    {
+      "q": "What does `new` modifier suppress in inheritance?",
+      "options": ["Warning for hiding", "Base call", "Polymorphism", "Access check"],
+      "answer": 0,
+      "explanation": "`new` explicitly hides base, suppressing hide-warning. Still not poly; document intent. Better override when possible."
+    },
+    {
+      "q": "For a config class, why use readonly auto-property?",
+      "options": ["Immutable after set", "Faster access", "Private set", "Init only"],
+      "answer": 0,
+      "explanation": "Readonly props can't change post-ctor, safe for shared configs. Prevents accidental mods in multi-thread. Like const but flexible."
+    },
+    {
+      "q": " Why are classes reference types?",
+      "options": ["Heap allocation, shared refs", "Stack only", "Value copy", "No GC"],
+      "answer": 0,
+      "explanation": "Refs point to heap objects, enabling sharing/polymorphism. Vs value copy-on-assign; confuses with structs. Allows complex graphs."
+    },
+    {
+      "q": "In EF, why base entities on a class with virtual props?",
+      "options": ["For lazy loading proxies", "Speed", "No reason", "Sealing"],
+      "answer": 0,
+      "explanation": "Virtual enables EF proxies for lazy load-non-virt skips. Common bug: Eager loads only, N+1 queries. Design for ORM."
+    },
+    {
+      "q": "What if a class implements IDisposable but forgets to call Dispose?",
+      "options": ["Resources leak", "GC handles", "Error on use", "Auto-called"],
+      "answer": 0,
+      "explanation": "Non-deterministic GC may delay release, leaking handles. Always use 'using' or finalizer. Pattern for streams/DB."
+    },
+    {
+      "q": "Migrating to records, why prefer over classes for DTOs?",
+      "options": ["Auto Equals/ToString", "Inheritance", "Mutable", "Performance"],
+      "answer": 0,
+      "explanation": "Records provide value equality, immutability out-box-less boilerplate. Classes need manual overrides; records for data carriers. C# 9+ win."
+    },
+    {
+      "q": " Multiple ctors with same sig via optional params?",
+      "options": ["Allowed, overloads", "Error, ambiguous", "No, params hide", "Static only"],
+      "answer": 1,
+      "explanation": "Optional params don't create overloads; dup sigs error. Use explicit overloads for clarity. Avoids confusion."
+    },
+    {
+      "q": "Why `internal` class in a library project?",
+      "options": ["Hide impl from consumers", "Public internal", "Test only", "Sealed default"],
+      "answer": 0,
+      "explanation": "Internal keeps helpers private to assembly, exposing only public API. Prevents misuse of internals. Clean contracts."
+    },
+    {
+      "q": "In override chain, forgetting base call loses what?",
+      "options": ["Parent logic", "No effect", "Polymorphism", "Init"],
+      "answer": 0,
+      "explanation": "Base provides setup; skipping breaks chain, e.g., unlogged events. Always call unless intentional. DRY principle."
+    },
+    {
+      "q": "What's the impact of large class files in a project?",
+      "options": ["Hard to navigate/maintain", "Slower compile", "No issue", "GC hit"],
+      "answer": 0,
+      "explanation": "Monolithic classes hinder reviews, refactoring-use partials or split. Team productivity drop. SRP violation."
+    },
+    {
+      "q": "For event handling class, why virtual OnEvent()?",
+      "options": ["Derived can override for custom", "Raise only", "Async", "Static events"],
+      "answer": 0,
+      "explanation": "Virtual allows subclass customization without field access. Standard pattern; direct += couples. Extensible."
+    },
+    {
+      "q": " Classes enable what OOP pillar?",
+      "options": ["All: abstraction, encaps, inherit, poly", "Only inheritance", "Encapsulation only", "Abstraction"],
+      "answer": 0,
+      "explanation": "Classes bundle data/methods for all pillars-key to modeling. Vs functions; structs lighter. Foundation."
+    },
+    {
+      "q": " Public field in base, derived adds prop-client sees?",
+      "options": ["Field only", "Both, confusion", "Prop shadows", "Error"],
+      "answer": 1,
+      "explanation": "No auto-shadow; both accessible, messy API. Use props throughout. Fragile base issue."
+    },
+    {
+      "q": "Why no multiple class inheritance in C#?",
+      "options": ["Avoids diamond problem", "Simpler", "No need", "Structs handle"],
+      "answer": 0,
+      "explanation": "Diamond ambiguity hard to resolve; interfaces fill gaps. Cleaner hierarchies. Language choice."
+    },
+    {
+      "q": "In DI, registering class as transient vs singleton?",
+      "options": ["New per request vs shared", "Same", "Transient slower", "Singleton only classes"],
+      "answer": 0,
+      "explanation": "Transient fresh instance; singleton shared-state matters. Wrong choice leaks or inconsistent. Scope wisely."
+    },
+    {
+      "q": " Class with only statics but non-static ctor?",
+      "options": ["Error, useless ctor", "Runs on access", "Ignored", "For init"],
+      "answer": 0,
+      "explanation": "Can't instantiate static class; ctor errors. All statics. Pure utils."
+    },
+    {
+      "q": "Base validation class, derived skips base.Validate()-risk?",
+      "options": ["Invalid objects pass", "No risk", "Throws", "Logs only"],
+      "answer": 0,
+      "explanation": "Loses checks, corrupts data in pipelines. Always chain. Contract breach."
+    },
+    {
+      "q": "Why override Equals for class in collections?",
+      "options": ["Default ref equality wrong for value", "HashCode only", "ToString suffices", "Optional"],
+      "answer": 0,
+      "explanation": "Ref eq misses semantic; value eq for dup removal. Pairs with hash. Bug source."
+    },
+    {
+      "q": "Partial class across assemblies-possible?",
+      "options": ["No, same assembly", "Yes, with internals", "Always", "Errors"],
+      "answer": 0,
+      "explanation": "All parts same assembly; cross needs other means. Limits generated code. Cohesion."
+    },
+    {
+      "q": " Encapsulation via private members prevents?",
+      "options": ["Direct state tampering", "Inheritance", "Poly", "Abstraction"],
+      "answer": 0,
+      "explanation": "Hides impl, forces API-safer changes. Vs public fields. OOP core."
+    },
+    {
+      "q": "In ctor, this.field = param shadows field init order?",
+      "options": ["No, init before ctor body", "After", "Undefined", "Error"],
+      "answer": 0,
+      "explanation": "Field inits run post-base, pre-body-order fixed. Predictable. Docs spec."
+    },
+    {
+      "q": "Why sealed override in derived?",
+      "options": ["Prevent further override", "Faster call", "No diff", "Hides"],
+      "answer": 0,
+      "explanation": "Seals chain, no deeper changes-stability. Perf minor. For final impl."
+    },
+    {
+      "q": " Static field in non-static class-shared state?",
+      "options": ["Yes, all instances share", "Per instance", "Thread local", "No"],
+      "answer": 0,
+      "explanation": "Static shared, mutations affect all-race bugs. Use instance for per-obj. Careful."
+    },
+    {
+      "q": "For API response class, why record over class?",
+      "options": ["Immutable, concise", "Mutable only", "Inheritance", "EF better"],
+      "answer": 0,
+      "explanation": "Records auto-props, equality-ideal DTOs. Less code. Modern choice."
+    },
+    {
+      "q": "What if class name same as namespace?",
+      "options": ["Legal, but confusing", "Error", "Hides ns", "Auto alias"],
+      "answer": 0,
+      "explanation": "Compiles, but readability hit-avoid. Qualify. Style guide."
+    },
+    {
+      "q": "EF entity class not virtual nav props-lazy load fails?",
+      "options": ["Yes, needs virtual", "No need", "Always eager", "Proxies off"],
+      "answer": 0,
+      "explanation": "Virtual for proxy intercession. N+1 without. ORM req."
+    },
+    {
+      "q": " Generic class constraint to class?",
+      "options": ["where T : class", "where T : struct", "No constraint", "Both"],
+      "answer": 0,
+      "explanation": "Specifies ref type-nullables. Vs struct. Flexibility."
+    },
+    {
+      "q": "Why private set in prop for class?",
+      "options": ["Read-only externally", "Full private", "Init only", "Static"],
+      "answer": 0,
+      "explanation": "Allows ctor/set but not later-semi-immutable. Balances. Common DTO."
+    },
+    {
+      "q": "Inherit from Exception for custom-why?",
+      "options": ["Standard, serializable", "Any class", "Interface only", "Sealed"],
+      "answer": 0,
+      "explanation": "Follows convention, integrates logging. Base provides stack. Best prac."
+    },
+    {
+      "q": " Abstraction via abstract class hides?",
+      "options": ["Impl details, exposes contract", "All code", "Data only", "Methods"],
+      "answer": 0,
+      "explanation": "Forces impl in derived-design by contract. Vs concrete. Layers."
+    },
+    {
+      "q": " Forgetting : base() in multi-level inherit-?",
+      "options": ["Upper bases not called", "All called", "Error", "Static runs"],
+      "answer": 0,
+      "explanation": "Chain breaks; only explicit. Init fails. Always chain."
+    },
+    {
+      "q": "Static class can't implement interface-why?",
+      "options": ["No instances to call", "Can, static impl", "Error", "Partial"],
+      "answer": 0,
+      "explanation": "Interfaces need instances; static no. Use concrete. Limitation."
+    },
+    {
+      "q": "For thread-safe class, lock on static?",
+      "options": ["Yes, for static members", "Instance lock", "No lock", "Async lock"],
+      "answer": 0,
+      "explanation": "Static lock shared; instance per-obj. Races without. Careful."
+    },
+    {
+      "q": "Why use [Serializable] on class?",
+      "options": ["BinaryFormatter compat", "JSON auto", "EF", "No need"],
+      "answer": 0,
+      "explanation": "For remoting/serial-legacy. Modern JSON. Rare now."
+    },
+    {
+      "q": "Business logic class, why not static everything?",
+      "options": ["Can't mock/test easily", "Fine", "Faster", "Memory save"],
+      "answer": 0,
+      "explanation": "DI/mocks need instances. Procedural trap. OOP."
+    },
+    {
+      "q": " Class with ref/out params in ctor-?",
+      "options": ["Legal, but unusual", "Error", "Async only", "Static no"],
+      "answer": 0,
+      "explanation": "Allows, for init out-rare. Clarity over."
+    },
+    {
+      "q": "Override == for class-why with Equals?",
+      "options": ["Operator overloading for usability", "Equals suffices", "Hash only", "ToString"],
+      "answer": 0,
+      "explanation": "== syntactic sugar; consistent with Equals. User-friendly. Pattern."
     }
   ],
   "control_flows_csharp": [
@@ -1463,7 +2005,7 @@
       "q": "What is the default lifetime of DbContext in ASP.NET Core DI?",
       "options": ["Singleton", "Transient", "Scoped", "None"],
       "answer": 2,
-      "explanation": "DbContext is registered as Scoped by default — one instance per HTTP request."
+      "explanation": "DbContext is registered as Scoped by default - one instance per HTTP request."
     },
     {
       "q": "How do you prevent N+1 query problem in EF Core?",
@@ -1478,121 +2020,121 @@
       "explanation": "[Table(\"Employees\")] maps the class to a specific database table."
     },
     {
-      "q": "Scenario: You notice slow performance when loading a list of orders with customers. What should you do first?",
+      "q": "You notice slow performance when loading a list of orders with customers. What should you do first?",
       "options": ["Add AsNoTracking()", "Use .Include(o => o.Customer)", "Enable lazy loading", "Rewrite query in SQL"],
       "answer": 1,
       "explanation": "Eager load related data using Include to avoid multiple roundtrips (N+1 problem)."
     },
     {
-      "q": "Scenario: SaveChanges() throws DbUpdateConcurrencyException. What does this mean?",
+      "q": "SaveChanges() throws DbUpdateConcurrencyException. What does this mean?",
       "options": ["Duplicate key", "Concurrency conflict detected", "Foreign key violation", "Timeout"],
       "answer": 1,
-      "explanation": "Another user modified the same row since it was loaded — optimistic concurrency failure."
+      "explanation": "Another user modified the same row since it was loaded - optimistic concurrency failure."
     },
     {
-      "q": "Scenario: A query returns outdated data even after update. What's likely wrong?",
+      "q": "A query returns outdated data even after update. What's likely wrong?",
       "options": ["Using AsNoTracking()", "Multiple DbContext instances", "Caching enabled", "Transaction isolation level"],
       "answer": 1,
       "explanation": "Updates in one DbContext are not visible to another unless refreshed or same context used."
     },
     {
-      "q": "Scenario: Migration fails with 'Cannot drop column used in index'. How to fix?",
+      "q": "Migration fails with 'Cannot drop column used in index'. How to fix?",
       "options": ["Manually edit migration", "Remove index first", "Use DropColumn anyway", "Recreate table"],
       "answer": 1,
       "explanation": "Drop dependent indexes/constraints before dropping column in migration."
     },
     {
-      "q": "Scenario: EF generates incorrect SQL JOIN due to navigation property. How to debug?",
+      "q": "EF generates incorrect SQL JOIN due to navigation property. How to debug?",
       "options": ["Enable sensitive data logging", "Use ToQueryString()", "Check migration history", "Both 1 and 2"],
       "answer": 3,
       "explanation": "Use context.Database.Log or ToQueryString() to inspect generated SQL."
     },
     {
-      "q": "Scenario: Application throws 'Connection forcibly closed' intermittently. Possible EF cause?",
+      "q": "Application throws 'Connection forcibly closed' intermittently. Possible EF cause?",
       "options": ["Long-running queries", "Not disposing DbContext", "Using Singleton DbContext", "Both 2 and 3"],
       "answer": 3,
       "explanation": "Singleton DbContext or undisposed instances exhaust connection pool."
     },
     {
-      "q": "Scenario: You need to insert 10,000 records efficiently. Best approach?",
+      "q": "You need to insert 10,000 records efficiently. Best approach?",
       "options": ["Loop with Add() and SaveChanges()", "Use AddRange() + SaveChanges()", "Bulk extensions or EF Core 7+ batching", "Write stored procedure"],
       "answer": 2,
       "explanation": "EF Core 7+ supports ExecuteUpdate/Delete; otherwise use EF Core bulk extensions."
     },
     {
-      "q": "Scenario: A property is always null after SaveChanges(). Why?",
+      "q": "A property is always null after SaveChanges(). Why?",
       "options": ["[NotMapped] attribute", "Missing setter", "Database default value", "Shadow property"],
       "answer": 0,
       "explanation": "[NotMapped] prevents EF from loading/saving the property."
     },
     {
-      "q": "Scenario: Query with Include() throws 'sequence contains more than one element'. Cause?",
+      "q": "Query with Include() throws 'sequence contains more than one element'. Cause?",
       "options": ["Duplicate data", "Split query needed", "Navigation property is collection", "Incorrect Include path"],
       "answer": 2,
       "explanation": "Include on one-to-one when multiple matches exist causes error. Use filtering or projection."
     },
     {
-      "q": "Scenario: Migration applies but model snapshot not updated. Result?",
+      "q": "Migration applies but model snapshot not updated. Result?",
       "options": ["Next migration fails", "No effect", "Database out of sync", "Compilation error"],
       "answer": 0,
       "explanation": "EF compares current model with snapshot; outdated snapshot causes incorrect diff."
     },
     {
-      "q": "Scenario: EF Core logs show same query executed multiple times. Optimization?",
+      "q": "EF Core logs show same query executed multiple times. Optimization?",
       "options": ["Use AsNoTracking()", "Compiled queries", "Projection with Select()", "All of the above"],
       "answer": 3,
       "explanation": "Parameterize, project, and compile queries to improve performance."
     },
     {
-      "q": "Scenario: Soft delete not working with EF query. Fix?",
+      "q": "Soft delete not working with EF query. Fix?",
       "options": ["Use global query filters", "Manual WHERE clause", "Delete flag in WHERE", "Both 1 and 2"],
       "answer": 3,
       "explanation": "Global query filters in OnModelCreating automatically apply IsDeleted == false."
     },
     {
-      "q": "Scenario: Large result set causes memory spike. Best fix?",
+      "q": "Large result set causes memory spike. Best fix?",
       "options": ["Use pagination", "AsNoTracking()", "Streaming with AsAsyncEnumerable()", "All of the above"],
       "answer": 3,
       "explanation": "Avoid materializing full result; use streaming and pagination."
     },
     {
-      "q": "Scenario: EF Core generates unnecessary UPDATE statements. Cause?",
+      "q": "EF Core generates unnecessary UPDATE statements. Cause?",
       "options": ["Change tracking proxy not used", "Properties modified outside context", "No primary key", "Attached entity modified"],
       "answer": 3,
       "explanation": "For EF Core 7+; otherwise mark specific properties as modified."
     },
     {
-      "q": "Scenario: Value converter not applied in migration. Why?",
+      "q": "Value converter not applied in migration. Why?",
       "options": ["Converter in wrong method", "Missing HasConversion()", "Applied after model snapshot", "Migration needs --force"],
       "answer": 1,
       "explanation": "Value converters must be configured in OnModelCreating using .HasConversion()."
     },
     {
-      "q": "Scenario: Query works in dev but fails in prod with 'Invalid column'. Cause?",
+      "q": "Query works in dev but fails in prod with 'Invalid column'. Cause?",
       "options": ["Case-sensitive collation", "Migration not applied", "Different provider", "All possible"],
       "answer": 3,
       "explanation": "Common in SQL Server vs PostgreSQL or case-sensitive environments."
     },
     {
-      "q": "Scenario: EF Core ignores [MaxLength] attribute. Why?",
+      "q": "EF Core ignores [MaxLength] attribute. Why?",
       "options": ["Requires [StringLength]", "[MaxLength] only for validation", "Needs migration", "Works only in EF6"],
       "answer": 1,
       "explanation": "[MaxLength] is for validation; use [Column(TypeName = \"varchar(100)\")] or fluent API."
     },
     {
-      "q": "Scenario: Async query hangs indefinitely. Likely cause?",
+      "q": "Async query hangs indefinitely. Likely cause?",
       "options": ["Deadlock in SQL", "Missing await", "Sync over async", "Both 1 and 3"],
       "answer": 3,
       "explanation": "Calling .Result or .Wait() on async EF query causes deadlock in ASP.NET."
     },
     {
-      "q": "Scenario: Two developers get migration conflicts. Best resolution?",
+      "q": "Two developers get migration conflicts. Best resolution?",
       "options": ["Delete __EFMigrationsHistory", "Use consistent migration names", "Merge migrations manually", "Recreate database"],
       "answer": 2,
       "explanation": "Team must coordinate migration names and merge changes in Up/Down methods."
     },
     {
-      "q": "Scenario: EF Core query returns incorrect count. Why?",
+      "q": "EF Core query returns incorrect count. Why?",
       "options": ["Using Count() on navigation", "Filtered query not applied", "AsNoTracking() with Include", "All possible"],
       "answer": 3,
       "explanation": "Common issues: client evaluation, tracking, or unapplied filters."
@@ -2309,7 +2851,7 @@
       "q": "Which LINQ method is used to create a lookup?",
       "options": ["ToDictionary", "ToLookup", "GroupBy", "Both ToLookup and GroupBy"],
       "answer": 1,
-      "explanation": "`ToLookup` returns `ILookup<TKey,TElement>` — immediate execution, supports multiple values per key."
+      "explanation": "`ToLookup` returns `ILookup<TKey,TElement>` - immediate execution, supports multiple values per key."
     },
     {
       "q": "Which of the following is a common LINQ performance pitfall?",
@@ -2426,7 +2968,7 @@
       "explanation": "`let y = x*2` → `y`: 2,4,6 → filter `y > 3` → `4,6`."
     },
     {
-      "q": "In production, NRE occurs intermittently. Code: `items.Where(i => i.Name != null).OrderBy(i => i.Name.Length)` — cause?",
+      "q": "In production, NRE occurs intermittently. Code: `items.Where(i => i.Name != null).OrderBy(i => i.Name.Length)` - cause?",
       "options": ["i is null", "Name is null after filter", "OrderBy causes NRE", "Where removes nulls"],
       "answer": 0,
       "explanation": "If `items` contains `null` references, `i.Name` throws before `Where` filters. Filter `i != null` first."
