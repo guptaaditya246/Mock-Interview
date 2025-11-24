@@ -32,6 +32,7 @@ export default function Quiz() {
   "dotnet9_features": ".NET9 Features",
   "csharp_aspdotnet_middleware": "C# ASP.NET Core Middleware & Pipeline",
   "csharp_core": "C# Core",
+  "null_safety": "Null Safety"
 } as const;
 
   // const quizConfig = JSON.parse(

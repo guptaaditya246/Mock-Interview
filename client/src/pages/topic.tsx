@@ -62,6 +62,12 @@ const topicMap: Record<string, {
     title: "ASP.NET Middleware: 10 Questions in 3 Minutes (No Login) - MockDotNet.dev",
     description: "Free Middleware quiz. No signup, no email. 10 questions, instant start!"
   },
+  "null_safety": {
+    topic: "Null Safety",
+    count: 10,
+    title: "Null Safety: 10 Questions in 3 Minutes (No Login) - MockDotNet.dev",
+    description: "Free Null Safety quiz. No signup, no email. 10 questions, instant start!"
+  },
 };
 
 export default function TopicPage() {

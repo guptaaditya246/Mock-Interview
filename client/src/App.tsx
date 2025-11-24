@@ -26,6 +26,7 @@ function Router() {
       <Route path="/dotnet9_features" component={TopicPage} />
       <Route path="/csharp_aspdotnet_middleware" component={TopicPage} />
       <Route path="/csharp_core" component={TopicPage} />
+      <Route path="/null_safety" component={TopicPage} />
 
       <Route component={NotFound} />
     </Switch>
