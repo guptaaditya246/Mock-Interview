@@ -6415,7 +6415,7 @@
       "explanation": "It opts out of nullable checks for compatibility. Use pragmas for sections. Migrating old projects requires gradual enables."
     },
     {
-      "q": "Scenario: In a web app, user submits null email. What's best validation?",
+      "q": " In a web app, user submits null email. What's best validation?",
       "options": ["Allow and crash later", "`[Required] string? Email`", "`[EmailAddress] string Email`", "Ignore submission"],
       "answer": 2,
       "explanation": "`[Required]` on non-nullable ensures presence. Nullables allow optional but validate format. Registration flows reject invalid without it."
@@ -6451,19 +6451,19 @@
       "explanation": "`?.` and `??` render safely. `.Value` crashes on null. User profiles show blanks otherwise."
     },
     {
-      "q": "Conceptual: Benefits of null propagation over manual ifs?",
+      "q": " Benefits of null propagation over manual ifs?",
       "options": ["Less code, same safety", "Faster execution", "Thread-safe", "No benefits"],
       "answer": 0,
       "explanation": "Reduces boilerplate while preventing NREs. Improves readability. Legacy if-nests bloat maintainability."
     },
     {
-      "q": "Scenario: EF query returns null entity. How to handle in service?",
+      "q": " EF query returns null entity. How to handle in service?",
       "options": ["Throw NotFound", "`entity ?? new Entity()`", "Return null, let controller handle", "`entity!`"],
       "answer": 2,
       "explanation": "Propagate null up for layered decisions. Avoids hiding missing data. REST standards use 404 via controllers."
     },
     {
-      "q": "Pitfall: `var x = y?.Z; if (x == null) ...` - why might x be non-null unexpectedly?",
+      "q": " `var x = y?.Z; if (x == null) ...` - why might x be non-null unexpectedly?",
       "options": ["Z returns null", "Type inference to object", "Compiler optimizes away", "No issue"],
       "answer": 1,
       "explanation": "If Z is object-returning, null is object null. Specify types. Dynamic APIs confuse static checks."
@@ -6493,13 +6493,13 @@
       "explanation": "Attributes infer non-null; `!` aligns. Prevents deserial nulls. APIs contract via docs."
     },
     {
-      "q": "Scenario: Team forgets NRT in project. Impact?",
+      "q": " Team forgets NRT in project. Impact?",
       "options": ["No warnings, more NREs", "All code nullable", "Build fails", "Performance drop"],
       "answer": 0,
       "explanation": "Default disable means runtime bugs. Enable gradually. Onboards learn painfully."
     },
     {
-      "q": "Edge: `null! == null` - result?",
+      "q": " `null! == null` - result?",
       "options": ["True", "Compile error", "False", "Runtime null"],
       "answer": 0,
       "explanation": "`!` doesn't change value, just suppresses. Still null. Tests verify assumptions."
@@ -6511,7 +6511,7 @@
       "explanation": "Explicit check prevents NRE. No null-conditional foreach. Processors iterate safely."
     },
     {
-      "q": "Conceptual: Null safety vs Java's Optional?",
+      "q": " Null safety vs Java's Optional?",
       "options": ["C# uses types, Java wrappers", "Similar", "C# better perf", "Java null-free"],
       "answer": 0,
       "explanation": "NRT annotates, Optional encapsulates. Both reduce NPEs. Cross-lang teams appreciate."
@@ -6529,13 +6529,13 @@
       "explanation": "Early failure per .NET guidelines. Prevents garbage in. Utils guard params."
     },
     {
-      "q": "Scenario: Null in SignalR hub - client disconnect?",
+      "q": " Null in SignalR hub - client disconnect?",
       "options": ["Hub null on disconnect", "Context null", "No, always valid", "Reconnect fixes"],
       "answer": 2,
       "explanation": "Hubs retain state; check manually. Chats persist null users. Validate on invoke."
     },
     {
-      "q": "Pitfall: `Dictionary?.TryGetValue` - returns?",
+      "q": " `Dictionary?.TryGetValue` - returns?",
       "options": ["bool, out value", "KeyValuePair", "null if missing", "Exception"],
       "answer": 0,
       "explanation": "`?.` makes whole null, not method. Use `dict != null && dict.TryGet`. Caches miss subtly."
@@ -6553,13 +6553,13 @@
       "explanation": "Like other nullables, `== null`. For unknown states. Flags parse safely."
     },
     {
-      "q": "Conceptual: Trade-off of NRT?",
+      "q": " Trade-off of NRT?",
       "options": ["More annotations, fewer runtime errors", "Slower build", "Breaks legacy", "No trade-offs"],
       "answer": 0,
       "explanation": "Explicitness upfront saves debug time. Gradual adoption. Worth for safety."
     },
     {
-      "q": "Edge: Null in tuple ` (string? a, int b) = (null, 1); a.Length`?",
+      "q": " Null in tuple ` (string? a, int b) = (null, 1); a.Length`?",
       "options": ["NRE", "0", "null", "Compile warn"],
       "answer": 3,
       "explanation": "Warns but compiles; runtime NRE. Deconstruct carefully. Patterns expose."
@@ -6583,13 +6583,13 @@
       "explanation": "Enforces non-null in chains. Complements NRT. DTOs validate fully."
     },
     {
-      "q": "Scenario: Null from HttpClient.GetStringAsync() - when?",
+      "q": " Null from HttpClient.GetStringAsync() - when?",
       "options": ["Never", "On 404", "Cancellation", "Always string"],
       "answer": 2,
       "explanation": "Throws on cancel; handle AggregateException. APIs timeout gracefully."
     },
     {
-      "q": "Pitfall: `x = y ?? z ?? w;` associativity?",
+      "q": " `x = y ?? z ?? w;` associativity?",
       "options": ["Left to right", "Right to left", "Errors", "Parenthesize"],
       "answer": 0,
       "explanation": "Left-assoc, safe. Defaults chain. Configs fallback correctly."
@@ -6601,7 +6601,7 @@
       "explanation": "Spans non-nullable inherently. Stackalloc safe. Perf code avoids."
     },
     {
-      "q": "Conceptual: Null as billion-dollar mistake - relation to .NET?",
+      "q": " Null as billion-dollar mistake - relation to .NET?",
       "options": ["Tony Hoare's term, NRT mitigates", "Irrelevant", ".NET null-free", "Historical only"],
       "answer": 0,
       "explanation": "NRT addresses by design. Reduces crashes. Industry shifts to safety."
@@ -6613,7 +6613,7 @@
       "explanation": "Validate post-activate. Distributed systems race. Reminders persist null."
     },
     {
-      "q": "Edge: `null as string?` - result?",
+      "q": " `null as string?` - result?",
       "options": ["null", "Exception", "Empty", "object"],
       "answer": 0,
       "explanation": "Cast succeeds to null. Type-safe downcast. Dynamics use."
@@ -6631,13 +6631,13 @@
       "explanation": "Disposed contexts nullify; check before use. UnitOfWork patterns safe. Long-running tasks leak."
     },
     {
-      "q": "Scenario: Legacy code to NRT - first step?",
+      "q": " Legacy code to NRT - first step?",
       "options": ["Enable and fix warnings", "Rewrite all", "Ignore", "Disable forever"],
       "answer": 0,
       "explanation": "Incremental fixes build safety. Prioritize hot paths. Reduces debt gradually."
     },
     {
-      "q": "Pitfall: `string? s = ...; return s.ToString();` - safe?",
+      "q": " `string? s = ...; return s.ToString();` - safe?",
       "options": ["Yes", "NRE if null", "Returns \"null\"", "Compile error"],
       "answer": 1,
       "explanation": "No `?.`, throws on null. Use `s?.ToString() ?? \"\"`. Utils crash unexpectedly."
@@ -6649,7 +6649,7 @@
       "explanation": "Wraps value types. Custom null states. Options pattern uses."
     },
     {
-      "q": "Conceptual: Role in static analysis?",
+      "q": " Role in static analysis?",
       "options": ["Feeds Roslyn warnings", "Runtime only", "IDE ignore", "Dynamic"],
       "answer": 0,
       "explanation": "NRT enhances analyzer accuracy. Catches flows. CI enforces."
@@ -6667,7 +6667,7 @@
       "explanation": "Prevents mutation post-return. APIs safer. Controllers expose read-only."
     },
     {
-      "q": "Edge: Null in readonly field?",
+      "q": " Null in readonly field?",
       "options": ["Can't assign null", "Warns", "Runtime only", "Init null ok"],
       "answer": 1,
       "explanation": "Non-nullable warns on null init. Use ctor. Immutables strict."
@@ -6679,13 +6679,13 @@
       "explanation": "Multiple idioms for null. Expressive C#. Switches clean."
     },
     {
-      "q": "Scenario: Null in Azure Function input binding?",
+      "q": " Null in Azure Function input binding?",
       "options": ["Binding fails, null", "Throws setup", "Defaults", "Retry"],
       "answer": 0,
       "explanation": "Missing triggers null; check. Serverless cold starts expose."
     },
     {
-      "q": "Pitfall: Overriding with nullable mismatch?",
+      "q": " Overriding with nullable mismatch?",
       "options": ["Hides warnings", "Compile error", "Runtime cast", "Ok if covariant"],
       "answer": 1,
       "explanation": "Signatures must match nullability. Breaks polymorphism. Base classes strict."
@@ -6697,7 +6697,7 @@
       "explanation": "Enforces invariants early. Per Guard clauses. Constructors validate."
     },
     {
-      "q": "Conceptual: Evolution from C# 7 nullables?",
+      "q": " Evolution from C# 7 nullables?",
       "options": ["Value only to ref too", "No change", "Removed", "Optional now"],
       "answer": 0,
       "explanation": "Expanded to refs for full safety. Builds on foundation. Adoption grows."
