@@ -14,6 +14,12 @@ const topicMap: Record<string, {
     title: "C# Basics: 10 Questions in 3 Minutes (No Signup) - MockDotNet.dev",
     description: "Free instant C# Basics quiz. No login, no email. Just 10 questions in 3 minutes. Start now!"
   },
+  "csharp_classes": {
+    topic: "C# Classes",
+    count: 10,
+    title: "C# Classes: 10 Questions in 3 Minutes (No Signup) - MockDotNet.dev",
+    description: "Free instant C# Classes quiz. No login, no email. Just 10 questions in 3 minutes. Start now!"
+  },
   "control_flows_csharp": {
     topic: "Control Flows C#",
     count: 10,

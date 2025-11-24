@@ -18,6 +18,7 @@ function Router() {
       <Route path="/results" component={Results} />
 
       <Route path="/csharp_basics" component={TopicPage} />
+      <Route path="/csharp_classes" component={TopicPage} />
       <Route path="/control_flows_csharp" component={TopicPage} />
       <Route path="/csharp_aspdotnet_core" component={TopicPage} />
       <Route path="/csharp_entity_framework" component={TopicPage} />

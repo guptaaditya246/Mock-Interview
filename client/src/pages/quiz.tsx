@@ -24,6 +24,7 @@ export default function Quiz() {
 
   const topicMap = {
   "csharp_basics": "C# Basics",
+  "csharp_classes": "C# Classes",
   "control_flows_csharp": "Control Flows C#",
   "csharp_aspdotnet_core": "C# ASP.NET Core",
   "csharp_entity_framework": "C# Entity Framework",
