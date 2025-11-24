@@ -312,7 +312,7 @@
       "q": "What is the range of `byte` data type?",
       "options": ["0 to 255", "-128 to 127", "0 to 65535", "-32768 to 32767"],
       "answer": 0,
-      "explanation": "`byte` is unsigned 8-bit: 0–255."
+      "explanation": "`byte` is unsigned 8-bit: 0-255."
     },
     {
       "q": "You're reading config: `int timeout = config.Timeout ?? 30;`. What happens if `Timeout` is 0?",
@@ -6189,6 +6189,524 @@
     "answer": 1,
     "explanation": "Not supported."
   }
-]
+],
 
+  "null_safety": [
+    {
+      "q": "What does the `?` suffix after a reference type, like `string?`, mean in modern C#?",
+      "options": ["It makes the string immutable", "It declares the variable as nullable", "It enables async operations", "It defaults to an empty string"],
+      "answer": 1,
+      "explanation": "The `?` enables nullable reference types, signaling that the variable can hold null without compiler warnings. This feature, introduced in C# 8, helps catch potential NullReferenceExceptions at compile time. In real projects, forgetting this leads to runtime crashes in untested code paths."
+    },
+    {
+      "q": "How do you safely assign a potentially null value to a non-nullable string variable using the null-coalescing operator?",
+      "options": ["`str = nullValue ?? \"\"`", "`str = nullValue!`", "`str = nullValue?.ToString()`", "`str = if (nullValue) nullValue`"],
+      "answer": 0,
+      "explanation": "The `??` operator returns the left operand if not null, or the right otherwise, ensuring a non-null value. This is a common idiom for defaulting to empty strings in UI bindings. Developers often overlook it, causing exceptions when parsing user input."
+    },
+    {
+      "q": "What happens if you try to access a property on a nullable reference without checking for null?",
+      "options": ["Compiler error", "Runtime NullReferenceException", "It returns null silently", "The property is skipped"],
+      "answer": 1,
+      "explanation": "Without null checks, accessing members on null references throws NullReferenceException at runtime. Nullable reference types warn at compile time to encourage checks like `?.`. In web apps, this pitfall crashes endpoints handling missing query params."
+    },
+    {
+      "q": "In a class property, what's the purpose of the null-forgiving operator `!` like in `public string Name { get; set; } = null!;`?",
+      "options": ["It prevents null assignments", "It tells the compiler to ignore null warnings", "It initializes to an empty string", "It makes the property readonly"],
+      "answer": 1,
+      "explanation": "The `!` suppresses nullable warnings when you're certain null won't occur, like in deserialized objects. Use sparingly to avoid hiding bugs. Teams using EF Core often apply it to navigation properties, but misuse leads to subtle production issues."
+    },
+    {
+      "q": "Why might you use the null-conditional operator `?.` when calling a method on an object that could be null?",
+      "options": ["To throw a custom exception", "To short-circuit and return null if the object is null", "To force a null check", "To assign a default value"],
+      "answer": 1,
+      "explanation": "`?.` returns null if the left side is null, preventing exceptions in chained calls. It's essential for safe LINQ projections on potentially empty collections. Junior devs forget it, leading to crashes in API responses with optional data."
+    },
+    {
+      "q": "What's the default value for a non-nullable reference type like `List<string>` in a class field?",
+      "options": ["Empty list", "null", "New List<string>()", "An exception is thrown"],
+      "answer": 1,
+      "explanation": "Reference types default to `null`, requiring explicit initialization to avoid NREs. With nullable types enabled, the compiler warns about this. In ASP.NET controllers, uninitialized lists in actions cause intermittent failures during high load."
+    },
+    {
+      "q": "How does the null-coalescing assignment `??=` work in C# 8+?",
+      "options": ["Assigns only if left is null", "Always reassigns the right value", "Throws if both are null", "Converts to nullable"],
+      "answer": 0,
+      "explanation": "`??=` assigns the right value only if the left is null, simplifying lazy initialization. It's handy for config caches in services. Without it, devs write verbose if-checks, prone to copy-paste errors in team code."
+    },
+    {
+      "q": "In Entity Framework, why do navigation properties often use `virtual` and nullable types?",
+      "options": ["For lazy loading and to handle missing relations", "To speed up queries", "To enforce uniqueness", "For JSON serialization"],
+      "answer": 0,
+      "explanation": "Nullable types allow null for optional relations, and `virtual` enables lazy loading proxies. Forgetting null checks in views crashes apps when data is incomplete. Real-world DB migrations often expose this if seed data has gaps."
+    },
+    {
+      "q": "What compiler warning does nullable reference types feature trigger if you assign null to a non-nullable string?",
+      "options": ["CS8600", "CS0023", "CS0103", "No warning"],
+      "answer": 0,
+      "explanation": "CS8600 warns about converting null to non-nullable type, promoting safer code. Enabling `<Nullable>enable</Nullable>` in projects catches these early. In CI pipelines, ignoring them leads to flaky tests in integration suites."
+    },
+    {
+      "q": "When chaining null-conditional operators like `obj?.Prop?.Method()`, what is returned if any part is null?",
+      "options": ["The last non-null value", "null", "An exception", "The default for the type"],
+      "answer": 1,
+      "explanation": "The chain short-circuits to `null` on the first null, avoiding exceptions. This is crucial for fluent APIs in configs. Devs confuse it with logical AND, causing unexpected nulls in logs."
+    },
+    {
+      "q": "Why is it a bad idea to use the null-forgiving `!` operator liberally in production code?",
+      "options": ["It slows down compilation", "It hides potential runtime exceptions", "It requires runtime checks", "It breaks serialization"],
+      "answer": 1,
+      "explanation": "`!` bypasses compile-time safety, risking NREs if assumptions fail. Best practices recommend it only for proven non-null cases like framework internals. In refactoring, overusing it masks bugs that surface in edge-case user data."
+    },
+    {
+      "q": "In ASP.NET Core, how do you handle null model binding in a controller action?",
+      "options": ["Use [BindRequired]", "Check with `if (ModelState.IsValid)`", "Always use `string?`", "Rely on middleware"],
+      "answer": 1,
+      "explanation": "`ModelState.IsValid` flags nulls for required fields, allowing custom validation. This prevents processing invalid requests. Juniors skip it, leading to 500 errors on malformed JSON payloads in APIs."
+    },
+    {
+      "q": "What does `string.Empty` represent in terms of null safety?",
+      "options": ["A null string", "An empty but non-null string", "The same as null", "A nullable string"],
+      "answer": 1,
+      "explanation": "`string.Empty` is \"\"`, a non-null value, safer than null for concatenations. Use it over null defaults to avoid NREs in views. Common confusion: treating it as null in legacy code migrations."
+    },
+    {
+      "q": "How can you declare a method parameter as non-nullable in C# with nullable enabled?",
+      "options": ["Omit the ? entirely", "Use ! after the type", "Add [NotNull]", "Prefix with required"],
+      "answer": 0,
+      "explanation": "Omitting `?` implies non-nullable, with compiler enforcing checks. This contracts API safety. In libraries, violating it breaks caller trust, as seen in open-source PRs."
+    },
+    {
+      "q": "What's the output of `string? s = null; Console.WriteLine(s?.Length ?? -1);`?",
+      "options": ["0", "-1", "null", "Exception"],
+      "answer": 1,
+      "explanation": "Since `s` is null, `?.` returns null, then `??` defaults to -1. This pattern safely handles optional lengths. In logging utils, it prevents stack traces from null props."
+    },
+    {
+      "q": "Why do value types like `int?` use a different syntax for nullability than reference types?",
+      "options": ["Value types can't be null natively", "To distinguish boxing", "For performance reasons only", "It's a compiler quirk"],
+      "answer": 0,
+      "explanation": "Value types require `Nullable<T>` or `T?` to hold null, unlike references. This avoids confusion in generics. DB mappings in EF often trip devs mixing them."
+    },
+    {
+      "q": "In a LINQ query, how do you filter out nulls from a collection of nullable strings?",
+      "options": ["`where x => x != null`", "`where x.HasValue`", "`select x ?? \"\"`", "`distinct(x)`"],
+      "answer": 0,
+      "explanation": "`x != null` safely excludes nulls in projections. It's efficient for data cleaning. Forgetting it includes nulls, bloating JSON responses in APIs."
+    },
+    {
+      "q": "What attribute can you use on methods to indicate a parameter shouldn't be null?",
+      "options": ["[NotNull]", "[Nullable]", "[Required]", "[ValidateNull]"],
+      "answer": 0,
+      "explanation": "`[NotNull]` from JetBrains or similar informs static analyzers. With NRT, it's often redundant but clarifies intent. In team reviews, it prevents misuse in utility methods."
+    },
+    {
+      "q": "During JSON deserialization in ASP.NET, why might a non-nullable property become null?",
+      "options": ["Missing JSON key", "Type mismatch", "Always initializes to null", "Deserializer bug"],
+      "answer": 0,
+      "explanation": "Absent keys default to null, ignoring non-nullable intent. Use `JsonPropertyName` or defaults. This causes validation failures in POST endpoints with partial payloads."
+    },
+    {
+      "q": "How does `is null` pattern matching improve null checks in C# 7+?",
+      "options": ["It's faster than == null", "More readable and works with generics", "Enables async nulls", "Compiles to bytecode"],
+      "answer": 1,
+      "explanation": "`is null` is expressive for switches and ifs, especially generics. It reduces `== null` verbosity. In switch expressions for error handling, it catches fewer bugs otherwise."
+    },
+    {
+      "q": "What's a common pitfall when using `Dictionary<string, string>` with null keys?",
+      "options": ["Keys can't be null", "Values auto-nullify", "Get returns null always", "Enumeration skips nulls"],
+      "answer": 0,
+      "explanation": "Dictionaries throw ArgumentNullException on null keys, enforcing safety. Use `string?` values for optionals. Config loaders fail silently if not checked, a frequent deploy issue."
+    },
+    {
+      "q": "In async methods, why check for null before awaiting a task-returning method?",
+      "options": ["Tasks can't be null", "To avoid NullReferenceException on the task", "Async requires non-null", "It optimizes performance"],
+      "answer": 1,
+      "explanation": "If the method returns null instead of a Task, awaiting throws NRE. Always validate suppliers. Microservices chaining fail here without circuit breakers."
+    },
+    {
+      "q": "How do you initialize a nullable bool `bool?` to indicate unknown state?",
+      "options": ["`false`", "`null`", "`true?`", "Omit assignment"],
+      "answer": 1,
+      "explanation": "`null` represents tri-state for bools in forms or DB flags. `HasValue` checks it. UI bindings confuse devs with unchecked checkboxes defaulting null."
+    },
+    {
+      "q": "What does the compiler do with `string s = GetString(); s.ToUpper();` if `GetString` can return null?",
+      "options": ["Warns CS8602", "Auto-inserts check", "Runtime error only", "Ignores it"],
+      "answer": 0,
+      "explanation": "CS8602 warns of dereferencing possible null. It encourages `?.` or checks. Code reviews flag these to prevent prod crashes from unvalidated returns."
+    },
+    {
+      "q": "In a scenario where you're reading user input, what's the safest way to parse to int with null handling?",
+      "options": ["`int.Parse(input)`", "`int.TryParse(input, out int result) ? result : 0`", "`int? i = int.Parse(input ?? \"0\")`", "`Convert.ToInt32(input)`"],
+      "answer": 1,
+      "explanation": "`TryParse` handles null/invalid gracefully, defaulting safely. `Parse` throws on null. Web forms crash without it on empty fields."
+    },
+    {
+      "q": "Why use `DefaultIfEmpty()` in LINQ for null collections?",
+      "options": ["To fill with defaults", "Prevents null enumeration", "Adds null sentinel", "Optimizes memory"],
+      "answer": 1,
+      "explanation": "It provides a default (null or specified) if empty, avoiding null checks post-query. Essential for views. Reports queries fail rendering without it."
+    },
+    {
+      "q": "What's the behavior of `== null` on a nullable value type like `int?`?",
+      "options": ["Always false", "True if HasValue false", "Compares to 0", "Throws exception"],
+      "answer": 1,
+      "explanation": "`int? x = null; x == null` is true via `HasValue`. It's lifted for nullables. DB null mappings confuse with SQL three-valued logic."
+    },
+    {
+      "q": "In EF Core, how does `Include()` handle null navigation properties?",
+      "options": ["Eager loads them to non-null", "Leaves as null if no relation", "Throws on query", "Auto-creates proxies"],
+      "answer": 1,
+      "explanation": "Nulls remain if no FK match, requiring checks in code. Use optional includes. Dashboards break on orphaned records without safeguards."
+    },
+    {
+      "q": "How does nullable context affect local variables in methods?",
+      "options": ["All are nullable by default", "Inferred from assignment", "Must specify ? always", "No effect"],
+      "answer": 1,
+      "explanation": "Compiler infers nullability from initializers, warning on mismatches. Promotes consistent safety. Refactors introduce warnings here unexpectedly."
+    },
+    {
+      "q": "What's a real-world issue with nulls in dependency injection?",
+      "options": ["DI always injects non-null", "Singletons can be null on restart", "Scoped nulls in loops", "Resolution throws always"],
+      "answer": 1,
+      "explanation": "Transient services might resolve null in race conditions, but rare; check registrations. Background jobs fail silently. Validate in constructors per MS docs."
+    },
+    {
+      "q": "Why prefer `string?` over `object` for optional params in APIs?",
+      "options": ["Better type safety", "Faster serialization", "Less memory", "JSON compatibility"],
+      "answer": 0,
+      "explanation": "`string?` enforces string-or-null, catching type errors early. `object` allows anything, bloating validation. Swagger docs mislead clients without it."
+    },
+    {
+      "q": "In a switch expression, how do you handle a nullable int?",
+      "options": ["`case null:`", "`case int? n when !n.HasValue:`", "`when x is null`", "Can't switch nullables"],
+      "answer": 2,
+      "explanation": "`when x is null` patterns null elegantly. Improves readability over ifs. Error handlers use it for clean null branches."
+    },
+    {
+      "q": "What happens when you box a nullable value type that's null?",
+      "options": ["Boxes as null object", "Throws InvalidOperation", "Unboxes to 0", "Skips boxing"],
+      "answer": 0,
+      "explanation": "Null `T?` boxes to null reference, preserving state. Useful in legacy interop. Generics confuse with value defaults."
+    },
+    {
+      "q": "How to safely concatenate strings with potential nulls?",
+      "options": ["`+` operator", "`string.Concat(a, b ?? \"\")`", "`string.Join(null, a, b)`", "`Interpolated with $`"],
+      "answer": 1,
+      "explanation": "`Concat` handles nulls as empty, avoiding NRE. `$\"{a}{b}\"` throws on null. Email templates crash without explicit handling."
+    },
+    {
+      "q": "Why does `Count()` on a null `IEnumerable<string>?` throw?",
+      "options": ["IEnumerable can't be null", "Extension methods require instance", "Count skips nulls", "Lazy evaluation"],
+      "answer": 1,
+      "explanation": "Null collection dereference before extension. Check `if (coll != null)`. API metrics skew without it."
+    },
+    {
+      "q": "In unit tests, how to assert a property is null safely?",
+      "options": ["`Assert.IsNull(prop)`", "`Assert.True(prop == null)`", "`Assert.NotNull(prop!)`", "Mock it null"],
+      "answer": 0,
+      "explanation": "`IsNull` handles nullables cleanly. Direct `==` works but verbose. Tests fail mysteriously on NRT mismatches."
+    },
+    {
+      "q": "What's the role of `#nullable disable` in legacy code?",
+      "options": ["Enables all nulls", "Suppresses NRT warnings", "Forces non-null", "Global check"],
+      "answer": 1,
+      "explanation": "It opts out of nullable checks for compatibility. Use pragmas for sections. Migrating old projects requires gradual enables."
+    },
+    {
+      "q": "Scenario: In a web app, user submits null email. What's best validation?",
+      "options": ["Allow and crash later", "`[Required] string? Email`", "`[EmailAddress] string Email`", "Ignore submission"],
+      "answer": 2,
+      "explanation": "`[Required]` on non-nullable ensures presence. Nullables allow optional but validate format. Registration flows reject invalid without it."
+    },
+    {
+      "q": "Conceptually, how do nullable reference types reduce technical debt?",
+      "options": ["By auto-fixing code", "Explicit null contracts at compile", "Runtime guards", "IDE refactoring"],
+      "answer": 1,
+      "explanation": "They document and enforce nullability, catching issues early. Less debugging time. Teams adopt for fewer hotfixes."
+    },
+    {
+      "q": "Edge case: `DateTime? dt = null; var boxed = (object)dt; boxed?.ToString();` what happens?",
+      "options": ["NRE on ToString", "Null.ToString() error", "Returns null string", "DateTime default"],
+      "answer": 2,
+      "explanation": "Boxed null is null object, `?.` short-circuits to null. Preserves null in dynamics. Rare in reflection but trips serializers."
+    },
+    {
+      "q": "Syntax: Correct way to declare nullable array?",
+      "options": ["`string?[]`", "`string[]?`", "`(string?)[]`", "Arrays can't be nullable"],
+      "answer": 0,
+      "explanation": "`string?[]` for element-nullable array; `string[]?` for null array. Choose per need. Config arrays fail loading partial data."
+    },
+    {
+      "q": "Why check `Task?.Result` carefully in code?",
+      "options": ["Task can be null", "Result blocks async", "Deadlock risk", "Both A and C"],
+      "answer": 3,
+      "explanation": "Null tasks throw NRE; `.Result` deadlocks in UI. Use `await` instead. Console apps hang without async patterns."
+    },
+    {
+      "q": "In Razor views, how to display nullable dates without errors?",
+      "options": ["`@date.Value`", "`@date?.ToString(\"f\") ?? \"N/A\"`", "`if (date) @date`", "Auto-formats null"],
+      "answer": 1,
+      "explanation": "`?.` and `??` render safely. `.Value` crashes on null. User profiles show blanks otherwise."
+    },
+    {
+      "q": "Conceptual: Benefits of null propagation over manual ifs?",
+      "options": ["Less code, same safety", "Faster execution", "Thread-safe", "No benefits"],
+      "answer": 0,
+      "explanation": "Reduces boilerplate while preventing NREs. Improves readability. Legacy if-nests bloat maintainability."
+    },
+    {
+      "q": "Scenario: EF query returns null entity. How to handle in service?",
+      "options": ["Throw NotFound", "`entity ?? new Entity()`", "Return null, let controller handle", "`entity!`"],
+      "answer": 2,
+      "explanation": "Propagate null up for layered decisions. Avoids hiding missing data. REST standards use 404 via controllers."
+    },
+    {
+      "q": "Pitfall: `var x = y?.Z; if (x == null) ...` - why might x be non-null unexpectedly?",
+      "options": ["Z returns null", "Type inference to object", "Compiler optimizes away", "No issue"],
+      "answer": 1,
+      "explanation": "If Z is object-returning, null is object null. Specify types. Dynamic APIs confuse static checks."
+    },
+    {
+      "q": "How to make a record property non-nullable?",
+      "options": ["Omit ? in declaration", "Use init-only", "`[NotNull]`", "Records auto-non-null"],
+      "answer": 0,
+      "explanation": "Like classes, no `?` means non-nullable. Enforces immutability safety. DTOs benefit in pipelines."
+    },
+    {
+      "q": "ValueTask? vs Task? - why nullable ValueTask?",
+      "options": ["ValueTask can be null", "For optional async", "Performance hit", "Not needed"],
+      "answer": 0,
+      "explanation": "Methods returning null ValueTask? avoid allocation. Rare for sync fallbacks. Caches use it judiciously."
+    },
+    {
+      "q": "In middleware, null HttpContext.Request - impossible?",
+      "options": ["Yes, always non-null", "No, on early terminates", "Only in tests", "Custom null"],
+      "answer": 0,
+      "explanation": "Request pipeline guarantees non-null context. Focus on body/headers. Auth middleware assumes it."
+    },
+    {
+      "q": "Null forgiving in attributes: `public string? [JsonProperty] { get; } = null!;` why?",
+      "options": ["Serializer expects non-null", "Hides warning", "Both", "Unneeded"],
+      "answer": 2,
+      "explanation": "Attributes infer non-null; `!` aligns. Prevents deserial nulls. APIs contract via docs."
+    },
+    {
+      "q": "Scenario: Team forgets NRT in project. Impact?",
+      "options": ["No warnings, more NREs", "All code nullable", "Build fails", "Performance drop"],
+      "answer": 0,
+      "explanation": "Default disable means runtime bugs. Enable gradually. Onboards learn painfully."
+    },
+    {
+      "q": "Edge: `null! == null` - result?",
+      "options": ["True", "Compile error", "False", "Runtime null"],
+      "answer": 0,
+      "explanation": "`!` doesn't change value, just suppresses. Still null. Tests verify assumptions."
+    },
+    {
+      "q": "Syntax for null check in foreach?",
+      "options": ["`if (coll != null) foreach...`", "`foreach (var? item in coll)`", "Auto-skips", "`coll?.ForEach`"],
+      "answer": 0,
+      "explanation": "Explicit check prevents NRE. No null-conditional foreach. Processors iterate safely."
+    },
+    {
+      "q": "Conceptual: Null safety vs Java's Optional?",
+      "options": ["C# uses types, Java wrappers", "Similar", "C# better perf", "Java null-free"],
+      "answer": 0,
+      "explanation": "NRT annotates, Optional encapsulates. Both reduce NPEs. Cross-lang teams appreciate."
+    },
+    {
+      "q": "In gRPC, null proto fields - how handled?",
+      "options": ["Throw on access", "Default values", "Nullable wrappers", "Ignore"],
+      "answer": 2,
+      "explanation": "Protos use wrappers like StringValue for null. Enforces contracts. Services mismatch crash."
+    },
+    {
+      "q": "Why `ArgumentNullException` in libs?",
+      "options": ["Fail-fast on invalid", "Log nulls", "Auto-default", "Optional"],
+      "answer": 0,
+      "explanation": "Early failure per .NET guidelines. Prevents garbage in. Utils guard params."
+    },
+    {
+      "q": "Scenario: Null in SignalR hub - client disconnect?",
+      "options": ["Hub null on disconnect", "Context null", "No, always valid", "Reconnect fixes"],
+      "answer": 2,
+      "explanation": "Hubs retain state; check manually. Chats persist null users. Validate on invoke."
+    },
+    {
+      "q": "Pitfall: `Dictionary?.TryGetValue` - returns?",
+      "options": ["bool, out value", "KeyValuePair", "null if missing", "Exception"],
+      "answer": 0,
+      "explanation": "`?.` makes whole null, not method. Use `dict != null && dict.TryGet`. Caches miss subtly."
+    },
+    {
+      "q": "Nullable enable in csproj - scope?",
+      "options": ["Project-wide", "File only", "Global", "Assembly"],
+      "answer": 0,
+      "explanation": "<Nullable>enable</Nullable> applies to all. Pragma overrides. Solutions standardize."
+    },
+    {
+      "q": "How to null-check enum? values?",
+      "options": ["`enum? == null`", "`!Enum.HasValue`", "`(int?)enum == null`", "Enums non-null"],
+      "answer": 0,
+      "explanation": "Like other nullables, `== null`. For unknown states. Flags parse safely."
+    },
+    {
+      "q": "Conceptual: Trade-off of NRT?",
+      "options": ["More annotations, fewer runtime errors", "Slower build", "Breaks legacy", "No trade-offs"],
+      "answer": 0,
+      "explanation": "Explicitness upfront saves debug time. Gradual adoption. Worth for safety."
+    },
+    {
+      "q": "Edge: Null in tuple ` (string? a, int b) = (null, 1); a.Length`?",
+      "options": ["NRE", "0", "null", "Compile warn"],
+      "answer": 3,
+      "explanation": "Warns but compiles; runtime NRE. Deconstruct carefully. Patterns expose."
+    },
+    {
+      "q": "Syntax: Default literal for nullable?",
+      "options": ["`default(string?)`", "`null!`", "`string? default`", "Omit"],
+      "answer": 0,
+      "explanation": "`default(T?)` is null. Consistent. Initializers use."
+    },
+    {
+      "q": "In Blazor, null component param - effect?",
+      "options": ["Renders nothing", "Throws render", "Ignores", "Cascades null"],
+      "answer": 1,
+      "explanation": "Access throws in markup. Use `[Parameter] public Child? Child {get;set;}`. Components fail load."
+    },
+    {
+      "q": "Why `ValidateNotNull` in FluentValidation?",
+      "options": ["Custom null rule", "Replaces NRT", "Async validation", "No such"],
+      "answer": 0,
+      "explanation": "Enforces non-null in chains. Complements NRT. DTOs validate fully."
+    },
+    {
+      "q": "Scenario: Null from HttpClient.GetStringAsync() - when?",
+      "options": ["Never", "On 404", "Cancellation", "Always string"],
+      "answer": 2,
+      "explanation": "Throws on cancel; handle AggregateException. APIs timeout gracefully."
+    },
+    {
+      "q": "Pitfall: `x = y ?? z ?? w;` associativity?",
+      "options": ["Left to right", "Right to left", "Errors", "Parenthesize"],
+      "answer": 0,
+      "explanation": "Left-assoc, safe. Defaults chain. Configs fallback correctly."
+    },
+    {
+      "q": "Null in Span<char>? - possible?",
+      "options": ["No, value type", "Yes, ref struct nullable", "Throws", "Unsafe only"],
+      "answer": 0,
+      "explanation": "Spans non-nullable inherently. Stackalloc safe. Perf code avoids."
+    },
+    {
+      "q": "Conceptual: Null as billion-dollar mistake - relation to .NET?",
+      "options": ["Tony Hoare's term, NRT mitigates", "Irrelevant", ".NET null-free", "Historical only"],
+      "answer": 0,
+      "explanation": "NRT addresses by design. Reduces crashes. Industry shifts to safety."
+    },
+    {
+      "q": "In Orleans grains, null activation?",
+      "options": ["Grains always active", "Null on deactivate", "Check state", "No nulls"],
+      "answer": 2,
+      "explanation": "Validate post-activate. Distributed systems race. Reminders persist null."
+    },
+    {
+      "q": "Edge: `null as string?` - result?",
+      "options": ["null", "Exception", "Empty", "object"],
+      "answer": 0,
+      "explanation": "Cast succeeds to null. Type-safe downcast. Dynamics use."
+    },
+    {
+      "q": "Syntax: Null suppress in expression-bodied?",
+      "options": ["`=> x!`", "`=> x ?? null`", "`! => x`", "Can't"],
+      "answer": 0,
+      "explanation": "`!` post-call suppresses. Properties clean. Warnings gone."
+    },
+    {
+      "q": "Why null-check DbContext in scoped services?",
+      "options": ["Can be null post-dispose", "Always injected", "EF guarantees", "Performance"],
+      "answer": 0,
+      "explanation": "Disposed contexts nullify; check before use. UnitOfWork patterns safe. Long-running tasks leak."
+    },
+    {
+      "q": "Scenario: Legacy code to NRT - first step?",
+      "options": ["Enable and fix warnings", "Rewrite all", "Ignore", "Disable forever"],
+      "answer": 0,
+      "explanation": "Incremental fixes build safety. Prioritize hot paths. Reduces debt gradually."
+    },
+    {
+      "q": "Pitfall: `string? s = ...; return s.ToString();` - safe?",
+      "options": ["Yes", "NRE if null", "Returns \"null\"", "Compile error"],
+      "answer": 1,
+      "explanation": "No `?.`, throws on null. Use `s?.ToString() ?? \"\"`. Utils crash unexpectedly."
+    },
+    {
+      "q": "Nullable struct - declare how?",
+      "options": ["`struct? S`", "`Nullable<S>`", "Structs non-nullable", "Both A B"],
+      "answer": 3,
+      "explanation": "Wraps value types. Custom null states. Options pattern uses."
+    },
+    {
+      "q": "Conceptual: Role in static analysis?",
+      "options": ["Feeds Roslyn warnings", "Runtime only", "IDE ignore", "Dynamic"],
+      "answer": 0,
+      "explanation": "NRT enhances analyzer accuracy. Catches flows. CI enforces."
+    },
+    {
+      "q": "In MAUI, null page binding - crash?",
+      "options": ["Yes, XAML throws", "Silent fail", "Auto-null", "Check in code"],
+      "answer": 0,
+      "explanation": "Bindings deref nulls. Use `FallbackValue`. Apps freeze on nav."
+    },
+    {
+      "q": "Why `IReadOnlyList<string>?` over `List<string>?`?",
+      "options": ["Immutability contract", "Less memory", "Faster", "No diff"],
+      "answer": 0,
+      "explanation": "Prevents mutation post-return. APIs safer. Controllers expose read-only."
+    },
+    {
+      "q": "Edge: Null in readonly field?",
+      "options": ["Can't assign null", "Warns", "Runtime only", "Init null ok"],
+      "answer": 1,
+      "explanation": "Non-nullable warns on null init. Use ctor. Immutables strict."
+    },
+    {
+      "q": "Syntax: Pattern match null in when?",
+      "options": ["`when x is null`", "`when x == null`", "`case null:`", "All work"],
+      "answer": 3,
+      "explanation": "Multiple idioms for null. Expressive C#. Switches clean."
+    },
+    {
+      "q": "Scenario: Null in Azure Function input binding?",
+      "options": ["Binding fails, null", "Throws setup", "Defaults", "Retry"],
+      "answer": 0,
+      "explanation": "Missing triggers null; check. Serverless cold starts expose."
+    },
+    {
+      "q": "Pitfall: Overriding with nullable mismatch?",
+      "options": ["Hides warnings", "Compile error", "Runtime cast", "Ok if covariant"],
+      "answer": 1,
+      "explanation": "Signatures must match nullability. Breaks polymorphism. Base classes strict."
+    },
+    {
+      "q": "Null coalesce with throw: `x ?? throw new ...` - use when?",
+      "options": ["Fail-fast required", "Optional", "Always", "Deprecated"],
+      "answer": 0,
+      "explanation": "Enforces invariants early. Per Guard clauses. Constructors validate."
+    },
+    {
+      "q": "Conceptual: Evolution from C# 7 nullables?",
+      "options": ["Value only to ref too", "No change", "Removed", "Optional now"],
+      "answer": 0,
+      "explanation": "Expanded to refs for full safety. Builds on foundation. Adoption grows."
+    },
+    {
+      "q": "In xUnit, null fixture - effect?",
+      "options": ["Test skips", "NRE in setup", "Ignores", "Auto-inject"],
+      "answer": 1,
+      "explanation": "Ctor throws on null deps. Mock properly. Integration tests fail."
+    }
+  ]
 }
