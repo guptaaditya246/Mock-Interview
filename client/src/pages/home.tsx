@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllPosts } from "@/lib/blogLoader";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,13 +11,24 @@ import { useTheme } from "@/components/theme-provider";
 import { AdSensePlaceholder } from "@/components/adsense-placeholder";
 import { quizTopics, type QuizTopic, type QuizConfig } from "@shared/schema";
 import { Moon, Sun, Code2, Clock, Target, Sparkles } from "lucide-react";
-import { useEffect } from 'react';
+
 
 export default function Home() {
   const [, setLocation] = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [selectedTopic, setSelectedTopic] = useState<QuizTopic>(quizTopics[0]);
   const [questionCount, setQuestionCount] = useState<number>(20);
+
+  const [latestBlogs, setLatestBlogs] = useState<any[]>([]);
+
+  useEffect(() => {
+    getAllPosts().then((blogs) => {
+      const sorted = [...blogs]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3);
+      setLatestBlogs(sorted);
+    });
+  }, []);
 
   const handleStartQuiz = () => {
     const config: QuizConfig = {
@@ -107,10 +119,10 @@ function WorkInProgressPopup() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between max-w-7xl">
-          <div className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <Code2 className="w-6 h-6 text-primary" />
             <span className="font-bold text-lg">MockDotNet</span>
-          </div>
+          </a>
           <Button
             size="icon"
             variant="ghost"
@@ -134,7 +146,8 @@ function WorkInProgressPopup() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+          <div className="space-y-8">
           
           {/* Hero Section */}
           <div className="text-center space-y-4 py-8">
@@ -277,6 +290,40 @@ function WorkInProgressPopup() {
               <strong className="text-foreground">{questionCount}</strong> questions
             </p>
           </div>
+          </div>
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  Latest Blogs
+                </h3>
+              </div>
+
+              <div className="space-y-3">
+                {latestBlogs.map((post) => (
+                  <a
+                    key={post.slug}
+                    href={`/blogs/${post.slug}`}
+                    className="block rounded-lg border p-3 hover:bg-muted transition-colors"
+                  >
+                    <p className="text-sm font-medium leading-snug">
+                      {post.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {post.tags?.slice(0, 2).join(" · ")}
+                    </p>
+                  </a>
+                ))}
+              </div>
+
+              <a
+                href="/blogs"
+                className="block w-full text-center rounded-lg border border-primary text-primary py-2 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                Read all blogs
+              </a>
+            </div>
+          </aside>
         </div>
       </main>
 

@@ -9,6 +9,8 @@ import Quiz from "@/pages/quiz";
 import Results from "@/pages/results";
 import NotFound from "@/pages/not-found";
 import TopicPage from "./pages/topic";
+import BlogsPage from "./pages/blogs";
+import BlogDetailPage from "./pages/Blog/[slug]";
 
 function Router() {
   return (
@@ -16,7 +18,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
       <Route path="/results" component={Results} />
-
+      <Route path="/blogs" component={BlogsPage} />
+      <Route path="/blogs/:slug" component={BlogDetailPage} />
       <Route path="/csharp_basics" component={TopicPage} />
       <Route path="/csharp_classes" component={TopicPage} />
       <Route path="/control_flows_csharp" component={TopicPage} />

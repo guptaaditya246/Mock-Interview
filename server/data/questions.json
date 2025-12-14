@@ -5095,7 +5095,7 @@
     "q": "Which is valid?",
     "options": ["init int X { get; }", "init int X { get; set; }", "init int X { get; init; }", "All"],
     "answer": 2,
-    "explanation": "Correct syntax: `get; init;`"
+    "explanation": "Correct  `get; init;`"
   },
   {
     "q": "What is `null` conditional with nullable types?",
@@ -6433,7 +6433,7 @@
       "explanation": "Boxed null is null object, `?.` short-circuits to null. Preserves null in dynamics. Rare in reflection but trips serializers."
     },
     {
-      "q": "Syntax: Correct way to declare nullable array?",
+      "q": " Correct way to declare nullable array?",
       "options": ["`string?[]`", "`string[]?`", "`(string?)[]`", "Arrays can't be nullable"],
       "answer": 0,
       "explanation": "`string?[]` for element-nullable array; `string[]?` for null array. Choose per need. Config arrays fail loading partial data."
@@ -6565,7 +6565,7 @@
       "explanation": "Warns but compiles; runtime NRE. Deconstruct carefully. Patterns expose."
     },
     {
-      "q": "Syntax: Default literal for nullable?",
+      "q": " Default literal for nullable?",
       "options": ["`default(string?)`", "`null!`", "`string? default`", "Omit"],
       "answer": 0,
       "explanation": "`default(T?)` is null. Consistent. Initializers use."
@@ -6619,7 +6619,7 @@
       "explanation": "Cast succeeds to null. Type-safe downcast. Dynamics use."
     },
     {
-      "q": "Syntax: Null suppress in expression-bodied?",
+      "q": " Null suppress in expression-bodied?",
       "options": ["`=> x!`", "`=> x ?? null`", "`! => x`", "Can't"],
       "answer": 0,
       "explanation": "`!` post-call suppresses. Properties clean. Warnings gone."
@@ -6673,7 +6673,7 @@
       "explanation": "Non-nullable warns on null init. Use ctor. Immutables strict."
     },
     {
-      "q": "Syntax: Pattern match null in when?",
+      "q": " Pattern match null in when?",
       "options": ["`when x is null`", "`when x == null`", "`case null:`", "All work"],
       "answer": 3,
       "explanation": "Multiple idioms for null. Expressive C#. Switches clean."
