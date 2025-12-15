@@ -6,7 +6,7 @@ tags: [".NET", ".NET Reflection", "C# Advanced"]
 ---
 
 
-\.NET Reflection is one of those topics in .NET that most developers have heard of, many have used it indirectly, but few feel confident about it. Most of us feel like, "have some idea but not sure".  
+.NET Reflection is one of those topics in .NET that most developers have heard of, many have used it indirectly, but few feel confident about it. Most of us feel like, "have some idea but not sure".  
 Here, I am sharing a 3-part series to help you understand it in the simplest way possible. By the end, you'll go from "have some idea but not sure" to ".NET Reflection? I know how it works".  
 Today we'll discuss the objective of reflection, what it is, when to use it, and when to avoid it.
 

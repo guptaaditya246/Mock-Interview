@@ -100,7 +100,7 @@ export default function BlogDetailPage() {
             padding: "1rem",
             backgroundColor: "#f3f4f6",
             border: "1px solid #e5e7eb",
-            fontSize: "0.9rem",
+            fontSize: "0.8rem",
           }}
         >
           {codeBuffer.join("\n")}
@@ -147,7 +147,7 @@ export default function BlogDetailPage() {
           elements.push(
             <p
               key={elements.length}
-              className="my-4 text-base leading-relaxed font-normal text-foreground italic"
+              className="my-4 text-sm sm:text-base leading-relaxed font-normal text-foreground italic"
             >
               {extracted}
             </p>
@@ -158,7 +158,7 @@ export default function BlogDetailPage() {
           elements.push(
             <p
               key={elements.length}
-              className="my-4 text-base leading-relaxed font-normal text-foreground"
+              className="my-4 text-sm sm:text-base leading-relaxed font-normal text-foreground"
             >
               {extracted}
             </p>
@@ -190,7 +190,7 @@ export default function BlogDetailPage() {
         elements.push(
           <ul key={elements.length} className="list-disc list-inside my-4 space-y-1 bg-muted/10 dark:bg-muted/20 p-3 rounded-md">
             {listItems.map((item, idx) => (
-              <li key={idx} className="text-foreground">{item}</li>
+              <li key={idx} className="text-foreground text-sm sm:text-base leading-relaxed">{item}</li>
             ))}
           </ul>
         );
@@ -209,7 +209,7 @@ export default function BlogDetailPage() {
           parts.push(<span key={parts.length} className="text-foreground">{line.slice(lastIndex, matchInline.index)}</span>);
         }
         parts.push(
-          <code key={parts.length} className="bg-muted text-foreground px-1.5 py-0.5 rounded-md font-mono text-sm">
+          <code key={parts.length} className="bg-muted text-foreground px-1.5 py-0.5 rounded-md font-mono text-xs sm:text-sm">
             {matchInline[1]}
           </code>
         );
@@ -221,7 +221,7 @@ export default function BlogDetailPage() {
       elements.push(
         <p
           key={elements.length}
-          className="my-4 text-base leading-relaxed font-normal text-foreground"
+          className="my-4 text-sm sm:text-base leading-relaxed font-normal text-foreground"
         >
           {parts}
         </p>
@@ -262,7 +262,7 @@ export default function BlogDetailPage() {
         </div>
       </header>
       
-      <div className="max-w-7xl mx-auto px-6 py-10 flex gap-10 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col lg:flex-row gap-10 overflow-x-hidden">
         <div className="flex-1 min-w-0">
           <Link
             href="/blogs"
@@ -271,7 +271,7 @@ export default function BlogDetailPage() {
             Back to Blogs
           </Link>
 
-          <h1 className="text-5xl font-bold mb-6 tracking-tight text-foreground">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-foreground">
             {post.title}
           </h1>
           <div className="flex items-center gap-3 text-muted-foreground text-sm mb-6">
@@ -291,15 +291,15 @@ export default function BlogDetailPage() {
 
           <div className="prose max-w-full ml-0 mr-0 prose-headings:font-medium prose-headings:text-foreground
 prose-headings:mt-6 prose-headings:mb-3
-prose-p:text-foreground prose-p:text-base prose-p:leading-relaxed prose-p:my-4
+prose-p:text-sm sm:prose-p:text-base prose-p:leading-relaxed prose-p:my-4
 prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded-md
 prose-blockquote:border-l-2 prose-blockquote:border-primary prose-blockquote:pl-0 prose-blockquote:text-muted
 prose-img:rounded-lg prose-img:shadow-sm prose-img:max-w-full overflow-x-auto">
             {post ? renderMarkdown(post.content) : null}
           </div>
         </div>
-        <aside className="w-64 sticky top-24 space-y-6">
-          <div>
+        <aside className="w-full lg:w-64 lg:sticky lg:top-24 space-y-6">
+          <div className="hidden lg:block">
             <h3 className="font-semibold text-lg text-foreground mb-2">Recent Posts</h3>
             <ul className="space-y-1">
               {recentPosts.map(p => (

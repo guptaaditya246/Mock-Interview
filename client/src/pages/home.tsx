@@ -140,9 +140,9 @@ function WorkInProgressPopup() {
       </header>
 
       {/* AdSense Top Banner */}
-      <div className="py-6 hidden">
+      {/* <div className="py-6 hidden">
         <AdSensePlaceholder variant="banner" />
-      </div>
+      </div> */}
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-7xl">
@@ -163,6 +163,16 @@ function WorkInProgressPopup() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
               Test your knowledge with real-world .NET questions. Get instant feedback and improve your skills.
             </p>
+          </div>
+
+          {/* Mobile: Read Blogs CTA */}
+          <div className="lg:hidden px-2">
+            <a
+              href="/blogs"
+              className="block w-full text-center rounded-xl border border-primary text-primary py-3 text-base font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              Read Blogs
+            </a>
           </div>
 
           {/* Features Grid */}

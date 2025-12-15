@@ -160,9 +160,9 @@ export default function Results() {
 
           {/* AdSense Rectangle - Desktop Right, Mobile Below */}
           {/* <div className="flex justify-center lg:hidden hidden"> */}
-          <div className="py-6 hidden">
+          {/* <div className="py-6 hidden">
             <AdSensePlaceholder variant="rectangle" />
-          </div>
+          </div> */}
 
           {/* Question Review */}
           <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-8">
@@ -264,9 +264,9 @@ export default function Results() {
             {/* Sidebar AdSense - Desktop Only */}
             {/* <div className="hidden lg:block hidden" > */}
               <div className="py-6 hidden">
-              <div className="sticky top-24">
+              {/* <div className="sticky top-24">
                 <AdSensePlaceholder variant="rectangle" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

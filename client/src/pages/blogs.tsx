@@ -4,6 +4,7 @@ import { getAllPosts, Post } from "../lib/blogLoader";
 import { Button } from "@/components/ui/button";
 import { Code2, Sun, Moon, ArrowLeft } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
+import { AdSensePlaceholder } from "@/components/adsense-placeholder";
 
 function getSummary(content: string, maxLength = 160) {
   if (!content) return "";
@@ -99,8 +100,13 @@ export default function BlogsPage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <h1 className="text-3xl font-bold mb-8 text-foreground">Blogs</h1>
+
+        {/* Future AdSense Placeholder */}
+        <div className="my-12 hidden">
+          <AdSensePlaceholder variant="banner" />
+        </div>
 
         {posts.length === 0 && (
           <div className="text-muted-foreground">No blogs available.</div>
@@ -110,15 +116,15 @@ export default function BlogsPage() {
           {posts.slice(0, visibleCount).map((post) => (
             <article
               key={post.slug}
-              className="p-6 border border-border rounded-lg bg-card shadow-sm hover:shadow-md transition"
+              className="p-4 sm:p-6 border border-border rounded-xl bg-card shadow-sm hover:shadow-md transition space-y-3"
             >
               <Link href={`/blogs/${post.slug}`}>
-                <h2 className="text-2xl font-semibold cursor-pointer hover:text-primary text-foreground">
+                <h2 className="text-lg sm:text-xl font-semibold cursor-pointer hover:text-primary text-foreground leading-snug">
                   {post.title}
                 </h2>
               </Link>
 
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-muted-foreground mt-1">
                 <span>{post.date}</span>
                 {post.tags.map((tag) => (
                   <span
@@ -130,7 +136,7 @@ export default function BlogsPage() {
                 ))}
               </div>
 
-              <p className="text-foreground mt-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-muted-foreground mt-3 leading-relaxed">
                 {getSummary(post.content)}
               </p>
 
