@@ -67,19 +67,19 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mockdotnet.dev/about</loc>
+    <loc>https://mockdotnet.dev/about.html</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mockdotnet.dev/privacy</loc>
+    <loc>https://mockdotnet.dev/privacy.html</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mockdotnet.dev/contact</loc>
+    <loc>https://mockdotnet.dev/contact.html</loc>
     <lastmod>2025-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
