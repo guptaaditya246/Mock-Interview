@@ -35,7 +35,7 @@ When we run C# program/application, it follow this sequence -
 1. C# Compiler compiles the source code into intermediate language (IL) and packages it into an assembly (.dll/.exe file) along with metadata
 2. During execution (runtime), the CLR loads the assembly (.dll/.exe file), verifies the IL for type safety (this is where CTS comes into picture).
 3. The JIT (Just In Time) compiler, converts IL into machine-specific native code
-4. The native code is executed by the CPU and CLR performs the memory management, garbage collection ([Read More](https://mockdotnet.dev/blogs/dotnet-garbage-collection)), exception handling and security.
+4. The native code is executed by the CPU and CLR performs the memory management, [Garbage Collection](https://mockdotnet.dev/blogs/dotnet-garbage-collection), exception handling and security.
 
 
 This is as simple as it gets for behind the scenes of any .NET applications. 

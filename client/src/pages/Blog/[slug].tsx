@@ -110,6 +110,61 @@ export default function BlogDetailPage() {
       codeBlockLang = null;
     };
 
+    const renderInline = (text: string): JSX.Element[] => {
+      const inlineRegex = /(\[([^\]]+)\]\((https?:\/\/[^)]+)\))|(`([^`]+)`)/g;
+      const parts: JSX.Element[] = [];
+      let lastIndex = 0;
+      let match;
+
+      while ((match = inlineRegex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(
+            <span key={parts.length} className="text-foreground">
+              {text.slice(lastIndex, match.index)}
+            </span>
+          );
+        }
+
+        // Markdown link
+        if (match[1]) {
+          parts.push(
+            <a
+              key={parts.length}
+              href={match[3]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline underline-offset-2 hover:opacity-80"
+            >
+              {match[2]}
+            </a>
+          );
+        }
+        // Inline code
+        else if (match[4]) {
+          parts.push(
+            <code
+              key={parts.length}
+              className="bg-muted text-foreground px-1.5 py-0.5 rounded-md font-mono text-xs sm:text-sm"
+            >
+              {match[5]}
+            </code>
+          );
+        }
+
+        lastIndex = match.index + match[0].length;
+      }
+
+      if (lastIndex < text.length) {
+        parts.push(
+          <span key={parts.length} className="text-foreground">
+            {text.slice(lastIndex)}
+          </span>
+        );
+      }
+
+      return parts;
+    };
+
     lines.forEach((line) => {
       const codeFence = line.match(/^```(\w*)/);
       if (codeFence) {
@@ -190,7 +245,9 @@ export default function BlogDetailPage() {
         elements.push(
           <ul key={elements.length} className="list-disc list-inside my-4 space-y-1 bg-muted/10 dark:bg-muted/20 p-3 rounded-md">
             {listItems.map((item, idx) => (
-              <li key={idx} className="text-foreground text-sm sm:text-base leading-relaxed">{item}</li>
+              <li key={idx} className="text-foreground text-sm sm:text-base leading-relaxed">
+                {renderInline(item)}
+              </li>
             ))}
           </ul>
         );
@@ -199,31 +256,12 @@ export default function BlogDetailPage() {
         return;
       }
 
-      // Inline code
-      const inlineCodeRegex = /`([^`]+)`/g;
-      const parts = [];
-      let lastIndex = 0;
-      let matchInline;
-      while ((matchInline = inlineCodeRegex.exec(line)) !== null) {
-        if (matchInline.index > lastIndex) {
-          parts.push(<span key={parts.length} className="text-foreground">{line.slice(lastIndex, matchInline.index)}</span>);
-        }
-        parts.push(
-          <code key={parts.length} className="bg-muted text-foreground px-1.5 py-0.5 rounded-md font-mono text-xs sm:text-sm">
-            {matchInline[1]}
-          </code>
-        );
-        lastIndex = matchInline.index + matchInline[0].length;
-      }
-      if (lastIndex < line.length) {
-        parts.push(<span key={parts.length} className="text-foreground">{line.slice(lastIndex)}</span>);
-      }
       elements.push(
         <p
           key={elements.length}
           className="my-4 text-sm sm:text-base leading-relaxed font-normal text-foreground"
         >
-          {parts}
+          {renderInline(line)}
         </p>
       );
     });
